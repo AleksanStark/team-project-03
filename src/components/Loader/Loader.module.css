@@ -1,0 +1,79 @@
+.backdrop {
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circles {
+  position: relative;
+  animation: animateBg 1s linear infinite;
+}
+
+@keyframes animateBg {
+  0% {
+    filter: hue-rotate(360deg);
+  }
+
+  100% {
+    filter: hue-rotate(320deg);
+  }
+}
+
+.circles span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: rotate(calc(var(--n) * 360deg / 16)) translateY(40px);
+}
+
+@media only screen and (min-width: 768px) {
+  .circles span {
+    transform: rotate(calc(var(--n) * 360deg / 16)) translateY(60px);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .circles span {
+    transform: rotate(calc(var(--n) * 360deg / 16)) translateY(80px);
+  }
+}
+
+.circles span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border-radius: 2rem 2rem 0.25rem 2rem;
+  background-color: var(--primary-color-blue);
+  box-shadow: 0 0 20px var(--primary-color-blue),
+    0 0 40px var(--primary-color-blue), 0 0 60px var(--primary-color-blue),
+    0 0 80px var(--primary-color-blue), 0 0 100px var(--primary-color-blue),
+    0 0 120px var(--primary-color-blue);
+  animation: animate 2s linear infinite;
+  animation-delay: calc(-2s + 0.1s * var(--n));
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+
+  70% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

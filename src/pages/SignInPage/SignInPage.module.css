@@ -1,0 +1,65 @@
+.container {
+  height: 90%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    height: 92%;
+  }
+}
+
+.background {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-position: center 28px;
+  background-image: url(../../images/welcome/backgroundMobile.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -2;
+}
+/* 
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .background {
+    background-image: url('../../images/welcome/bg-mb2x.png');
+  }
+} */
+
+@media screen and (min-width: 768px) {
+  .background {
+    max-width: 768px;
+    padding: 0 32px;
+    z-index: -2;
+    background-image: url(../../images/welcome/backgroundTablet.svg);
+    background-position: center 0px;
+  }
+  /* @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .background {
+      background-image: url('../../images/welcome/bg-tb2x.png');
+    }
+  } */
+}
+
+@media screen and (min-width: 1440px) {
+  .background {
+    max-width: 1440px;
+    padding: 0 18px;
+    background-image: url(../../images/welcome/backgroundDesktop.svg);
+    background-size: 100%;
+    background-size: contain;
+    background-repeat: repeat;
+    align-items: flex-end;
+  }
+  /* @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .background {
+      background-image: url('../../images/welcome/bg-dt2x.png');
+    }
+  } */
+}

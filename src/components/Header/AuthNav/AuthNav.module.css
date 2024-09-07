@@ -1,0 +1,64 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.user-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  position: relative;
+}
+.name-text {
+  color: #2f2f2f;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+.image {
+  border-radius: 50%;
+}
+.button {
+  border-color: transparent;
+  background-color: transparent;
+  color: #407bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.first-letter {
+  border-radius: 50%;
+  background-color: rgb(230, 228, 228);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-sin {
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  color: #407bff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: left;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.icon {
+  color: #2f2f2f;
+  width: 24px;
+  height: 24px;
+}

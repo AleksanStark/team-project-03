@@ -1,0 +1,42 @@
+/* ==================Menu=============*/
+
+.context-container {
+  position: absolute;
+  top: 70px;
+  width: max-content;
+  right: 0;
+  z-index: 1000;
+  transform: translateY(-20px);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
+  background: rgb(255, 255, 255);
+  padding: 16px 16px;
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+.context {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.context-button {
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #407bff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: left;
+}

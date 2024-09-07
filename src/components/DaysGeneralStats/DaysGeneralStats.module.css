@@ -1,0 +1,61 @@
+.container {
+  padding: 24px 13px 24px 13px;
+  width: 280px;
+}
+
+.titel_data {
+  color: rgb(64, 123, 255);
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.page {
+  color: rgb(47, 47, 47);
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.info_water {
+  color: rgb(64, 123, 255);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link_page {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.link_page_records {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 24px 16px 24px 16px;
+    width: 292px;
+  }
+}

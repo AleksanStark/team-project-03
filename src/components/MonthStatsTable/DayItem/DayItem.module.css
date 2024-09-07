@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.containerForDay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 50%;
+  height: 34px;
+  width: 34px;
+  background-color: #fff;
+}
+
+.numberOfDay {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  color: #2f2f2f;
+}
+
+.percentOfDay {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 13px;
+  color: #d7e3ff;
+}

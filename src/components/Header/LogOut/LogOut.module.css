@@ -1,0 +1,116 @@
+.backdrop {
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  transition: opacity 250ms linear, visibility 250ms linear;
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 280px;
+  height: max-content;
+  background-color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  transition: transform 250ms linear;
+  padding: 32px 24px;
+  .backdrop.is-hidden & {
+    transform: translate(-50%, -50%);
+  }
+  @media screen and (min-width: 768px) {
+    width: 592px;
+  }
+}
+
+.title-block {
+  display: flex;
+  justify-content: space-between;
+}
+.log-title {
+  color: #2f2f2f;
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0;
+}
+.button-close {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  color: #407bff;
+  display: flex;
+  align-items: center;
+}
+.title {
+  color: #2f2f2f;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+.button-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  @media screen and (min-width: 1440px) {
+    justify-content: flex-start;
+  }
+}
+.button-out {
+  cursor: pointer;
+  border-color: transparent;
+  background: #ef5050;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  padding: 8px 30px;
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0;
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.button-cancel {
+  background: #d7e3ff;
+  border-radius: 10px;
+  padding: 8px 30px;
+  cursor: pointer;
+  border-color: transparent;
+  padding: 8px 30px;
+  color: #407bff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0;
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}

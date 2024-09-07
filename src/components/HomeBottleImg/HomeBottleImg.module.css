@@ -1,0 +1,18 @@
+.bottle {
+  width: 280px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .bottle {
+    width: 518px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .bottle {
+    width: 768px;
+    margin: 0 0 auto 0;
+  }
+}

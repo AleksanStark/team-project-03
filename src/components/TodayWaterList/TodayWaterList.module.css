@@ -1,0 +1,182 @@
+.todayWaterList {
+  width: 264px;
+  height: 258px;
+  gap: 16px;
+  background-color: #ecf2ff;
+}
+.todayH3 {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: left;
+  color: #2f2f2f;
+  margin-bottom: 16px;
+}
+.waterList {
+  max-height: 152px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 264px;
+  height: 212px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9ebbff;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  margin: 4px;
+  background-color: #d7e3ff;
+}
+
+.waterRecord {
+  width: 254px;
+  height: 26px;
+  gap: 38px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d7e3ff;
+  padding-bottom: 12px;
+  margin-top: 12px;
+}
+.recordWrapper {
+  width: 166px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.amount {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: #407bff;
+}
+.time {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: #2f2f2f;
+}
+
+svg {
+  width: 16px;
+  height: 21px;
+}
+
+.addWaterBtn {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  color: #407bff;
+  border: none;
+  background-color: #ecf2ff;
+  cursor: pointer;
+}
+
+.addWaterBtn:hover {
+  color: #ff9d43;
+}
+
+.svgWrapper {
+  display: flex;
+  gap: 18px;
+}
+
+.editBtn,
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  align-items: center;
+  justify-content: center;
+}
+
+.editBtn svg {
+  width: 16px;
+  height: 16px;
+  transition: fill 0.2s;
+}
+
+.deleteBtn svg {
+  width: 16px;
+  height: 16px;
+  transition: fill 0.2s;
+}
+
+.editBtn:hover {
+  border-bottom: 1px solid #9ebbff;
+}
+
+.deleteBtn:hover {
+  border-bottom: 1px solid #ef5050;
+}
+
+@media screen and (min-width: 768px) {
+  .todayWaterList {
+    width: 656px;
+    height: 260px;
+  }
+
+  .waterList {
+    max-height: 140px;
+    width: 656px;
+  }
+
+  .waterRecord {
+    width: 646px;
+    height: 36px;
+    gap: 390px;
+  }
+
+  .addWaterBtn {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  svg {
+    width: 22px;
+    height: 29px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .todayWaterList {
+    width: 544px;
+    height: 260px;
+  }
+
+  .waterList {
+    max-height: 155px;
+    width: 544px;
+  }
+
+  .waterRecord {
+    width: 534px;
+    height: 40px;
+    gap: 278px;
+  }
+  .recordWrapper {
+    width: 206px;
+    height: 36px;
+    gap: 16px;
+  }
+}

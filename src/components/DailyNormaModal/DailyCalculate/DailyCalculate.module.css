@@ -1,0 +1,86 @@
+.calculateTitle {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+  padding-bottom: 16px;
+}
+
+.divWithRadioButtons {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 16px;
+}
+
+.gender {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+  padding-bottom: 16px;
+  padding-left: 3px;
+}
+
+.selectionName {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+  padding-bottom: 8px;
+}
+
+.divWithChoiceOfWeight {
+  padding-bottom: 16px;
+}
+
+.divWithChoiceOfActivity {
+  padding-bottom: 16px;
+}
+
+.choice {
+  width: 100%;
+  border: 1px solid #d7e3ff;
+  border-radius: 6px;
+  padding: 12px 10px;
+  color: #9ebbff;
+}
+
+.choice::placeholder {
+  color: #9ebbff;
+  opacity: 1;
+}
+
+.choice:hover,
+.choice:focus,
+.choice:active {
+  outline: none;
+  color: #407bff;
+}
+
+.amountOfWater {
+  display: flex;
+  gap: 6px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+}
+
+.spanOfAmountOfWater {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 18px;
+  color: #407bff;
+}
+
+@media (max-width: 767px) {
+  .amountOfWater {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .amountOfWaterTitle {
+    width: 190px;
+  }
+}

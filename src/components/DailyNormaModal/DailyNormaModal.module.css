@@ -1,0 +1,97 @@
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  box-sizing: border-box;
+  width: 592px;
+  /* min-height: 592px; */
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 32px 24px;
+}
+
+.divWithTitle {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 24px;
+}
+
+.contentOfModal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dailyNormaTitle {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 26px;
+  color: black;
+}
+
+.btnContainer {
+  text-align: end;
+}
+
+.btn {
+  cursor: pointer;
+  width: 160px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  background-color: #407bff;
+  color: white;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.closeBtn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-top: 4px;
+}
+
+.icon {
+  color: #407bff;
+  stroke: #407bff;
+  fill: #407bff;
+}
+
+@media (max-width: 1439px) {
+  .modal {
+    width: 704px;
+  }
+}
+
+@media (max-width: 767px) {
+  .modal {
+    width: 280px;
+    max-height: 90vh;
+    overflow: auto;
+    padding: 24px 12px;
+    padding: 24px 12px;
+  }
+  .btnContainer {
+    width: 100%;
+    text-align: center;
+  }
+  .btn {
+    padding: 8px 30px;
+    width: 256px;
+    font-size: 16px;
+  }
+}

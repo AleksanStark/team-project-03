@@ -1,0 +1,42 @@
+.container {
+  width: 544px;
+  height: 332px;
+  /* width: 646px;
+  height: 292px; */
+  background-color: #9ebbff;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+
+h2 {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 26px;
+  color: #2f2f2f;
+}
+
+.month {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  color: #407bff;
+}
+
+.icons {
+  color: #407bff;
+  stroke: #407bff;
+  fill: #407bff;
+}
+
+.containerWithDays {
+  width: 538px;
+  height: 284px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 28px 22px;
+}

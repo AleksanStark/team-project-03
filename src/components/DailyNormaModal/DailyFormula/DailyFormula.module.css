@@ -1,0 +1,46 @@
+.divWithFormulas {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 12px;
+}
+
+.formula {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+}
+
+.spanFormula {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 18px;
+  color: #407bff;
+}
+
+.explanation {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 12px;
+  color: #8f8f8f;
+  border: 1px solid #d7e3ff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.star {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 12px;
+  color: #407bff;
+}
+
+@media (max-width: 767px) {
+  .divWithFormulas {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .formula {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,166 @@
+.conteiner {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerRatio {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.title {
+  color: rgb(64, 123, 255);
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: center;
+  margin-bottom: 8px;
+  margin-right: auto;
+}
+
+.rectangle {
+  background-color: #9ebbff;
+  position: relative;
+  z-index: 2;
+  height: 8px;
+  border-radius: 10px;
+  width: 0;
+}
+
+.icon {
+  position: absolute;
+  z-index: 3;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgb(64, 123, 255);
+  background: rgb(255, 255, 255);
+  right: -3px;
+  top: -3px;
+  border-radius: 50%;
+}
+
+.ratio {
+  width: auto;
+  height: 8px;
+  background-color: #d7e3ff;
+  border-radius: 10px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 4px;
+  width: 100%;
+}
+
+.line {
+  color: rgb(64, 123, 255);
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: center;
+  position: relative;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.line::after,
+.infoProgres::after {
+  height: 8px;
+  border: 1px solid rgb(215, 227, 255);
+  position: absolute;
+  top: -10px;
+  content: '';
+}
+
+.conteinerInfo {
+  padding-left: 10px;
+  padding-right: 14px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10;
+  padding: 6px 76px 6px 76px;
+  color: rgb(255, 255, 255);
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  background: rgb(64, 123, 255);
+  border: none;
+  margin-top: 16px;
+}
+
+.btn:active,
+.btn:hover,
+.btn:focus {
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+}
+
+.conteinerItems {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .icon {
+    right: -6px;
+  }
+  .ratio {
+    width: auto;
+  }
+
+  .conteinerInfo {
+    width: 356px;
+  }
+
+  .conteinerItems {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn {
+    margin-top: 0;
+    margin-left: 12px;
+    padding: 10px 104px 10px 104px;
+  }
+
+  .conteinerItems {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .conteinerInfo {
+    padding-left: 11px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .ratio {
+    width: auto;
+  }
+
+  .btn {
+    padding: 10px 30px 10px 30px;
+    margin-left: 23px;
+  }
+  .title {
+    margin-bottom: 19px;
+  }
+}

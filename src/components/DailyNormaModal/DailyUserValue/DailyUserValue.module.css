@@ -1,0 +1,70 @@
+.userValue {
+  /* padding-bottom: 14px; */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* .userValueContainer {
+  display: flex;
+  gap: ;
+} */
+
+.userValueDescription {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+  padding-bottom: 16px;
+}
+
+.inputValue {
+  width: 100%;
+  border: 1px solid #d7e3ff;
+  border-radius: 6px;
+  padding: 12px 10px;
+}
+
+.inputValue::placeholder {
+  color: #9ebbff;
+  opacity: 1;
+}
+
+.inputValue:hover,
+.inputValue:focus,
+.inputValue:active {
+  outline: none;
+  color: #407bff;
+}
+
+.btnContainer {
+  text-align: end;
+  padding-top: ;
+}
+
+.btn {
+  cursor: pointer;
+  width: 160px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  background-color: #407bff;
+  color: white;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.closeBtn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-top: 4px;
+}
+
+@media (max-width: 767px) {
+  .btn {
+    width: 100%;
+    font-size: 16px;
+  }
+}
