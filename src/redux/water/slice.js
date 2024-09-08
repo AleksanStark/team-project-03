@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addWaterRecord,
-  getWaterRecord,
+  deleteWaterRecord,
   updateWaterRecord,
   getMonthlyRecord,
+  getDailyRecord,
 } from "./operations";
 
 const waterSlice = createSlice({
@@ -12,7 +13,6 @@ const waterSlice = createSlice({
     dailyRecords: [],
     monthlyRecords: [],
     currentRecord: null,
-    progres: 0,
     isLoading: false,
     error: null,
   },
@@ -45,20 +45,31 @@ const waterSlice = createSlice({
         state.error = true;
       })
 
-      .addCase(getWaterRecord.pending, (state) => {
+      .addCase(getDailyRecord.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getDailyRecord.fulfilled, (state, action) => {
+        state.dailyRecords = action.payload.dailyResults;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getDailyRecord.rejected, (state) => {
+        state.isLoading = false;
+        state.error = true;
+      })
+
+      .addCase(deleteWaterRecord.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getWaterRecord.fulfilled, (state, action) => {
+      .addCase(deleteWaterRecord.fulfilled, (state, action) => {
         state.currentRecord = action.payload;
-        state.progres = action.payload.percentageOfDailyIntake;
-        console.log(action.payload.percentageOfDailyIntake);
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getWaterRecord.rejected, (state, action) => {
+      .addCase(deleteWaterRecord.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || "Error fetching the water record";
+        state.error = action.payload || "Error deleting the water record";
       })
       .addCase(updateWaterRecord.pending, (state) => {
         state.isLoading = true;
