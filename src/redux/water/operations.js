@@ -1,11 +1,13 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://watertracker-db.onrender.com";
 
 export const addWaterRecord = createAsyncThunk(
-  'water/add', // Updated action type to avoid conflict
+  "water/add", // Updated action type to avoid conflict
   async (record, thunkAPI) => {
     try {
-      const { data } = await axios.post('/water', record);
+      const { data } = await axios.post("/water", record);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -14,11 +16,11 @@ export const addWaterRecord = createAsyncThunk(
 );
 
 export const getMonthlyRecord = createAsyncThunk(
-  'water/getMonthlyInfo',
+  "water/getMonthlyInfo",
   async (userData, thunkAPI) => {
     const date = new Date(userData);
     const year = date.getFullYear();
-    const month = date.getMonth().toString().padStart(2, '0'); // Fixed typo
+    const month = date.getMonth().toString().padStart(2, "0"); // Fixed typo
     const END_POINT = `/water/monthly/${year}-${month}-01`; // Fixed typo
 
     try {
@@ -31,22 +33,22 @@ export const getMonthlyRecord = createAsyncThunk(
 );
 
 export const getWaterRecord = createAsyncThunk(
-  'water/get', // Updated action type to avoid conflict
+  "water/get", // Updated action type to avoid conflict
 
   async (recordId, thunkAPI) => {
     try {
-      const response = await axios.get(`/water/${recordId}`);
+      const response = await axios.get(`/water/daily/${recordId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data || 'Failed to fetch water record'
+        error.response?.data || "Failed to fetch water record"
       );
     }
   }
 );
 
 export const updateWaterRecord = createAsyncThunk(
-  'water/update', // Updated action type to avoid conflict
+  "water/update", // Updated action type to avoid conflict
   async ({ recordId, amount, time }, thunkAPI) => {
     try {
       const response = await axios.patch(`/water/${recordId}`, {
@@ -56,7 +58,7 @@ export const updateWaterRecord = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data || 'Failed to update water record'
+        error.response?.data || "Failed to update water record"
       );
     }
   }
