@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 axios.defaults.baseURL = "https://watertracker-db.onrender.com";
+
 export const addWaterRecord = createAsyncThunk(
   "water/add", // Updated action type to avoid conflict
   async ({ amount, date }, thunkAPI) => {

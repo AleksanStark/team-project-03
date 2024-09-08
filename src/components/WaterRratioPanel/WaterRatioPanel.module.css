@@ -75,7 +75,7 @@
   border: 1px solid rgb(215, 227, 255);
   position: absolute;
   top: -10px;
-  content: '';
+  content: "";
 }
 
 .conteinerInfo {
@@ -89,7 +89,8 @@
   justify-content: center;
   align-items: center;
   gap: 10;
-  padding: 6px 76px 6px 76px;
+  width: 280px;
+  padding: 6px 0px 6px 0px;
   color: rgb(255, 255, 255);
   font-family: Roboto;
   font-size: 16px;
@@ -138,7 +139,8 @@
   .btn {
     margin-top: 0;
     margin-left: 12px;
-    padding: 10px 104px 10px 104px;
+    width: 336px;
+    padding: 10px 0px 10px 0px;
   }
 
   .conteinerItems {
@@ -157,7 +159,8 @@
   }
 
   .btn {
-    padding: 10px 30px 10px 30px;
+    width: 178px;
+    padding: 10px 0px 10px 0px;
     margin-left: 23px;
   }
   .title {
