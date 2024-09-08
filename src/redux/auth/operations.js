@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-axios.defaults.baseURL = "https://team-project-03.onrender.com";
+axios.defaults.baseURL = "https://watertracker-db.onrender.com";
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
