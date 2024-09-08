@@ -37,7 +37,7 @@ const authSlice = createSlice({
             .addCase(register.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.user = action.payload.user;
-                state.token = action.payload.token;
+                state.token = action.payload.accessToken;
                 state.isRegistered = true;
                 state.isLoggedIn = true;
             })
@@ -49,7 +49,7 @@ const authSlice = createSlice({
             .addCase(logIn.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.user = action.payload.user;
-                state.token = action.payload.token;
+                state.token = action.payload.accessToken;
                 state.isLoggedIn = true;
             })
             .addCase(logIn.rejected, handleRejected)
@@ -105,16 +105,16 @@ const authSlice = createSlice({
     },
 });
 
-const persistConfig = {
-    key: 'auth',
-    storage,
-    whitelist: ['token'],
-};
+// const persistConfig = {
+//     key: 'auth',
+//     storage,
+//     whitelist: ['token'],
+// };
 
-export const persistedContactsReducer = persistReducer(
-    persistConfig,
-    authSlice.reducer,
-);
+// export const persistedContactsReducer = persistReducer(
+//     persistConfig,
+//     authSlice.reducer,
+// );
 
 // Use named export to match import statement
 export default authSlice.reducer;
