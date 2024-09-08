@@ -12,23 +12,23 @@ import { PersistGate } from 'redux-persist/integration/react';
 const rootElement = document.getElementById('root');
 
 if (rootElement) {
-  // Create a root using ReactDOM.createRoot
-  const root = ReactDOM.createRoot(rootElement);
+    // Create a root using ReactDOM.createRoot
+    const root = ReactDOM.createRoot(rootElement);
 
-  // Render the application
-  root.render(
-    <Provider store={store}>
-      {' '}
-      {/* Wrap App with Provider */}
-      <PersistGate loading={null} persistor={persistor}>
-        <Router basename="/team-project-03">
-          {' '}
-          {/* Wrap with Router and set basename */}
-          <App />
-        </Router>
-      </PersistGate>
-    </Provider>
-  );
+    // Render the application
+    root.render(
+        <Provider store={store}>
+            {' '}
+            {/* Wrap App with Provider */}
+            <PersistGate loading={null} persistor={persistor}>
+                <Router basename="/team-project-03">
+                    {' '}
+                    {/* Wrap with Router and set basename */}
+                    <App />
+                </Router>
+            </PersistGate>
+        </Provider>,
+    );
 } else {
-  console.error('Root element not found');
+    console.error('Root element not found');
 }
