@@ -20,6 +20,8 @@
     justify-content: flex-start;
     flex-direction: row-reverse;
     /* align-items: flex-end; */
+    position: relative;
+    z-index: 999;
   }
 }
 
@@ -49,11 +51,12 @@
 }
 @media screen and (min-width: 1440px) {
   .form {
-    position: static;
+    position: relative;
     width: 384px;
     margin-top: 113px;
     margin-right: 198px;
     margin-left: 840px;
+    z-index: 999999;
   }
 }
 
@@ -190,7 +193,7 @@
 }
 
 .bottle {
-  background-image: url('../../images/home/bottle-mob-1x.png');
+  background-image: url("../../images/home/bottle-mob-1x.png");
   background-size: contain;
   background-repeat: no-repeat;
   width: 280px;
@@ -207,13 +210,13 @@
   (min-resolution: 192dpi),
   (min-resolution: 2dppx) {
   .bottle {
-    background-image: url('../../images/home/bottle-mob-2x.png');
+    background-image: url("../../images/home/bottle-mob-2x.png");
   }
 }
 
 @media screen and (min-width: 768px) {
   .bottle {
-    background-image: url('../../images/home/bottle-tab-1x.png');
+    background-image: url("../../images/home/bottle-tab-1x.png");
     width: 736px;
     height: 548px;
     background-position: 80px;
@@ -224,27 +227,29 @@
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .bottle {
-      background-image: url('../../images/home/bottle-tab-2x.png');
+      background-image: url("../../images/home/bottle-tab-2x.png");
     }
   }
 }
 
 @media screen and (min-width: 1440px) {
   .bottle {
-    background-image: url('../../images/home/bottle-desk-1x.png');
+    background-image: url("../../images/home/bottle-desk-1x.png");
     width: 916px;
     min-height: 680px;
     margin-top: 0;
     background-position: -65px center;
     /* background-size: 880px, cover; */
-    transform: translateY(-440px);
+    transform: translateY(-550px);
+    /* position: absolute;
+    z-index: 4; */
   }
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .bottle {
-      background-image: url('../../images/home/bottle-desk-2x.png');
+      background-image: url("../../images/home/bottle-desk-2x.png");
     }
   }
 }
