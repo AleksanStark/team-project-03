@@ -1,16 +1,16 @@
-import style from './DailyCalculate.module.css';
-import { useState } from 'react';
+import style from "./DailyCalculate.module.css";
+import { useState } from "react";
 
 const DailyCalculate = () => {
   const [weight, setWeight] = useState();
   const [activity, setActivity] = useState();
-  const [gender, setGender] = useState('Woman');
+  const [gender, setGender] = useState("Woman");
 
   const calculate = () => {
     const M = +weight || 0;
     const T = +activity || 0;
 
-    if (gender === 'Woman') {
+    if (gender === "Woman") {
       return M * 0.03 + T * 0.4;
     } else {
       return M * 0.04 + T * 0.6;
@@ -25,19 +25,19 @@ const DailyCalculate = () => {
       <div className={style.divWithRadioButtons}>
         <div>
           <input
-            onChange={() => setGender('Woman')}
+            onChange={() => setGender("Woman")}
             type="radio"
             name="gender"
-            checked={gender === 'Woman'}
+            checked={gender === "Woman"}
           />
           <label className={style.gender}>For woman</label>
         </div>
         <div>
           <input
-            onChange={() => setGender('Man')}
+            onChange={() => setGender("Man")}
             type="radio"
             name="gender"
-            checked={gender === 'Man'}
+            checked={gender === "Man"}
           />
           <label className={style.gender}>For man</label>
         </div>
@@ -46,7 +46,7 @@ const DailyCalculate = () => {
         <p className={style.selectionName}>Your weight in kilograms:</p>
         <input
           className={style.choice}
-          onChange={e => setWeight(e.target.value)}
+          onChange={(e) => setWeight(e.target.value)}
           type="text"
           name="weight"
           placeholder="0"
@@ -60,7 +60,7 @@ const DailyCalculate = () => {
         </p>
         <input
           className={style.choice}
-          onChange={e => setActivity(e.target.value)}
+          onChange={(e) => setActivity(e.target.value)}
           type="text"
           name="activity"
           placeholder="0"

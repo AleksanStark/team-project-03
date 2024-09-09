@@ -1,17 +1,11 @@
 .userValue {
-  /* padding-bottom: 14px; */
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* .userValueContainer {
-  display: flex;
-  gap: ;
-} */
-
 .userValueDescription {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;
   color: black;
@@ -39,7 +33,6 @@
 
 .btnContainer {
   text-align: end;
-  padding-top: ;
 }
 
 .btn {
@@ -50,7 +43,7 @@
   padding: 10px 30px;
   background-color: #407bff;
   color: white;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;
 }

@@ -8,12 +8,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 999;
 }
 
 .modal {
   box-sizing: border-box;
   width: 592px;
-  /* min-height: 592px; */
   background-color: #fff;
   border-radius: 10px;
   display: flex;
@@ -35,7 +35,7 @@
 }
 
 .dailyNormaTitle {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 500;
   font-size: 26px;
   color: black;
@@ -53,7 +53,7 @@
   padding: 10px 30px;
   background-color: #407bff;
   color: white;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;
 }
@@ -83,8 +83,8 @@
     max-height: 90vh;
     overflow: auto;
     padding: 24px 12px;
-    padding: 24px 12px;
   }
+
   .btnContainer {
     width: 100%;
     text-align: center;
