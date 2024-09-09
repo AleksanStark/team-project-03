@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import css from "./EditWaterModal.module.css";
 import { IoCloseOutline } from "react-icons/io5";
@@ -161,3 +162,4 @@ const EditWaterModal = ({ recordId, onClose }) => {
 
 export default EditWaterModal;
 // додати onClick={handleSave} на <button className={css.save_button}>Save</button>
+
