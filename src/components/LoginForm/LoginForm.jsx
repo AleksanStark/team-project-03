@@ -1,25 +1,25 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/operations';
-import toast, { Toaster } from 'react-hot-toast';
-import style from './LoginForm.module.css';
-import * as Yup from 'yup';
-import { useId, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-import sprite from '../../images/sprite.svg';
-import { routes } from 'routes/routes';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
+import toast, { Toaster } from "react-hot-toast";
+import style from "./LoginForm.module.css";
+import * as Yup from "yup";
+import { useId, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import sprite from "../../images/sprite.svg";
+import { routes } from "routes/routes";
 
 const UserSchema = Yup.object().shape({
   email: Yup.string()
-    .min(3, 'Email must be 3 symbols minimum')
-    .max(30, 'Email must be 30 symbols maximum')
-    .email('Invalid email address')
-    .required('Email is required!'),
+    .min(3, "Email must be 3 symbols minimum")
+    .max(30, "Email must be 30 symbols maximum")
+    .email("Invalid email address")
+    .required("Email is required!"),
   password: Yup.string()
-    .min(8, 'Password must be 8 symbols minimum')
-    .max(64, 'Password must be 64 symbols maximum')
-    .required('Password is required!'),
+    .min(8, "Password must be 8 symbols minimum")
+    .max(64, "Password must be 64 symbols maximum")
+    .required("Password is required!"),
 });
 
 export default function LoginForm() {
@@ -30,7 +30,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prevState => !prevState);
+    setShowPassword((prevState) => !prevState);
   };
 
   const handlSubmit = (values, actions) => {
@@ -39,7 +39,7 @@ export default function LoginForm() {
       .then(() => {
         navigate(routes.HOMEPAGE);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         toast.error("This didn't work.");
       });
@@ -52,8 +52,8 @@ export default function LoginForm() {
       <Toaster position="top-center" reverseOrder={false} />
       <Formik
         initialValues={{
-          email: '',
-          password: '',
+          email: "",
+          password: "",
         }}
         validationSchema={UserSchema}
         onSubmit={handlSubmit}
@@ -70,7 +70,7 @@ export default function LoginForm() {
                 name="email"
                 placeholder="E-mail"
                 autoComplete="email"
-                error={touched.email && errors.email ? 'true' : 'false'}
+                error={touched.email && errors.email ? "true" : "false"}
               />
               <ErrorMessage
                 className={style.error}
@@ -84,10 +84,10 @@ export default function LoginForm() {
               <Field
                 id={pswFindId}
                 className={style.form_input}
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Password"
-                error={touched.password && errors.password ? 'true' : 'false'}
+                error={touched.password && errors.password ? "true" : "false"}
                 autoComplete="new-password"
               />
               <span
@@ -96,7 +96,7 @@ export default function LoginForm() {
               >
                 <svg className={style.icon}>
                   <use
-                    href={sprite + (showPassword ? '#eye-show' : '#eye-hide')}
+                    href={sprite + (showPassword ? "#eye-show" : "#eye-hide")}
                   />
                 </svg>
               </span>
@@ -111,10 +111,10 @@ export default function LoginForm() {
               Sign In
             </button>
 
-            <NavLink className={style.link} to={'/signup'}>
+            <NavLink className={style.link} to={"/signup"}>
               Sign Up
             </NavLink>
-            <NavLink className={style.link} to={'/forgot-password'}>
+            <NavLink className={style.link} to={"/request-reset-email"}>
               Forgot your password?
             </NavLink>
           </Form>

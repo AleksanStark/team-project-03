@@ -126,10 +126,10 @@ export const updateDailyNorma = createAsyncThunk(
 );
 
 export const sendResetEmail = createAsyncThunk(
-  "auth/request-reset-email",
+  "auth/sendResetEmail",
   async (email, thunkAPI) => {
     try {
-      const response = await axios.post("auth/request-reset-email", { email });
+      const response = await axios.post("/auth/request-reset-email", { email });
       return response.data;
     } catch (error) {
       throw thunkAPI.rejectWithValue(error.message);
@@ -141,7 +141,7 @@ export const resetPwd = createAsyncThunk(
   "auth/reset-password",
   async ({ password, token }, thunkAPI) => {
     try {
-      const res = await axios.post("auth/reset-password", { password, token });
+      const res = await axios.post("/auth/reset-password", { password, token });
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
