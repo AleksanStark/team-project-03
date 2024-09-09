@@ -62,7 +62,6 @@ export default function AuthNav() {
     const handleSignInClick = () => {
         navigate(routes.LOGIN);
     };
-
     return (
         <div className={css.wrap}>
             {isLoggedIn ? (
@@ -120,13 +119,11 @@ export default function AuthNav() {
                 logOutModalIsOpen={logOutModalIsOpen}
                 closeLogOut={closeLogOut}
             />
-
             {email ? (
                 <ModalSetting
                     closeModal={closeModal}
                     isOpen={modalIsOpen}
                     user={userData}
-                    imageDefault={imageDefault}
                 />
             ) : null}
         </div>

@@ -73,7 +73,6 @@ export const refreshUser = createAsyncThunk(
         setAuthHeader(persistedToken);
         try {
             const { data } = await axios.get('/user/info');
-
             return data.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -84,15 +83,8 @@ export const refreshUser = createAsyncThunk(
 export const updateAvatar = createAsyncThunk(
     'user/info/photo',
     async (formData, thunkAPI) => {
-        console.log('Photo', formData);
-
         try {
-            const { data } = await axios.patch('/user/info/photo', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-
+            const { data } = await axios.patch('/user/info/photo', formData);
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -104,13 +96,13 @@ export const updateAvatar = createAsyncThunk(
 export const updateUserData = createAsyncThunk(
     '/user/info/update',
     async (body, thunkAPI) => {
+        const persistedToken = thunkAPI.getState().auth.token;
+        if (persistedToken === null) {
+            return thunkAPI.rejectWithValue();
+        }
+        setAuthHeader(persistedToken);
         try {
-            const { data } = await axios.patch('/user/info/update', body, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-
+            const { data } = await axios.patch('/user/info/update', body);
             return data;
         } catch (error) {
             toast.error('Request error');
@@ -133,16 +125,31 @@ export const updateDailyNorma = createAsyncThunk(
     },
 );
 
-export const resetPwdEmail = createAsyncThunk(
-    'auth/send-reset-email',
+export const sendResetEmail = createAsyncThunk(
+    'auth/request-reset-email',
     async (email, thunkAPI) => {
         try {
-            const response = await axios.post('auth/send-reset-email', {
+            const response = await axios.post('auth/request-reset-email', {
                 email,
             });
             return response.data;
         } catch (error) {
             throw thunkAPI.rejectWithValue(error.message);
+        }
+    },
+);
+
+export const resetPwd = createAsyncThunk(
+    'auth/reset-password',
+    async ({ password, token }, thunkAPI) => {
+        try {
+            const res = await axios.post('auth/reset-password', {
+                password,
+                token,
+            });
+            return res.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
         }
     },
 );
