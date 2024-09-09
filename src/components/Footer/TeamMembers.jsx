@@ -13,7 +13,7 @@ import TetianaTymoshchenko from "../images/tetianatymoshchenko.jpg";
 import IlonaHonchar from "../images/ilonahonchar.png";
 import OlhaIarova from "../images/olgaiarova.png";
 import YuliiaProkopchuk from "../images/yuliiaprokopchuk.png";
-import OksanaPodolyianyk from "../images/oksanapodolianyk.png";
+import OksanaPodolianyk from "../images/oksanapodolianyk.png";
 import AnastasiaNazarova from "../images/anastasianazarova.png";
 import TetianaChehrina from "../images/tetianachehrina.png";
 import AndriyBilous from "../images/andriybilous.png";
@@ -233,8 +233,8 @@ const TeamMembers = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className={css["swiper-slide"]}>
-            <img src={OksanaPodolyianyk} alt="Oksana Podolyianyk" />
-            <div className={css["swiper-info-container"]}>Oksana Podolyianyk<div>
+            <img src={OksanaPodolianyk} alt="Oksana Podolianyk" />
+            <div className={css["swiper-info-container"]}>Oksana Podolianyk<div>
                 <p className={css["swiper-info-name"]}>Developer</p>
                 <p className={css["swiper-info-role"]}></p>
                 <ul>
@@ -324,7 +324,7 @@ const TeamMembers = () => {
                   <GithubIcon width={24} height={24} />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/tetianachehrina/"
+                  href="https://www.linkedin.com/in/tetiana-chehrina/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="github icon"
