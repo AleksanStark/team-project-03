@@ -41,18 +41,6 @@ const authSlice = createSlice({
       })
       .addCase(register.rejected, handleRejected)
 
-            .addCase(logIn.pending, state => {
-                state.isLoading = true;
-            })
-            .addCase(logIn.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.user = action.payload.user;
-
-                state.token = action.payload.accessToken;
-                state.isLoggedIn = true;
-            })
-            .addCase(logIn.rejected, handleRejected)
-
       .addCase(logIn.pending, (state) => {
         state.isLoading = true;
       })
@@ -63,7 +51,6 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(logIn.rejected, handleRejected)
-
 
       .addCase(logOut.pending, (state) => {
         state.isLoading = true;
@@ -95,29 +82,17 @@ const authSlice = createSlice({
       })
       .addCase(updateUserData.rejected, handleRejected)
 
-
-            .addCase(refreshUser.pending, (state, action) => {
-                // state.isRefreshing = true;
-                state.isLoading = true;
-            })
-            .addCase(refreshUser.fulfilled, (state, action) => {
-                state.isLoading = false;
-                // state.isRefreshing = false;
-                state.user = action.payload;
-                state.isLoggedIn = true;
-            })
-            .addCase(refreshUser.rejected, handleRejected)
-
       .addCase(refreshUser.pending, (state, action) => {
+        // state.isRefreshing = true;
         state.isLoading = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        // state.isRefreshing = false;
         state.user = action.payload;
         state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, handleRejected)
-
 
       .addCase(updateDailyNorma.pending, (state, action) => {
         state.isLoading = true;
