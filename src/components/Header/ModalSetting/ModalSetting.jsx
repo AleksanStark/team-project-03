@@ -1,33 +1,47 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
+import toast, { Toaster } from 'react-hot-toast';
 
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useEffect, useRef } from 'react';
-import { BiHide } from 'react-icons/bi';
-import { AiOutlineEye } from 'react-icons/ai';
 import { IoMdClose } from 'react-icons/io';
 import { LuUpload } from 'react-icons/lu';
 import css from './ModalSettind.module.css';
-import Ellipse from '../Ellipse.png';
 import clsx from 'clsx';
+import sprite from '../../../images/sprite.svg';
+import { selectToken } from '../../../redux/auth/auth.selectors.js';
+import {
+    updateAvatar,
+    updateUserData,
+    refreshUser,
+    updatePassword,
+} from '../../../redux/auth/operations';
 
 const UserSchema = Yup.object().shape({
     username: Yup.string().min(3, 'Too Short!').max(50, 'Too Long!').optional(),
     email: Yup.string().email('Must be a valid email!').optional(),
     oldPassword: Yup.string().min(8, 'Too Short!').optional(),
-    newPassword: Yup.string().min(8, 'Too Short!').optional(),
+    newPassword: Yup.string().min(8, 'Too Short!').max(64, 'Too Long!'),
     repeatPassword: Yup.string()
         .min(8, 'Too Short!')
-        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
-        .optional(),
+        .max(64, 'Too Long!')
+        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match'),
     gender: Yup.string().oneOf(['woman', 'man']).optional(),
 });
 
-export default function ModalSetting({ isOpen, closeModal, user }) {
+export default function ModalSetting({
+    isOpen,
+    closeModal,
+    user,
+    imageDefault,
+}) {
+    const dispatch = useDispatch();
     const [hideEyeOld, setHideEyeOld] = useState(false);
     const [hideEyeRepeat, setHideEyeRepeat] = useState(false);
     const [hideEyeNew, setHideEyeNew] = useState(false);
+
     //=============StateForSowAndHiddenPassword===================
     const [isOldPassword, setOldPassword] = useState('password');
     const [isRepeatPassword, setRepeatPassword] = useState('password');
@@ -88,16 +102,55 @@ export default function ModalSetting({ isOpen, closeModal, user }) {
         };
     }, [isOpen, closeModal]);
 
-    const initialValues = {};
     //=================================
-    // const [photo, setPhoto] = useState(null);
-    const handlePhotoUpload = event => {};
-    const handleSubmit = (value, actions) => {
-        closeModal();
-        actions.resetForm();
+
+    const changeHandler = async (e, setFieldValue) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            setFieldValue('photo', file);
+
+            dispatch(updateAvatar({ photo: file }));
+        }
     };
+    const handleSubmit = async (values, actions) => {
+        console.log(values.newPassword);
+        console.log(values.oldPassword);
+        console.log(values.repeatPassword);
+        if (values.oldPassword) {
+            if (values.newPassword !== values.repeatPassword) {
+                toast.error('The new password must match!');
+                return;
+            } else {
+                dispatch(updatePassword(values.newPassword, selectToken));
+            }
+        }
+
+        try {
+            const result = await dispatch(
+                updateUserData({
+                    photo: values.photo,
+                    gender: values.gender,
+                    name: values.username,
+                    email: values.email,
+                }),
+            ).unwrap();
+            if (result) {
+                actions.resetForm();
+                closeModal();
+                dispatch(refreshUser());
+            }
+        } catch (error) {
+            toast.error('Something went wrong :( Try again later.');
+            console.error('Failed to update user data:', error);
+            actions.setErrors({ submit: error.message });
+            closeModal(true);
+        }
+    };
+
     return (
         <div className={clsx(css.backdrop, { [css['is-hidden']]: !isOpen })}>
+            <Toaster position="top-center" reverseOrder={false} />
             <div className={css.modal} ref={modalRef}>
                 <div className={css['title-block']}>
                     <div className={css['title-container']}>
@@ -114,41 +167,57 @@ export default function ModalSetting({ isOpen, closeModal, user }) {
                             <IoMdClose />
                         </button>
                     </div>
-                    <div className={css['photo-block']}>
-                        <p className={css['title']}>Your photo</p>
-                        <div className={css['container-photo']}>
-                            <img
-                                src={Ellipse}
-                                className={css.image}
-                                width="80"
-                                height="80"
-                                alt="user"
-                            />
-                            <label
-                                htmlFor="upload-photo"
-                                className={css['upload-button']}
-                            >
-                                <LuUpload />
-                                Upload a photo
-                                <input
-                                    type="file"
-                                    className={css['upload-input']}
-                                    accept="image/*"
-                                    onChange={handlePhotoUpload}
-                                    id="upload-photo"
-                                />
-                            </label>
-                        </div>
-                    </div>
                 </div>
+
                 <Formik
                     innerRef={formikRef}
-                    initialValues={{ initialValues }}
+                    initialValues={{
+                        username: user?.name || '',
+                        email: user?.email || '',
+                        oldPassword: '',
+                        newPassword: '',
+                        repeatPassword: '',
+                        gender: user?.gender || 'woman',
+                    }}
                     onSubmit={handleSubmit}
                     validationSchema={UserSchema}
                 >
                     {({ setFieldValue, values, errors, touched }) => (
                         <Form className={css.form}>
+                            <div className={css['photo-block']}>
+                                <p className={css['title']}>Your photo</p>
+                                <div className={css['container-photo']}>
+                                    {!user?.photo ? (
+                                        <p className={css['first-letter']}>
+                                            {imageDefault()}
+                                        </p>
+                                    ) : (
+                                        <img
+                                            src={imageDefault()}
+                                            className={css.image}
+                                            width="80"
+                                            height="80"
+                                            alt="user"
+                                        />
+                                    )}
+                                    <label
+                                        htmlFor="upload-photo"
+                                        className={css['upload-button']}
+                                    >
+                                        <LuUpload />
+                                        Upload a photo
+                                        <input
+                                            type="file"
+                                            className={css['upload-input']}
+                                            accept="image/*"
+                                            onChange={e =>
+                                                changeHandler(e, setFieldValue)
+                                            }
+                                            id="upload-photo"
+                                        />
+                                    </label>
+                                </div>
+                            </div>
                             <div className={css.block}>
                                 <div className={css['block-inputs']}>
                                     <div className={css.check}>
@@ -287,11 +356,16 @@ export default function ModalSetting({ isOpen, closeModal, user }) {
                                                 handleVisiblePasswordOldPassword
                                             }
                                         >
-                                            {hideEyeOld ? (
-                                                <AiOutlineEye />
-                                            ) : (
-                                                <BiHide />
-                                            )}
+                                            <svg className={css.icon}>
+                                                <use
+                                                    href={
+                                                        sprite +
+                                                        (hideEyeOld
+                                                            ? '#eye-show'
+                                                            : '#eye-hide')
+                                                    }
+                                                />
+                                            </svg>
                                         </button>
                                         <ErrorMessage
                                             className={css.error}
@@ -322,11 +396,16 @@ export default function ModalSetting({ isOpen, closeModal, user }) {
                                                 handleVisiblePasswordNewPassword
                                             }
                                         >
-                                            {hideEyeNew ? (
-                                                <AiOutlineEye />
-                                            ) : (
-                                                <BiHide />
-                                            )}
+                                            <svg className={css.icon}>
+                                                <use
+                                                    href={
+                                                        sprite +
+                                                        (hideEyeNew
+                                                            ? '#eye-show'
+                                                            : '#eye-hide')
+                                                    }
+                                                />
+                                            </svg>
                                         </button>
                                         <ErrorMessage
                                             className={css.error}
@@ -357,11 +436,16 @@ export default function ModalSetting({ isOpen, closeModal, user }) {
                                                 handleVisiblePasswordRepeatPassword
                                             }
                                         >
-                                            {hideEyeRepeat ? (
-                                                <AiOutlineEye />
-                                            ) : (
-                                                <BiHide />
-                                            )}
+                                            <svg className={css.icon}>
+                                                <use
+                                                    href={
+                                                        sprite +
+                                                        (hideEyeRepeat
+                                                            ? '#eye-show'
+                                                            : '#eye-hide')
+                                                    }
+                                                />
+                                            </svg>
                                         </button>
                                         <ErrorMessage
                                             className={css.error}

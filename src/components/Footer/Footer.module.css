@@ -1,0 +1,165 @@
+/* Ensures the footer sticks to the bottom if content is short */
+.footer {
+    width: 100%;
+    background-color: transparent;
+    position: relative;
+    /* Use relative positioning */
+    margin: 0 auto;
+}
+
+.content {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    /* Add padding for better spacing */
+}
+
+.footer-text {
+    color: var(--primary-color-blue);
+    font-family: Roboto, sans-serif;
+    /* Add a fallback font */
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: normal;
+}
+
+.vr {
+    display: inline;
+    height: 12px;
+    border-left: 2px solid var(--primary-color-blue);
+}
+
+.footer-btn {
+    padding: 0;
+    border: none;
+    color: var(--primary-color-blue);
+    background-color: transparent;
+    font-family: Roboto, sans-serif;
+    /* Add a fallback font */
+    font-size: 10px;
+    font-weight: 700;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    /* Change cursor to pointer */
+}
+
+.footer-btn:hover,
+.footer-btn:focus {
+    color: var(--secondary-color-orange);
+    transform: scale(1.1);
+}
+
+/* Swiper component styles */
+.swiper-container {
+    width: 320px;
+}
+
+.swiper-slide {
+    text-align: left;
+    padding: 20px;
+}
+
+.swiper-slide img {
+    display: block;
+    margin: 0 auto 14px;
+    /* Center the image and add margin */
+    width: 180px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.swiper-info-name,
+.swiper-info-role {
+    font-size: 24px;
+    line-height: 1.11;
+    text-transform: uppercase;
+}
+
+.swiper-info-name {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: var(--primary-color-blue);
+}
+
+.swiper-info-role {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.swiper-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 16px;
+    
+}
+
+.swiper-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 14px;
+}
+
+.swiper-info-task {
+    margin-bottom: 3px;
+}
+
+/* Media queries */
+@media only screen and (min-width: 768px) {
+    .footer-text {
+        font-size: 14px;
+    }
+
+    .footer-btn {
+        font-size: 14px;
+    }
+
+    .vr {
+        height: 16px;
+    }
+
+    .swiper-container {
+        width: 630px;
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .swiper-slide img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .swiper-info-container {
+        width: 225px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .footer-text {
+        font-size: 16px;
+        /* Adjusted for larger screens */
+    }
+
+    .footer-btn {
+        font-size: 16px;
+        /* Adjusted for larger screens */
+    }
+
+    .swiper-container {
+        width: 540px;
+    }
+
+    .swiper-slide {
+        gap: 20px;
+    }
+}

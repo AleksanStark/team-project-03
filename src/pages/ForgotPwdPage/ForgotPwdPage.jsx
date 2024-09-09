@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ForgotPwdForm from "components/ForgotPwdForm/ForgotPwdForm.jsx";
-import { selectIsLoading } from "..//../redux/auth/auth.selectors";
-import Loader from "components/Loader/Loader.jsx";
+import ForgotPwdForm from "../../components/ForgotPwdForm/ForgotPwdForm.jsx";
+import { selectIsLoading } from "../../redux/auth/auth.selectors.js";
+import Loader from "../../components/Loader/Loader.jsx";
 import style from "./ForgotPwdPage.module.css";
 
 const ForgotPwdPage = () => {
