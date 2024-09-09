@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -9,6 +10,8 @@ import Logo from '../../../images/logo.png';
 import { routes } from 'routes/routes';
 
 import { useState } from "react";
+=======
+>>>>>>> d13e1ba (update files)
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
@@ -23,6 +26,7 @@ import ModalSetting from "../ModalSetting/ModalSetting";
 import ModalUser from "../ModalUser/ModalUser";
 import { selectIsLoggedIn } from "../../../redux/auth/auth.selectors";
 import { selectUser } from "../../../redux/auth/auth.selectors";
+import { useState } from "react";
 
 export default function AuthNav() {
   const isLoggedIn = useSelector(selectIsLoggedIn);

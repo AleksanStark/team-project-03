@@ -161,7 +161,7 @@ export const updateUserData = createAsyncThunk(
     setAuthHeader(persistedToken);
     try {
       const { data } = await axios.patch("/user/info/update", body);
-      return data;
+      return data.data;
     } catch (error) {
       toast.error("Request error");
       return thunkAPI.rejectWithValue(error.message);
