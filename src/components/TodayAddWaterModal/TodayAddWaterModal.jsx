@@ -1,45 +1,48 @@
-import { useState } from 'react';
-import css from './TodayAddWaterModal.module.css';
-import { IoCloseOutline } from 'react-icons/io5';
-import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
-import { FiPlus } from 'react-icons/fi';
-import { PiMinusLight } from 'react-icons/pi';
-// import { useDispatch } from 'react-redux';
-// import { addWaterRecord } from '../../redux/water/operations.js';
+import { useState } from "react";
+import css from "./TodayAddWaterModal.module.css";
+import { IoCloseOutline } from "react-icons/io5";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+import { FiPlus } from "react-icons/fi";
+import { PiMinusLight } from "react-icons/pi";
+import { useDispatch } from "react-redux";
+import { addWaterRecord } from "../../redux/water/operations.js";
+
 // import addWaterRecord from 'redux/water/operations';
 // import { addWaterRecord } from 'redux/water/operations.js';
 
 const TodayAddWaterModal = ({ onClose }) => {
-  const [amount, setAmount] = useState(0);
-  const [inputAmount, setInputAmount] = useState(amount);
-  const [time, setTime] = useState(() => {
+  const [value, setValue] = useState(0);
+  const [inputAmount, setInputAmount] = useState(value);
+  const [date, setDate] = useState(() => {
     const now = new Date();
     now.setSeconds(0, 0);
     return now;
   });
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const handleTimeChange = selectedDates => {
-    setTime(selectedDates[0]);
+  const handleTimeChange = (selectedDates) => {
+    setDate(selectedDates[0]);
   };
 
-  const handleAdd = () => setAmount(amount + 50);
-  const handleMinus = () => setAmount(Math.max(amount - 50, 0));
+  const handleAdd = () => setValue(value + 50);
+  const handleMinus = () => setValue(Math.max(value - 50, 0));
   const handlerBlur = () => {
-    setAmount(inputAmount);
+    setValue(inputAmount);
   };
-  // const handleSave = () => {
-  //   const record = { amount, time: time.toISOString() };
-  //   dispatch(addWaterRecord(record));
-  // };
+  const handleSave = () => {
+    console.log(new Date(date.toISOString().slice(0, 16)));
+
+    const record = { value, date: date.toISOString() };
+    dispatch(addWaterRecord(record));
+  };
 
   return (
     <div
       className={css.modal_backdrop}
       tabIndex={0}
-      onKeyUp={event => {
-        if (event.key === 'Escape') onClose();
+      onKeyUp={(event) => {
+        if (event.key === "Escape") onClose();
       }}
     >
       <div className={css.modal_container}>
@@ -54,7 +57,7 @@ const TodayAddWaterModal = ({ onClose }) => {
             <button className={css.btn} onClick={handleMinus}>
               <PiMinusLight className={css.btn_icon} />
             </button>
-            <span className={css.amount_display}>{amount}ml</span>
+            <span className={css.amount_display}>{value}ml</span>
             <button className={css.btn} onClick={handleAdd}>
               <FiPlus className={css.btn_icon} />
             </button>
@@ -64,12 +67,12 @@ const TodayAddWaterModal = ({ onClose }) => {
         <p className={css.record_time_text}>Recording time:</p>
         <div>
           <Flatpickr
-            value={time}
+            value={date}
             onChange={handleTimeChange}
             options={{
               enableTime: true,
               noCalendar: true,
-              dateFormat: 'H:i',
+              dateFormat: "H:i",
               time_24hr: true,
               minuteIncrement: 5,
               defaultHour: new Date().getHours(),
@@ -85,10 +88,10 @@ const TodayAddWaterModal = ({ onClose }) => {
           </p>
           <input
             type="number"
-            value={inputAmount === 0 ? '' : inputAmount}
-            onChange={e => {
+            value={inputAmount === 0 ? "" : inputAmount}
+            onChange={(e) => {
               const value = e.target.value;
-              setInputAmount(value === '' ? '' : Number(value));
+              setInputAmount(value === "" ? "" : Number(value));
             }}
             onBlur={handlerBlur}
             className={css.custom_amount_input}
@@ -96,8 +99,10 @@ const TodayAddWaterModal = ({ onClose }) => {
         </div>
 
         <div className={css.modal_footer}>
-          <span className={css.footer_amount}>{amount} ml</span>
-          <button className={css.save_button}>Save</button>
+          <span className={css.footer_amount}>{value} ml</span>
+          <button className={css.save_button} onClick={handleSave}>
+            Save
+          </button>
         </div>
       </div>
     </div>
@@ -105,4 +110,3 @@ const TodayAddWaterModal = ({ onClose }) => {
 };
 
 export default TodayAddWaterModal;
-// onClick={handleSave}

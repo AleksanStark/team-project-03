@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import sprite from "../../images/sprite.svg";
 import style from "./ResetPwdForm.module.css";
-import { resetPwd } from "redux/auth/operations.js";
+import { resetPwd } from "../../redux/auth/operations.js";
 import { routes } from "routes/routes";
 
 const ResetPwdSchema = Yup.object().shape({
@@ -15,9 +15,10 @@ const ResetPwdSchema = Yup.object().shape({
     .max(64, "Password must be 64 symbols maximum")
     .required("Password is required!"),
   newPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
     .min(8, "Password must be 8 symbols minimum")
     .max(64, "Password must be 64 symbols maximum")
-    .required("Password is required!"),
+    .required("Confirm your password!"),
 });
 
 export default function ResetPwdForm({ token }) {
@@ -89,10 +90,12 @@ export default function ResetPwdForm({ token }) {
               <Field
                 id="newPassword"
                 className={style.form_input}
-                type={showPassword ? "text" : "newPassword"}
+                type={showPassword ? "text" : "password"}
                 name="newPassword"
                 placeholder="Repeat password"
-                error={touched.password && errors.password ? "true" : "false"}
+                error={
+                  touched.newPassword && errors.newPassword ? "true" : "false"
+                }
               />
               <span
                 onClick={togglePasswordVisibility}
@@ -112,7 +115,7 @@ export default function ResetPwdForm({ token }) {
               />
             </label>
             <button className={style.btn} type="submit" disabled={isSubmitting}>
-              Sign Up
+              Reset Password
             </button>
           </Form>
         )}

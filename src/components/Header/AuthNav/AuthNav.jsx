@@ -6,21 +6,18 @@ import { HiOutlineUserCircle } from 'react-icons/hi2';
 import css from './AuthNav.module.css';
 import Logo from '../../../images/logo.png';
 import { routes } from 'routes/routes';
-
 import LogOut from '../LogOut/Logout';
 import ModalSetting from '../ModalSetting/ModalSetting';
 import ModalUser from '../ModalUser/ModalUser';
 import { selectIsLoggedIn } from '../../../redux/auth/auth.selectors';
 import { selectUser } from '../../../redux/auth/auth.selectors';
-
 export default function AuthNav() {
     const isLoggedIn = useSelector(selectIsLoggedIn);
-    const userData = useSelector(selectUser);
-
-    const name = userData?.name || '';
-    const email = userData?.email || '';
-    const photo = userData?.photo || null;
-
+    // const isLoggedIn = true;
+    const user = useSelector(selectUser);
+    console.log(user);
+    const userTest = { name: null, email: 'max@BiLogoGmail.com', photo: null };
+    const { name, email, photo } = userTest;
     //=========modalOpenSetting===================
     const [modalIsOpen, setIsOpen] = useState(false);
     function openModal() {
@@ -48,7 +45,6 @@ export default function AuthNav() {
     const handleClick = () => {
         openContext();
     };
-
     const imageDefault = () => {
         if (photo) {
             return photo;
@@ -119,13 +115,7 @@ export default function AuthNav() {
                 logOutModalIsOpen={logOutModalIsOpen}
                 closeLogOut={closeLogOut}
             />
-            {email ? (
-                <ModalSetting
-                    closeModal={closeModal}
-                    isOpen={modalIsOpen}
-                    user={userData}
-                />
-            ) : null}
+            <ModalSetting closeModal={closeModal} isOpen={modalIsOpen} />
         </div>
     );
 }
