@@ -8,29 +8,40 @@ import sprite from "../../images/sprite.svg";
 import style from "./ResetPwdForm.module.css";
 import { resetPwd } from "../../redux/auth/operations.js";
 import { routes } from "routes/routes";
+import { useSearchParams } from "react-router-dom";
 
 const ResetPwdSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Password must be 8 symbols minimum")
     .max(64, "Password must be 64 symbols maximum")
     .required("Password is required!"),
-  newPassword: Yup.string()
+  repeatPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .min(8, "Password must be 8 symbols minimum")
     .max(64, "Password must be 64 symbols maximum")
     .required("Confirm your password!"),
 });
 
-export default function ResetPwdForm({ token }) {
+export default function ResetPwdForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
 
   const handleSubmit = async (values, actions) => {
+    if (values.password !== values.repeatPassword) {
+      return toast.error("Passwords don't match");
+    }
+
+    if (!token) {
+      return toast.error("Token is missing");
+    }
+
     try {
       await dispatch(resetPwd({ password: values.password, token })).unwrap();
       toast.success("Password has been reset successfully.");
@@ -48,7 +59,7 @@ export default function ResetPwdForm({ token }) {
       <Formik
         initialValues={{
           password: "",
-          newPassword: "",
+          repeatPassword: "",
         }}
         validationSchema={ResetPwdSchema}
         onSubmit={handleSubmit}
@@ -84,17 +95,19 @@ export default function ResetPwdForm({ token }) {
                 component="div"
               />
             </label>
-            <label className={style.label} htmlFor="newPassword">
+            <label className={style.label} htmlFor="repeatPassword">
               Repeat password
               {/* <div className={style.passwordWrapper}> */}
               <Field
-                id="newPassword"
+                id="repeatPassword"
                 className={style.form_input}
                 type={showPassword ? "text" : "password"}
-                name="newPassword"
+                name="repeatPassword"
                 placeholder="Repeat password"
                 error={
-                  touched.newPassword && errors.newPassword ? "true" : "false"
+                  touched.repeatPassword && errors.repeatPassword
+                    ? "true"
+                    : "false"
                 }
               />
               <span
@@ -110,7 +123,7 @@ export default function ResetPwdForm({ token }) {
               {/* </div> */}
               <ErrorMessage
                 className={style.error}
-                name="newPassword"
+                name="repeatPassword"
                 component="div"
               />
             </label>
