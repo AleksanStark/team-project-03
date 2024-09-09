@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -62,6 +62,7 @@ export default function AuthNav() {
     const handleSignInClick = () => {
         navigate(routes.LOGIN);
     };
+
     return (
         <div className={css.wrap}>
             {isLoggedIn ? (
@@ -119,11 +120,13 @@ export default function AuthNav() {
                 logOutModalIsOpen={logOutModalIsOpen}
                 closeLogOut={closeLogOut}
             />
+
             {email ? (
                 <ModalSetting
                     closeModal={closeModal}
                     isOpen={modalIsOpen}
                     user={userData}
+                    imageDefault={imageDefault}
                 />
             ) : null}
         </div>

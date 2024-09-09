@@ -2,8 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-// axios.defaults.baseURL = 'https://team-project-03.onrender.com';
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://watertracker-db.onrender.com';
 
 export const setAuthHeader = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -74,6 +73,7 @@ export const refreshUser = createAsyncThunk(
         setAuthHeader(persistedToken);
         try {
             const { data } = await axios.get('/user/info');
+
             return data.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -82,10 +82,17 @@ export const refreshUser = createAsyncThunk(
 );
 
 export const updateAvatar = createAsyncThunk(
-    'auth/info/photo',
+    'user/info/photo',
     async (formData, thunkAPI) => {
+        console.log('Photo', formData);
+
         try {
-            const { data } = await axios.patch('/user/info/photo', formData);
+            const { data } = await axios.patch('/user/info/photo', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -97,13 +104,13 @@ export const updateAvatar = createAsyncThunk(
 export const updateUserData = createAsyncThunk(
     '/user/info/update',
     async (body, thunkAPI) => {
-        const persistedToken = thunkAPI.getState().auth.token;
-        if (persistedToken === null) {
-            return thunkAPI.rejectWithValue();
-        }
-        setAuthHeader(persistedToken);
         try {
-            const { data } = await axios.patch('/user/info/update', body);
+            const { data } = await axios.patch('/user/info/update', body, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
             return data;
         } catch (error) {
             toast.error('Request error');
@@ -136,6 +143,27 @@ export const resetPwdEmail = createAsyncThunk(
             return response.data;
         } catch (error) {
             throw thunkAPI.rejectWithValue(error.message);
+        }
+    },
+);
+export const updatePassword = createAsyncThunk(
+    'auth/reset-password',
+    async ({ password, token }, thunkAPI) => {
+        try {
+            const { data } = await axios.post('auth/reset-password', {
+                password,
+                token,
+            });
+            toast.success('Password updated successfully!');
+            console.log(data);
+
+            return data.data;
+        } catch (error) {
+            const message =
+                error.response?.data?.message ||
+                'Failed to update password. Please try again.';
+            toast.error(message);
+            return thunkAPI.rejectWithValue(message);
         }
     },
 );
