@@ -13,11 +13,12 @@ import { selectIsLoggedIn } from '../../../redux/auth/auth.selectors';
 import { selectUser } from '../../../redux/auth/auth.selectors';
 export default function AuthNav() {
     const isLoggedIn = useSelector(selectIsLoggedIn);
-    // const isLoggedIn = true;
-    const user = useSelector(selectUser);
-    console.log(user);
-    const userTest = { name: null, email: 'max@BiLogoGmail.com', photo: null };
-    const { name, email, photo } = userTest;
+
+    const userData = useSelector(selectUser);
+
+    const name = userData?.name || '';
+    const email = userData?.email || '';
+    const photo = userData?.photo || null;
     //=========modalOpenSetting===================
     const [modalIsOpen, setIsOpen] = useState(false);
     function openModal() {
@@ -115,7 +116,14 @@ export default function AuthNav() {
                 logOutModalIsOpen={logOutModalIsOpen}
                 closeLogOut={closeLogOut}
             />
-            <ModalSetting closeModal={closeModal} isOpen={modalIsOpen} />
+            {email ? (
+                <ModalSetting
+                    closeModal={closeModal}
+                    isOpen={modalIsOpen}
+                    user={userData}
+                    imageDefault={imageDefault}
+                />
+            ) : null}
         </div>
     );
 }
