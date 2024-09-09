@@ -59,11 +59,11 @@ const DaysGeneralStats = ({
             Daily norma: <span>{dayData && dayData.dailyNorm}</span>
           </p>
           <p>
-            Fulfillment of the daily norm:{" "}
+            Fulfillment of the daily norm:
             <span>{dayData && dayData.consumptionPercentage} %</span>
           </p>
           <p>
-            How many servings of water:{" "}
+            How many servings of water:
             <span>{dayData && dayData.servings}</span>
           </p>
         </div>

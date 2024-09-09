@@ -14,8 +14,8 @@ const MonthStatsTable = () => {
   const items = useSelector((state) => state.water.monthlyRecords);
   const [date, setDate] = useState(new Date());
 
-  const [modalIsOpen, setModalIsOpen] = useState(false); //!!!!
-  const [selectedDay, setSelectedDay] = useState(null); //!!!!
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(null);
 
   useEffect(() => {
     dispatch(getMonthlyRecord(date));
@@ -35,12 +35,12 @@ const MonthStatsTable = () => {
   const openModal = (dayData) => {
     setSelectedDay(dayData);
     setModalIsOpen(true);
-  }; // !!!
+  };
 
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedDay(null);
-  }; // !!!
+  };
 
   const isFuture = Date.now() - 3600000 < date;
   console.log(Date.now(), date.getTime());
