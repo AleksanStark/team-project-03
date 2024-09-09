@@ -1,10 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { sendResetEmail } from "../../redux/auth/operations";
+import { sendResetEmail } from "../../redux/auth/operations.js";
 import toast, { Toaster } from "react-hot-toast";
 import style from "./ForgotPwdForm.module.css";
 import * as Yup from "yup";
-import { NavLink } from "react-router-dom";
 
 const ForgotPwdSchema = Yup.object().shape({
   email: Yup.string()
@@ -17,7 +16,7 @@ const ForgotPwdSchema = Yup.object().shape({
 export default function ForgotPwdForm() {
   const dispatch = useDispatch();
 
-  const handlSubmit = async (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     try {
       await dispatch(sendResetEmail(values.email)).unwrap();
       toast.success("Please check your email for reset instructions.");
@@ -29,17 +28,12 @@ export default function ForgotPwdForm() {
   };
 
   return (
-    <div className={style.container}>
-      {/* <h2 className={style.title}>Forgot Your Password?</h2>
-      <p className={style.description}>
-        Enter your email address and we will send you instructions to reset your
-        password.
-      </p> */}
+    <div className="{style.container}">
       <Toaster position="top-center" reverseOrder={false} />
       <Formik
         initialValues={{ email: "" }}
         validationSchema={ForgotPwdSchema}
-        onSubmit={handlSubmit}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
           <Form className={style.form} autoComplete="off">
@@ -63,13 +57,6 @@ export default function ForgotPwdForm() {
             <button className={style.btn} type="submit" disabled={isSubmitting}>
               Send
             </button>
-
-            <NavLink className={style.link} to={"/signup"}>
-              Sign Up
-            </NavLink>
-            <NavLink className={style.link} to={"/signin"}>
-              Sign In
-            </NavLink>
           </Form>
         )}
       </Formik>
