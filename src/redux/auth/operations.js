@@ -2,10 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-
-
 axios.defaults.baseURL = "https://watertracker-db.onrender.com";
-
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -66,43 +63,42 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 });
 
 export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const persistedToken = thunkAPI.getState().auth.token;
 
-    'auth/refresh',
-    async (_, thunkAPI) => {
-        const persistedToken = thunkAPI.getState().auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const { data } = await axios.get("/user/info");
 
-        if (persistedToken === null) {
-            return thunkAPI.rejectWithValue();
-        }
-        setAuthHeader(persistedToken);
-        try {
-            const { data } = await axios.get('/user/info');
-
-            return data.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.message);
-        }
-    },
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );
 
 export const updateAvatar = createAsyncThunk(
-    'user/info/photo',
-    async (formData, thunkAPI) => {
-        console.log('Photo', formData);
+  "user/info/photo",
+  async (formData, thunkAPI) => {
+    console.log("Photo", formData);
 
-        try {
-            const { data } = await axios.patch('/user/info/photo', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+    try {
+      const { data } = await axios.patch("/user/info/photo", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-            return data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.message);
-        }
-    },
-=======
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+
   "auth/refresh",
   async (_, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.token;
@@ -130,27 +126,25 @@ export const updateAvatar = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-
 );
 
 //Method to Update User
 export const updateUserData = createAsyncThunk(
+  "/user/info/update",
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await axios.patch("/user/info/update", body, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-    '/user/info/update',
-    async (body, thunkAPI) => {
-        try {
-            const { data } = await axios.patch('/user/info/update', body, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-
-            return data;
-        } catch (error) {
-            toast.error('Request error');
-            return thunkAPI.rejectWithValue(error.message);
-        }
-    },
+      return data;
+    } catch (error) {
+      toast.error("Request error");
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
 
   "/user/info/update",
   async (body, thunkAPI) => {
@@ -167,7 +161,6 @@ export const updateUserData = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-
 );
 
 export const updateDailyNorma = createAsyncThunk(
@@ -208,23 +201,23 @@ export const resetPwd = createAsyncThunk(
   }
 );
 export const updatePassword = createAsyncThunk(
-    'auth/reset-password',
-    async ({ password, token }, thunkAPI) => {
-        try {
-            const { data } = await axios.post('auth/reset-password', {
-                password,
-                token,
-            });
-            toast.success('Password updated successfully!');
-            console.log(data);
+  "auth/reset-password",
+  async ({ password, token }, thunkAPI) => {
+    try {
+      const { data } = await axios.post("auth/reset-password", {
+        password,
+        token,
+      });
+      toast.success("Password updated successfully!");
+      console.log(data);
 
-            return data.data;
-        } catch (error) {
-            const message =
-                error.response?.data?.message ||
-                'Failed to update password. Please try again.';
-            toast.error(message);
-            return thunkAPI.rejectWithValue(message);
-        }
-    },
+      return data.data;
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        "Failed to update password. Please try again.";
+      toast.error(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
 );
