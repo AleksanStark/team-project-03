@@ -12,8 +12,8 @@ import { addWaterRecord } from "../../redux/water/operations.js";
 // import { addWaterRecord } from 'redux/water/operations.js';
 
 const TodayAddWaterModal = ({ onClose }) => {
-  const [value, setValue] = useState(0);
-  const [inputAmount, setInputAmount] = useState(value);
+  const [volume, setVolume] = useState(0);
+  const [inputAmount, setInputAmount] = useState(volume);
   const [date, setDate] = useState(() => {
     const now = new Date();
     now.setSeconds(0, 0);
@@ -25,16 +25,17 @@ const TodayAddWaterModal = ({ onClose }) => {
     setDate(selectedDates[0]);
   };
 
-  const handleAdd = () => setValue(value + 50);
-  const handleMinus = () => setValue(Math.max(value - 50, 0));
+  const handleAdd = () => setVolume(volume + 50);
+  const handleMinus = () => setVolume(Math.max(volume - 50, 0));
   const handlerBlur = () => {
-    setValue(inputAmount);
+    setVolume(inputAmount);
   };
   const handleSave = () => {
     console.log(new Date(date.toISOString().slice(0, 16)));
 
-    const record = { value, date: date.toISOString() };
+    const record = { volume, date: date.toISOString() };
     dispatch(addWaterRecord(record));
+    onClose();
   };
 
   return (
@@ -57,7 +58,7 @@ const TodayAddWaterModal = ({ onClose }) => {
             <button className={css.btn} onClick={handleMinus}>
               <PiMinusLight className={css.btn_icon} />
             </button>
-            <span className={css.amount_display}>{value}ml</span>
+            <span className={css.amount_display}>{volume}ml</span>
             <button className={css.btn} onClick={handleAdd}>
               <FiPlus className={css.btn_icon} />
             </button>
@@ -99,7 +100,7 @@ const TodayAddWaterModal = ({ onClose }) => {
         </div>
 
         <div className={css.modal_footer}>
-          <span className={css.footer_amount}>{value} ml</span>
+          <span className={css.footer_amount}>{volume} ml</span>
           <button className={css.save_button} onClick={handleSave}>
             Save
           </button>

@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react';
-import css from './EditWaterModal.module.css';
-import { IoCloseOutline } from 'react-icons/io5';
-import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
-import { FiPlus } from 'react-icons/fi';
-import { PiMinusLight } from 'react-icons/pi';
-import { PiPintGlassThin } from 'react-icons/pi';
-// import { useSelector } from 'react-redux';
-// import { updateWaterRecord } from 'redux/water/operations';
-// import {
-//   selectCurrentRecord,
-//   selectError,
-//   selectIsLoading,
-// } from 'redux/water/slice';
-// import { getWaterRecord } from 'redux/water/operations';
-// import { useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
+import css from "./EditWaterModal.module.css";
+import { IoCloseOutline } from "react-icons/io5";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+import { FiPlus } from "react-icons/fi";
+import { PiMinusLight } from "react-icons/pi";
+import { PiPintGlassThin } from "react-icons/pi";
+import { useSelector } from "react-redux";
+import { updateWaterRecord } from "redux/water/operations";
+import { selectCurrentRecord } from "redux/water/slice";
+import { getWaterRecord } from "redux/water/operations";
+import { useDispatch } from "react-redux";
 // import { addWaterRecord } from '../../redux/water/operations.js';
 // import addWaterRecord from 'redux/water/operations';
 // import { addWaterRecord } from 'redux/water/operations.js';
@@ -43,46 +39,46 @@ import { PiPintGlassThin } from 'react-icons/pi';
 //       )}
 
 const EditWaterModal = ({ recordId, onClose }) => {
-  const [amount, setAmount] = useState(0);
-  const [inputAmount, setInputAmount] = useState(amount);
-  const [time, setTime] = useState(() => {
+  const [volume, setVolume] = useState(0);
+  const [inputAmount, setInputAmount] = useState(volume);
+  const [date, setDate] = useState(() => {
     const now = new Date();
     now.setSeconds(0, 0);
     return now;
   });
-  // const dispatch = useDispatch();
-  // const currentRecord = useSelector(selectCurrentRecord);
+  const dispatch = useDispatch();
+  const currentRecord = useSelector(selectCurrentRecord);
   // const isLoading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
 
-  // useEffect(() => {
-  //   if (recordId) {
-  //     dispatch(getWaterRecord(recordId));
-  //   }
-  // }, [recordId, dispatch]);
+  useEffect(() => {
+    if (recordId) {
+      dispatch(getWaterRecord(recordId));
+    }
+  }, [recordId, dispatch]);
 
-  // useEffect(() => {
-  //   if (currentRecord) {
-  //     setAmount(currentRecord.amount);
-  //     setInputAmount(currentRecord.amount);
-  //     setTime(now(currentRecord.time));
-  //   }
-  // }, [currentRecord]);
+  useEffect(() => {
+    if (currentRecord) {
+      setVolume(currentRecord.volume);
+      setInputAmount(currentRecord.volume);
+      setDate(new Date(currentRecord.data));
+    }
+  }, [currentRecord]);
 
-  const handleTimeChange = selectedDates => {
-    setTime(selectedDates[0]);
+  const handleTimeChange = (selectedDates) => {
+    setDate(selectedDates[0]);
   };
 
-  const handleAdd = () => setAmount(amount + 50);
-  const handleMinus = () => setAmount(Math.max(amount - 50, 0));
+  const handleAdd = () => setVolume(volume + 50);
+  const handleMinus = () => setVolume(Math.max(volume - 50, 0));
   const handlerBlur = () => {
-    setAmount(inputAmount);
+    setVolume(inputAmount);
   };
-  // const handleSave = () => {
-  //    const updatedRecord = { amount, time: time.toISOString() };
-  //    dispatch(updateWaterRecord(recordId, updatedRecord));
-  //    onClose();
-  // };
+  const handleSave = () => {
+    const updatedRecord = { volume, date: date.toISOString() };
+    dispatch(updateWaterRecord({ recordId, updatedRecord }));
+    onClose();
+  };
 
   // if (isLoading) return <p>Loading...</p>;
   // if (error) return <p>Error: {error}</p>;
@@ -100,7 +96,7 @@ const EditWaterModal = ({ recordId, onClose }) => {
 
         <div className={css.record_details}>
           <PiPintGlassThin className={css.glass} />
-          <p className={css.record_amount}>{amount} ml</p>
+          <p className={css.record_amount}>{volume} ml</p>
           <p className={css.record_time}>
             {new Date(0).toLocaleTimeString()} AM
           </p>
@@ -112,7 +108,7 @@ const EditWaterModal = ({ recordId, onClose }) => {
             <button className={css.btn} onClick={handleMinus}>
               <PiMinusLight className={css.btn_icon} />
             </button>
-            <span className={css.amount_display}>{amount}ml</span>
+            <span className={css.amount_display}>{volume}ml</span>
             <button className={css.btn} onClick={handleAdd}>
               <FiPlus className={css.btn_icon} />
             </button>
@@ -122,12 +118,12 @@ const EditWaterModal = ({ recordId, onClose }) => {
         <p className={css.record_time_text}>Recording time:</p>
         <div>
           <Flatpickr
-            value={time}
+            value={date}
             onChange={handleTimeChange}
             options={{
               enableTime: true,
               noCalendar: true,
-              dateFormat: 'H:i',
+              dateFormat: "H:i",
               time_24hr: true,
             }}
             className={css.time_input}
@@ -140,10 +136,10 @@ const EditWaterModal = ({ recordId, onClose }) => {
           </p>
           <input
             type="number"
-            value={inputAmount === 0 ? '' : inputAmount}
-            onChange={e => {
+            value={inputAmount === 0 ? "" : inputAmount}
+            onChange={(e) => {
               const value = e.target.value;
-              setInputAmount(value === '' ? '' : Number(value));
+              setInputAmount(value === "" ? "" : Number(value));
             }}
             onBlur={handlerBlur}
             className={css.custom_amount_input}
@@ -151,8 +147,10 @@ const EditWaterModal = ({ recordId, onClose }) => {
         </div>
 
         <div className={css.modal_footer}>
-          <span className={css.footer_amount}>{amount} ml</span>
-          <button className={css.save_button}>Save</button>
+          <span className={css.footer_amount}>{volume} ml</span>
+          <button className={css.save_button} onClick={handleSave}>
+            Save
+          </button>
         </div>
       </div>
     </div>
@@ -160,4 +158,3 @@ const EditWaterModal = ({ recordId, onClose }) => {
 };
 
 export default EditWaterModal;
-// додати onClick={handleSave} на <button className={css.save_button}>Save</button>
