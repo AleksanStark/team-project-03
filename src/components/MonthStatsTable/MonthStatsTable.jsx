@@ -7,15 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMonthlyRecord } from "../../redux/water/operations";
 import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
-import DaysGeneralStats from "components/DaysGeneralStats/DaysGeneralStats";
 
 const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.water.monthlyRecords);
   const [date, setDate] = useState(new Date());
-
-  const [modalIsOpen, setModalIsOpen] = useState(false); //!!!!
-  const [selectedDay, setSelectedDay] = useState(null); //!!!!
 
   useEffect(() => {
     dispatch(getMonthlyRecord(date));
@@ -31,16 +27,6 @@ const MonthStatsTable = () => {
     newDate.setMonth(newDate.getMonth() + 1);
     setDate(newDate);
   };
-
-  const openModal = (dayData) => {
-    setSelectedDay(dayData);
-    setModalIsOpen(true);
-  }; // !!!
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setSelectedDay(null);
-  }; // !!!
 
   const isFuture = Date.now() - 3600000 < date;
   console.log(Date.now(), date.getTime());
@@ -66,16 +52,11 @@ const MonthStatsTable = () => {
         {items.map((item, i) => {
           return (
             <li className={style.dayItemContainer} key={i}>
-              <DayItem data={item} index={i} onClick={() => openModal(item)} />
+              <DayItem data={item} index={i} />
             </li>
           );
         })}
       </div>
-      <DaysGeneralStats
-        modalIsOpen={modalIsOpen}
-        closeModal={closeModal}
-        dayData={selectedDay}
-      />
     </div>
   );
 };

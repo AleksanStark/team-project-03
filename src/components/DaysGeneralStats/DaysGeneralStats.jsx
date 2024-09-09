@@ -1,10 +1,10 @@
-import css from './DaysGeneralStats.module.css';
+import css from "./DaysGeneralStats.module.css";
 
 export default function DaysGeneralStats({
-  date,
-  totalWater,
-  progres,
-  dailyRecords,
+  date = 0,
+  totalWater = 0,
+  progres = 0,
+  dailyRecords = 0,
 }) {
   // date дата за яку вибрав юзер
   // totalWater норма випитої води за цей день
