@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.20.6",
     "axios": "^1.7.5",
     "express": "^4.19.2",
     "flatpickr": "^4.6.13",
