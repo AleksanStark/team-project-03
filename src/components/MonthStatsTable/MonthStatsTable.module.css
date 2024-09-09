@@ -43,6 +43,8 @@ button {
 }
 
 .containerWithDays {
+  align-items: flex-start;
+  align-content: flex-start;
   width: 538px;
   height: 284px;
   display: flex;
@@ -52,6 +54,7 @@ button {
 }
 
 .dayItemContainer {
+  height: 56px;
   margin-left: 0;
   margin-right: 0;
   /* flex-basis: calc(100% / 10); */
