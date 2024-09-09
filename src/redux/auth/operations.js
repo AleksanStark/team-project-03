@@ -156,10 +156,11 @@ export const updateDailyNorma = createAsyncThunk(
   async (newDailyNorma, thunkAPI) => {
     try {
       const { data } = await axios.patch("/water-rate", {
-        waterRate: newDailyNorma,
+        dailyNorma: newDailyNorma,
       });
       return data.waterRate;
     } catch (error) {
+      toast.error(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

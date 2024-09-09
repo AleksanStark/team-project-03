@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
-import style from './DailyUserValue.module.css';
-import { useDispatch } from 'react-redux';
-import { addWaterRecord } from '../../../redux/water/operations.js';
-import { useSelector } from 'react-redux';
-import { selectError, selectIsLoading } from '../../../redux/water/slice.js';
+import { useEffect, useState } from "react";
+import style from "./DailyUserValue.module.css";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  selectError,
+  selectIsLoading,
+} from "../../../redux/auth/auth.selectors";
+import { updateDailyNorma } from "../../../redux/auth/operations";
 
 const DailyUserValue = ({ closeModal }) => {
   const [isFirstOpen, setIsFirstOpen] = useState(true);
@@ -14,9 +17,8 @@ const DailyUserValue = ({ closeModal }) => {
   const [userValue, setUserValue] = useState();
 
   const handleClick = () => {
-    const record = { date: new Date().toISOString(), volume: +userValue };
     setIsFirstOpen(false);
-    dispatch(addWaterRecord(record));
+    dispatch(updateDailyNorma(+userValue));
   };
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const DailyUserValue = ({ closeModal }) => {
           name="inputValue"
           placeholder="0"
           value={userValue}
-          onChange={e => {
+          onChange={(e) => {
             setUserValue(e.target.value);
           }}
         />
