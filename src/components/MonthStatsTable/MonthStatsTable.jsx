@@ -42,6 +42,8 @@ const MonthStatsTable = () => {
     setSelectedDay(null);
   }; // !!!
 
+  const isFuture = Date.now() - 3600000 < date;
+  console.log(Date.now(), date.getTime());
   return (
     <div className={style.container}>
       <div className={style.headerContainer}>
@@ -51,9 +53,13 @@ const MonthStatsTable = () => {
             <SlArrowLeft className={style.icon} />
           </button>
           <p className={style.month}>{formatDate(date)}</p>
-          <button onClick={handleNextDateClick}>
-            <SlArrowRight className={style.icon} />
-          </button>
+          {!isFuture ? (
+            <button onClick={handleNextDateClick}>
+              <SlArrowRight className={style.icon} />
+            </button>
+          ) : (
+            <div className={style.icon}></div>
+          )}
         </div>
       </div>
       <div className={style.containerWithDays}>
