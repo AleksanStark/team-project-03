@@ -116,18 +116,6 @@ export const updateAvatar = createAsyncThunk(
   }
 );
 
-export const updateAvatar = createAsyncThunk(
-  "user/info/photo",
-  async (formData, thunkAPI) => {
-    try {
-      const { data } = await axios.patch("/user/info/photo", formData);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 //Method to Update User
 export const updateUserData = createAsyncThunk(
   "/user/info/update",
