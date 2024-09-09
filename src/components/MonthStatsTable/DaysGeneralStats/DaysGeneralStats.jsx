@@ -1,6 +1,6 @@
 import Modal from "react-modal";
-Modal.setAppElement("#root");
 import style from "./DaysGeneralStats.module.css";
+Modal.setAppElement("#root");
 
 const customStyles = {
   content: {

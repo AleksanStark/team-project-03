@@ -81,7 +81,7 @@ export const refreshUser = createAsyncThunk(
 );
 
 export const updateAvatar = createAsyncThunk(
-  "auth/info/photo",
+  "user/info/photo",
   async (formData, thunkAPI) => {
     try {
       const { data } = await axios.patch("/user/info/photo", formData);
