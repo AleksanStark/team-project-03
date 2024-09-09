@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { SwitcherWrapp, SwitcherBox } from './ThemeSwitcher.styled';
-import sun from '../images/sun.png';
-import moon from '../images/moon.png';
-import clouds from '../images/cloudy.png';
+import React, { useState, useEffect } from "react";
+import { SwitcherWrapp, SwitcherBox } from "./ThemeSwitcher.styled";
 
 const ThemeSwitcher = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
 
     if (savedTheme) {
       document.body.dataset.theme = savedTheme;
-      setIsDarkTheme(savedTheme === 'dark');
+      setIsDarkTheme(savedTheme === "dark");
     } else {
-      const initialTheme = prefersDarkMode ? 'dark' : 'light';
+      const initialTheme = prefersDarkMode ? "dark" : "light";
       document.body.dataset.theme = initialTheme;
-      setIsDarkTheme(initialTheme === 'dark');
+      setIsDarkTheme(initialTheme === "dark");
     }
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = !isDarkTheme ? 'dark' : 'light';
+    const newTheme = !isDarkTheme ? "dark" : "light";
     setIsDarkTheme(!isDarkTheme);
     document.body.dataset.theme = newTheme;
-    localStorage.setItem('theme', newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
   return (

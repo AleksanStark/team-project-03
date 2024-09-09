@@ -73,6 +73,7 @@ export const refreshUser = createAsyncThunk(
     setAuthHeader(persistedToken);
     try {
       const { data } = await axios.get("/user/info");
+
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -81,11 +82,34 @@ export const refreshUser = createAsyncThunk(
 );
 
 export const updateAvatar = createAsyncThunk(
-  "auth/info/photo",
+  "user/info/photo",
   async (formData, thunkAPI) => {
+    console.log("Photo", formData);
+
     try {
-      const { data } = await axios.patch("/user/info/photo", formData);
+      const { data } = await axios.patch("/user/info/photo", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
       return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const persistedToken = thunkAPI.getState().auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const { data } = await axios.get("/user/info");
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -96,6 +120,22 @@ export const updateAvatar = createAsyncThunk(
 export const updateUserData = createAsyncThunk(
   "/user/info/update",
   async (body, thunkAPI) => {
+    try {
+      const { data } = await axios.patch("/user/info/update", body, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return data;
+    } catch (error) {
+      toast.error("Request error");
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+
+  "/user/info/update",
+  async (body, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.token;
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue();
@@ -103,7 +143,7 @@ export const updateUserData = createAsyncThunk(
     setAuthHeader(persistedToken);
     try {
       const { data } = await axios.patch("/user/info/update", body);
-      return data;
+      return data.data;
     } catch (error) {
       toast.error("Request error");
       return thunkAPI.rejectWithValue(error.message);
@@ -129,7 +169,9 @@ export const sendResetEmail = createAsyncThunk(
   "auth/sendResetEmail",
   async (email, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/request-reset-email", { email });
+      const response = await axios.post("/auth/request-reset-email", {
+        email,
+      });
       return response.data;
     } catch (error) {
       throw thunkAPI.rejectWithValue(error.message);
@@ -145,6 +187,28 @@ export const resetPwd = createAsyncThunk(
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updatePassword = createAsyncThunk(
+  "auth/reset-password",
+  async ({ password, token }, thunkAPI) => {
+    try {
+      const { data } = await axios.post("auth/reset-password", {
+        password,
+        token,
+      });
+      toast.success("Password updated successfully!");
+      console.log(data);
+
+      return data.data;
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        "Failed to update password. Please try again.";
+      toast.error(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );

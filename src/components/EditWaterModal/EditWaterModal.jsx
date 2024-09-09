@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import css from './EditWaterModal.module.css';
-import { IoCloseOutline } from 'react-icons/io5';
-import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
-import { FiPlus } from 'react-icons/fi';
-import { PiMinusLight } from 'react-icons/pi';
-import { PiPintGlassThin } from 'react-icons/pi';
+import { useState } from "react";
+import css from "./EditWaterModal.module.css";
+import { IoCloseOutline } from "react-icons/io5";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+import { FiPlus } from "react-icons/fi";
+import { PiMinusLight } from "react-icons/pi";
+import { PiPintGlassThin } from "react-icons/pi";
 // import { useSelector } from 'react-redux';
 // import { updateWaterRecord } from 'redux/water/operations';
 // import {
@@ -69,7 +69,7 @@ const EditWaterModal = ({ recordId, onClose }) => {
   //   }
   // }, [currentRecord]);
 
-  const handleTimeChange = selectedDates => {
+  const handleTimeChange = (selectedDates) => {
     setTime(selectedDates[0]);
   };
 
@@ -127,7 +127,7 @@ const EditWaterModal = ({ recordId, onClose }) => {
             options={{
               enableTime: true,
               noCalendar: true,
-              dateFormat: 'H:i',
+              dateFormat: "H:i",
               time_24hr: true,
             }}
             className={css.time_input}
@@ -140,10 +140,10 @@ const EditWaterModal = ({ recordId, onClose }) => {
           </p>
           <input
             type="number"
-            value={inputAmount === 0 ? '' : inputAmount}
-            onChange={e => {
+            value={inputAmount === 0 ? "" : inputAmount}
+            onChange={(e) => {
               const value = e.target.value;
-              setInputAmount(value === '' ? '' : Number(value));
+              setInputAmount(value === "" ? "" : Number(value));
             }}
             onBlur={handlerBlur}
             className={css.custom_amount_input}

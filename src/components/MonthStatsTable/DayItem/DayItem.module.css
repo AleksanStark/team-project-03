@@ -1,7 +1,14 @@
+.popover {
+  width: 292;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .containerForDay {
@@ -16,15 +23,34 @@
 }
 
 .numberOfDay {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: #2f2f2f;
 }
 
 .percentOfDay {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 400;
-  font-size: 13px;
-  color: #d7e3ff;
+  font-size: 12px;
+  color: #9ebbff;
+}
+
+@media (max-width: 1439px) {
+  .percentOfDay {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 767px) {
+  .containerForDay {
+    height: 32px;
+    width: 32px;
+  }
+  .percentOfDay {
+    font-size: 10px;
+  }
+  .popover {
+    width: 280;
+  }
 }
