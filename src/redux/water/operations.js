@@ -15,6 +15,24 @@ export const addWaterRecord = createAsyncThunk(
   }
 );
 
+export const getMonthlyRecord = createAsyncThunk(
+  "water/getMonthlyInfo",
+  async (userData, thunkAPI) => {
+    const date = new Date(userData);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Fixed typo
+    const END_POINT = `/water/monthly/${year}-${month}-01`; // Fixed typo
+    try {
+      const response = await axios.get(END_POINT);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to fetch water record"
+      );
+    }
+  }
+);
+
 export const updateWaterRecord = createAsyncThunk(
   "water/update", // Updated action type to avoid conflict
   async ({ recordId, amount, time }, thunkAPI) => {
@@ -64,14 +82,16 @@ export const getDailyRecord = createAsyncThunk(
     }
   }
 );
+//===========видалити
+export const getWaterRecord = createAsyncThunk(
+  "water/getDaily", // Updated action type to avoid conflict
 
-export const getMonthlyRecord = createAsyncThunk(
-  "water/getMonthly",
   async (userData, thunkAPI) => {
     const date = new Date(userData);
     const year = date.getFullYear();
     const month = date.getMonth().toString().padStart(2, "0"); // Fixed typo
-    const END_POINT = `/water/monthly/${year}-${month}-01`; // Fixed typo
+    const day = date.getDay();
+    const END_POINT = `/water/daily/${year}-${month}-${day}`; // Fixed typo
 
     try {
       const response = await axios.get(END_POINT);

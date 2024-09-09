@@ -1,4 +1,4 @@
-export const formatDate = date => {
+export const formatDate = (date) => {
   const year = date.getFullYear();
   const mongth = getMonthName(date.getMonth());
 
@@ -7,19 +7,19 @@ export const formatDate = date => {
 
 function getMonthName(monthNumber) {
   const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
-  return monthNames[monthNumber] || 'Січень';
+  return monthNames[monthNumber] || "January";
 }
