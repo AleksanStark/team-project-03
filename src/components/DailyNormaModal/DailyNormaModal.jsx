@@ -1,20 +1,20 @@
-import DailyFormula from './DailyFormula/DailyFormula';
-import DailyUserValue from './DailyUserValue/DailyUserValue';
-import DailyCalculate from './DailyCalculate/DailyCalculate';
-import style from './DailyNormaModal.module.css';
-import { useCallback, useEffect } from 'react';
-import icons from '../../images/icons.svg';
+import DailyFormula from "./DailyFormula/DailyFormula";
+import DailyUserValue from "./DailyUserValue/DailyUserValue";
+import DailyCalculate from "./DailyCalculate/DailyCalculate";
+import style from "./DailyNormaModal.module.css";
+import { useCallback, useEffect } from "react";
+import icons from "../../images/icons.svg";
 
 const enableBody = () => {
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow = "auto";
 };
 const disableBody = () => {
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 };
 
 const DailyNormaModal = ({ isOpen, closeModal }) => {
   const handleBackdropClick = useCallback(
-    e => {
+    (e) => {
       if (e.target === e.currentTarget) {
         closeModal();
       }
@@ -23,8 +23,8 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
   );
 
   const onWindowKeydown = useCallback(
-    e => {
-      if (e.code === 'Escape') {
+    (e) => {
+      if (e.code === "Escape") {
         closeModal();
       }
     },
@@ -35,10 +35,10 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
     if (!isOpen) {
       return;
     }
-    window.addEventListener('keydown', onWindowKeydown);
+    window.addEventListener("keydown", onWindowKeydown);
     disableBody();
     return () => {
-      window.removeEventListener('keydown', onWindowKeydown);
+      window.removeEventListener("keydown", onWindowKeydown);
       enableBody();
     };
   }, [isOpen, onWindowKeydown]);

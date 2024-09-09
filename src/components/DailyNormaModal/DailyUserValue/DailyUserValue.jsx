@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import style from './DailyUserValue.module.css';
-import { useDispatch } from 'react-redux';
-import { addWaterRecord } from '../../../redux/water/operations.js';
-import { useSelector } from 'react-redux';
-import { selectError, selectIsLoading } from '../../../redux/water/slice.js';
+import { useEffect, useState } from "react";
+import style from "./DailyUserValue.module.css";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectError, selectIsLoading } from "../../../redux/water/slice.js";
+import { updateDailyNorma } from "../../../redux/auth/operations.js";
+import { toast } from "react-toastify";
 
 const DailyUserValue = ({ closeModal }) => {
   const [isFirstOpen, setIsFirstOpen] = useState(true);
@@ -11,12 +12,17 @@ const DailyUserValue = ({ closeModal }) => {
   const error = useSelector(selectError);
 
   const dispatch = useDispatch();
-  const [userValue, setUserValue] = useState();
+  const [userValue, setUserValue] = useState("");
 
   const handleClick = () => {
-    const record = { date: new Date().toISOString(), volume: +userValue };
+    const normalizedValue = +userValue;
+    if (isNaN(normalizedValue) || normalizedValue <= 0) {
+      toast.error("Invalid value. Enter a number greater than 0.");
+      console.log("Invalid value. Enter a number greater than 0.");
+      return;
+    }
     setIsFirstOpen(false);
-    dispatch(addWaterRecord(record));
+    dispatch(updateDailyNorma(normalizedValue));
   };
 
   useEffect(() => {
@@ -39,7 +45,7 @@ const DailyUserValue = ({ closeModal }) => {
           name="inputValue"
           placeholder="0"
           value={userValue}
-          onChange={e => {
+          onChange={(e) => {
             setUserValue(e.target.value);
           }}
         />

@@ -1,4 +1,4 @@
-import style from './DailyFormula.module.css';
+import style from "./DailyFormula.module.css";
 
 const DailyFormula = () => {
   return (
