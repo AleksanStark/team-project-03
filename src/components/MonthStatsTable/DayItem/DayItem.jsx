@@ -49,7 +49,7 @@ const DayItem = ({ data, index, onClick }) => {
         <button className={style.numberOfDay}>{index + 1}</button>
       </div>
       <div>
-        <p className={style.percentOfDay}>{percent} %</p>
+        <p className={style.percentOfDay}>{percent.split(".")[0]} %</p>
       </div>
     </div>
   );
