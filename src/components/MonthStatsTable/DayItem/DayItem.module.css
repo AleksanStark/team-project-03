@@ -3,6 +3,7 @@
 }
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -22,11 +23,16 @@
   background-color: #fff;
 }
 
+.containerForDay:hover {
+  box-shadow: 0px 4px 4px #407cff47;
+}
+
 .numberOfDay {
   font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: #2f2f2f;
+  cursor: pointer;
 }
 
 .percentOfDay {

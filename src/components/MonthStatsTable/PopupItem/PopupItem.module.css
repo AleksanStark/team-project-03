@@ -1,0 +1,80 @@
+.popup {
+  position: absolute;
+  box-sizing: border-box;
+  width: 292px;
+  height: 188px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #407cff47;
+  z-index: 1000;
+  padding: 24px 16px;
+  transform: translateY(-65%);
+}
+
+.firstColumn {
+  top: -135%;
+  left: 50%;
+}
+.secondColumn {
+  top: -135%;
+  left: 50%;
+}
+.thirdColumn {
+  top: -135%;
+  left: 50%;
+}
+.fourthColumn {
+  top: -135%;
+  left: 50%;
+}
+.fifthColumn {
+  top: -135%;
+  right: 50%;
+}
+.sixthColumn {
+  top: -135%;
+  right: 50%;
+}
+.seventhColumn {
+  top: -135%;
+  right: 50%;
+}
+.eighthColumn {
+  top: -135%;
+  right: 50%;
+}
+.ninthColumn {
+  top: -135%;
+  right: 50%;
+}
+.tenthColumn {
+  top: -135%;
+  right: 50%;
+}
+
+@media (max-width: 767px) {
+  .popup {
+    width: 280px;
+    padding: 24px 13px;
+  }
+  .mobileFirstColumn {
+    top: -155%;
+    left: -25%;
+  }
+  .mobileSecondColumn {
+    top: -155%;
+    left: -210%;
+  }
+  .mobileThirdColumn {
+    top: -155%;
+    left: -380%;
+  }
+  .mobileFourthColumn {
+    top: -155%;
+    left: -575%;
+  }
+  .mobileFifthColumn {
+    top: -155%;
+    right: -25%;
+  }
+}

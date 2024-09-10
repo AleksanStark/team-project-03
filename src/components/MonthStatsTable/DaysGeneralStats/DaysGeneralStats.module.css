@@ -5,12 +5,37 @@
   top: 0;
 }
 
-.modal {
-  padding: 24px 13px 24px 13px;
-  width: 280px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dailyNorma,
+.fulfillment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  color: #2f2f2f;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  color: #2f2f2f;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
 }
 
 .date {
@@ -23,17 +48,7 @@
   text-align: left;
 }
 
-p {
-  font-family: "Roboto";
-  font-weight: 400;
-  font-size: 16px;
-  color: #2f2f2f;
-  line-height: 1.25;
-  letter-spacing: normal;
-  text-align: left;
-}
-
-span {
+.dailySpan {
   font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;
