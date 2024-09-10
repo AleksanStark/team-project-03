@@ -59,7 +59,6 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.error = true;
       })
-
       .addCase(deleteWaterRecord.pending, (state) => {
         state.isLoading = true;
         state.error = null;
