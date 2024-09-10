@@ -6,7 +6,10 @@ import "flatpickr/dist/flatpickr.min.css";
 import { FiPlus } from "react-icons/fi";
 import { PiMinusLight } from "react-icons/pi";
 import { useDispatch } from "react-redux";
-import { addWaterRecord } from "../../redux/water/operations.js";
+import {
+  addWaterRecord,
+  getDailyRecord,
+} from "../../redux/water/operations.js";
 
 // import addWaterRecord from 'redux/water/operations';
 // import { addWaterRecord } from 'redux/water/operations.js';
@@ -37,6 +40,7 @@ const TodayAddWaterModal = ({ onClose }) => {
     console.log(record);
     dispatch(addWaterRecord(record));
     onClose();
+    dispatch(getDailyRecord());
   };
 
   return (

@@ -7,7 +7,7 @@ import { FiPlus } from "react-icons/fi";
 import { PiMinusLight } from "react-icons/pi";
 import { PiPintGlassThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
-import { updateWaterRecord } from "redux/water/operations";
+import { updateWaterRecord, getDailyRecord } from "redux/water/operations";
 import { selectCurrentRecord } from "redux/water/slice";
 import { getWaterRecord } from "redux/water/operations";
 import { useDispatch } from "react-redux";
@@ -51,6 +51,7 @@ const EditWaterModal = ({ recordId, onClose }) => {
     const updatedRecord = { volume, date: date.toISOString() };
     dispatch(updateWaterRecord(recordId, ...updatedRecord));
     onClose();
+    dispatch(getDailyRecord());
   };
 
   return (
