@@ -8,7 +8,7 @@ import css from "./Footer.module.css";
 
 import { ReactComponent as GithubIcon } from "../images/github.svg";
 import { ReactComponent as LinkedInIcon } from "../images/linkedin.svg";
-import AleksanVartapetyan from "../images/aleksanvartapetyan.png";
+import AleksanVartapetyan from "../images/aleksanvartapetyan.jpeg";
 import TetianaTymoshchenko from "../images/tetianatymoshchenko.jpg";
 import IlonaHonchar from "../images/ilonahonchar.png";
 import OlhaIarova from "../images/olgaiarova.png";
