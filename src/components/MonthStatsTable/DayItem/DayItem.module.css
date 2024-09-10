@@ -3,6 +3,7 @@
 }
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -12,7 +13,6 @@
 }
 
 .containerForDay {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -12,34 +12,44 @@
 }
 
 .firstColumn {
-  right: 1065px;
+  top: -135%;
+  left: 50%;
 }
 .secondColumn {
-  right: 1010px;
+  top: -135%;
+  left: 50%;
 }
 .thirdColumn {
-  right: 958px;
+  top: -135%;
+  left: 50%;
 }
 .fourthColumn {
-  right: 900px;
+  top: -135%;
+  left: 50%;
 }
 .fifthColumn {
-  left: 110px;
+  top: -135%;
+  right: 50%;
 }
 .sixthColumn {
-  left: 165px;
+  top: -135%;
+  right: 50%;
 }
 .seventhColumn {
-  left: 220px;
+  top: -135%;
+  right: 50%;
 }
 .eighthColumn {
-  left: 275px;
+  top: -135%;
+  right: 50%;
 }
 .ninthColumn {
-  left: 330px;
+  top: -135%;
+  right: 50%;
 }
 .tenthColumn {
-  left: 390px;
+  top: -135%;
+  right: 50%;
 }
 
 @media (max-width: 767px) {
@@ -47,12 +57,24 @@
     width: 280px;
     padding: 24px 13px;
   }
-  .mobileFirstColumn,
-  .mobileSecondColumn,
-  .mobileThirdColumn,
-  .mobileFourthColumn,
+  .mobileFirstColumn {
+    top: -155%;
+    left: -25%;
+  }
+  .mobileSecondColumn {
+    top: -155%;
+    left: -210%;
+  }
+  .mobileThirdColumn {
+    top: -155%;
+    left: -380%;
+  }
+  .mobileFourthColumn {
+    top: -155%;
+    left: -575%;
+  }
   .mobileFifthColumn {
-    right: 10px;
-    left: 10px;
+    top: -155%;
+    right: -25%;
   }
 }
