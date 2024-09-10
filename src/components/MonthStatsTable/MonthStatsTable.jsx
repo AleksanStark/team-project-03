@@ -29,7 +29,6 @@ const MonthStatsTable = () => {
   };
 
   const isFuture = Date.now() - 3600000 < date;
-  console.log(Date.now(), date.getTime());
   return (
     <div className={style.container}>
       <div className={style.headerContainer}>
