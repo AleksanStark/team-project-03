@@ -12,6 +12,7 @@ const waterSlice = createSlice({
   initialState: {
     dailyRecords: [],
     monthlyRecords: [],
+    progres: 0,
     currentRecord: null,
     isLoading: false,
     error: null,
@@ -49,7 +50,8 @@ const waterSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getDailyRecord.fulfilled, (state, action) => {
-        state.dailyRecords = action.payload.dailyResults;
+        state.dailyRecords = action.payload.data;
+        state.progres = action.payload.percentageOfDailyIntake;
         state.isLoading = false;
         state.error = null;
       })
