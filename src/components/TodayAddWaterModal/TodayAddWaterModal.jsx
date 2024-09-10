@@ -33,7 +33,8 @@ const TodayAddWaterModal = ({ onClose }) => {
   const handleSave = () => {
     console.log(new Date(date.toISOString().slice(0, 16)));
 
-    const record = { volume, date: date.toISOString() };
+    const record = { volume, date: date.toISOString().slice(0, 16) };
+    console.log(record);
     dispatch(addWaterRecord(record));
     onClose();
   };

@@ -5,9 +5,9 @@ axios.defaults.baseURL = "https://watertracker-db.onrender.com";
 
 export const addWaterRecord = createAsyncThunk(
   "water/add", // Updated action type to avoid conflict
-  async ({ amount, date }, thunkAPI) => {
+  async ({ volume, date }, thunkAPI) => {
     try {
-      const { data } = await axios.post("/water", { amount, date });
+      const { data } = await axios.post("/water", { volume, date });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -35,11 +35,11 @@ export const getMonthlyRecord = createAsyncThunk(
 
 export const updateWaterRecord = createAsyncThunk(
   "water/update", // Updated action type to avoid conflict
-  async ({ recordId, amount, time }, thunkAPI) => {
+  async ({ recordId, volume, date }, thunkAPI) => {
     try {
       const response = await axios.patch(`/water/${recordId}`, {
-        amount,
-        time,
+        volume,
+        date,
       });
       return response.data;
     } catch (error) {
