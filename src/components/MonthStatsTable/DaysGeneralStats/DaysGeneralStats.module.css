@@ -5,19 +5,17 @@
   top: 0;
 }
 
-.date {
-  font-family: "Roboto";
-  font-weight: 400;
-  font-size: 16px;
-  color: #407bff;
-  line-height: 1.25;
-  letter-spacing: normal;
-  text-align: left;
-  line-height: 1.25;
-  letter-spacing: normal;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-p {
+.dailyNorma,
+.fulfillment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
@@ -27,7 +25,30 @@ p {
   text-align: left;
 }
 
-span {
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  color: #2f2f2f;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.date {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  color: #407bff;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.dailySpan {
   font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;

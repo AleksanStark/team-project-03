@@ -1,53 +1,58 @@
 .popup {
   position: absolute;
-  transform: translateY(-65%);
-  width: 280px;
+  box-sizing: border-box;
+  width: 292px;
   height: 188px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0px 4px 4px #407cff47;
   z-index: 1000;
   padding: 24px 16px;
+  transform: translateY(-65%);
 }
-
-/* .rightPart {
-  right: 1040px;
-}
-
-.leftPart {
-  right: 17px;
-} */
 
 .firstColumn {
-  right: 640px;
+  right: 1065px;
 }
 .secondColumn {
-  right: 574px;
+  right: 1010px;
 }
 .thirdColumn {
-  bottom: 65px;
+  right: 958px;
 }
 .fourthColumn {
-  right: 440px;
+  right: 900px;
 }
 .fifthColumn {
-  bottom: 65px;
-  right: -8px;
+  left: 110px;
+}
+.sixthColumn {
+  left: 165px;
+}
+.seventhColumn {
+  left: 220px;
+}
+.eighthColumn {
+  left: 275px;
+}
+.ninthColumn {
+  left: 330px;
+}
+.tenthColumn {
+  left: 390px;
 }
 
 @media (max-width: 767px) {
-  /* .statsContainer {
-    padding: 24px 16px;
-    width: 292px;
-  } */
-
-  /* .rightPart {
-    bottom: 100%;
-    left: 17px;
+  .popup {
+    width: 280px;
+    padding: 24px 13px;
   }
-
-  .leftPart {
-    bottom: 100%;
-    right: 17px;
-  } */
+  .mobileFirstColumn,
+  .mobileSecondColumn,
+  .mobileThirdColumn,
+  .mobileFourthColumn,
+  .mobileFifthColumn {
+    right: 10px;
+    left: 10px;
+  }
 }

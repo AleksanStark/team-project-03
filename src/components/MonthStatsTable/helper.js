@@ -39,15 +39,19 @@ export const useModal = () => {
   return [modalState, openModal, closeModal];
 };
 
-export const leftPart = [
-  1, 2, 3, 4, 5, 11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 31,
-];
-export const rightPart = [
-  6, 7, 8, 9, 10, 16, 17, 18, 19, 20, 26, 27, 28, 29, 30,
-];
+export const mobileFirstColumn = [1, 6, 11, 16, 21, 26, 31];
+export const mobileSecondColumn = [2, 7, 12, 17, 22, 27];
+export const mobileThirdColumn = [3, 8, 13, 18, 23, 28];
+export const mobileFourthColumn = [4, 9, 14, 19, 24, 29];
+export const mobileFifthColumn = [5, 10, 15, 20, 25, 30];
 
 export const firstColumn = [1, 11, 21, 31];
 export const secondColumn = [2, 12, 22];
 export const thirdColumn = [3, 13, 23];
 export const fourthColumn = [4, 14, 24];
 export const fifthColumn = [5, 15, 25];
+export const sixthColumn = [6, 16, 26];
+export const seventhColumn = [7, 17, 27];
+export const eighthColumn = [8, 18, 28];
+export const ninthColumn = [9, 19, 29];
+export const tenthColumn = [10, 20, 30];
