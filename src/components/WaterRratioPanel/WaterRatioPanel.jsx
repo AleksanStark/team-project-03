@@ -1,39 +1,27 @@
 import { useState } from "react";
 import css from "./WaterRatioPanel.module.css";
-// import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { LuPlusCircle } from "react-icons/lu";
 import TodayAddWaterModal from "components/TodayAddWaterModal/TodayAddWaterModal";
-import { getWaterRecord } from "../../redux/water/operations";
-import { selectDalyWaters, selectProgres } from "../../redux/water/selector";
+import { getDailyRecord } from "../../redux/water/operations";
+import { selectProgres } from "../../redux/water/selector";
 
 export default function WaterRatioPanel() {
-  const water = useSelector(selectDalyWaters);
-
-  let today = new Date();
-  let isoDate = today.toISOString().slice(0, 10);
-  console.log(isoDate);
-
-  // console.log(water);
-  //   const progres = useSelector(); // отримати співідношення випитої води до заданої норми
-  //   не знаю чи буде приходити з бекенда вже співідношення і я так думаю що краще брати значення з бекенду ( за датою і зробити перевірку дати, щоб значення скідалося коли наступний день ). якщо з беку буде приходити лише масив значень то прийдеться зробити перерахунок значення
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getWaterRecord(isoDate));
-  }, [dispatch, isoDate]);
+    dispatch(getDailyRecord());
+  }, [dispatch]);
 
   //   const openAddWaterModal = () => {
   //     dispatch(ToDayAddWaterModal(true)); // відкриття модального вікна для додавання випитої води
   //   };
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const progres = useSelector(selectProgres);
 
   // стилі які будуть примінятися при дозягнені певногопрогресу
-
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const progres = useSelector(selectProgres);
-  console.log(progres);
   const styleZero = {
     fontSize: 16,
     fontWeight: 500,

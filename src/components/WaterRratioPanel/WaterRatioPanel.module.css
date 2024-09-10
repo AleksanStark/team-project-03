@@ -113,8 +113,6 @@
 
 .conteinerItems {
   display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
   flex-direction: column;
 }
 
@@ -143,10 +141,6 @@
     padding: 10px 0px 10px 0px;
   }
 
-  .conteinerItems {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
   .conteinerInfo {
     padding-left: 11px;
     padding-right: 20px;
