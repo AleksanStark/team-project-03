@@ -56,7 +56,7 @@ const RegistrationForm = () => {
   const handleGoogleResponse = async (response) => {
     try {
       const { credential } = response;
-      const result = await fetch('https://watertracker-db.onrender.com/confirm-google-auth', {
+      const result = await fetch('https://watertracker-db.onrender.com/auth/confirm-oauth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
