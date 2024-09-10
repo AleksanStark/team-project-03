@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/team-project-03/static/css/main.3731d956.css",
-    "main.js": "/team-project-03/static/js/main.ed5c52d0.js",
+    "main.js": "/team-project-03/static/js/main.aa0c412c.js",
     "static/css/638.4f269feb.chunk.css": "/team-project-03/static/css/638.4f269feb.chunk.css",
     "static/js/638.da38ff57.chunk.js": "/team-project-03/static/js/638.da38ff57.chunk.js",
     "static/js/25.c1893041.chunk.js": "/team-project-03/static/js/25.c1893041.chunk.js",
@@ -21,11 +21,11 @@
     "static/media/yuliiaprokopchuk.png": "/team-project-03/static/media/yuliiaprokopchuk.c9ecd952f282cbd2cccf.png",
     "static/media/oksanapodolianyk.png": "/team-project-03/static/media/oksanapodolianyk.821293ce31d57165bd29.png",
     "static/media/tetianachehrina.png": "/team-project-03/static/media/tetianachehrina.31b121b823f144256d9d.png",
-    "static/media/aleksanvartapetyan.png": "/team-project-03/static/media/aleksanvartapetyan.96fef4909d6543463289.png",
     "static/media/ilonahonchar.png": "/team-project-03/static/media/ilonahonchar.d97f6a3155887a7133ac.png",
     "static/media/anastasianazarova.png": "/team-project-03/static/media/anastasianazarova.89fc4bde5476fbc70231.png",
     "static/media/maksymrebryk.png": "/team-project-03/static/media/maksymrebryk.2abb082851d84ceae600.png",
     "static/media/andriybilous.png": "/team-project-03/static/media/andriybilous.a42a078d3d092dd9e785.png",
+    "static/media/aleksanvartapetyan.jpeg": "/team-project-03/static/media/aleksanvartapetyan.afe49cdc8da94e089197.jpeg",
     "static/media/bottle-desk-2x.png": "/team-project-03/static/media/bottle-desk-2x.1775bd96fc412d403b4f.png",
     "static/media/dmytrodiumin.jpg": "/team-project-03/static/media/dmytrodiumin.3f887c458a7a346c15cb.jpg",
     "static/media/bg-tb2x.png": "/team-project-03/static/media/bg-tb2x.f8c847ae161dc610b4cb.png",
@@ -54,7 +54,7 @@
     "static/media/linkedin.svg": "/team-project-03/static/media/linkedin.b5db985d0d658e7fd21c0847f27d5172.svg",
     "static/media/x-mark.svg": "/team-project-03/static/media/x-mark.522b2c595a77d1df50c4eaf35b522689.svg",
     "main.3731d956.css.map": "/team-project-03/static/css/main.3731d956.css.map",
-    "main.ed5c52d0.js.map": "/team-project-03/static/js/main.ed5c52d0.js.map",
+    "main.aa0c412c.js.map": "/team-project-03/static/js/main.aa0c412c.js.map",
     "638.4f269feb.chunk.css.map": "/team-project-03/static/css/638.4f269feb.chunk.css.map",
     "638.da38ff57.chunk.js.map": "/team-project-03/static/js/638.da38ff57.chunk.js.map",
     "25.c1893041.chunk.js.map": "/team-project-03/static/js/25.c1893041.chunk.js.map",
@@ -72,6 +72,6 @@
   },
   "entrypoints": [
     "static/css/main.3731d956.css",
-    "static/js/main.ed5c52d0.js"
+    "static/js/main.aa0c412c.js"
   ]
 }
