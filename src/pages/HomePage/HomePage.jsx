@@ -8,6 +8,9 @@ import TodayWaterList from "components/TodayWaterList/TodayWaterList";
 const HomePage = () => {
   return (
     <section className={css.homeSection}>
+      {/* <Popover content={<p>"Hello"</p>} title="Title">
+        Hello
+      </Popover> */}
       <div className={css.dailyContainer}>
         <DailyNorma />
       </div>
