@@ -1,21 +1,19 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { LuUpload } from 'react-icons/lu';
 import css from './ModalSettind.module.css';
 import clsx from 'clsx';
 import sprite from '../../../images/sprite.svg';
-import { selectToken } from '../../../redux/auth/auth.selectors.js';
+
 import {
     updateAvatar,
     updateUserData,
-    refreshUser,
     updatePassword,
 } from '../../../redux/auth/operations';
 
@@ -38,6 +36,7 @@ export default function ModalSetting({
     imageDefault,
 }) {
     const dispatch = useDispatch();
+
     const [hideEyeOld, setHideEyeOld] = useState(false);
     const [hideEyeRepeat, setHideEyeRepeat] = useState(false);
     const [hideEyeNew, setHideEyeNew] = useState(false);
@@ -110,35 +109,60 @@ export default function ModalSetting({
         if (file) {
             setFieldValue('photo', file);
 
-            dispatch(updateAvatar({ photo: file }));
-        }
-    };
-    const handleSubmit = async (values, actions) => {
-        console.log(values.newPassword);
-        console.log(values.oldPassword);
-        console.log(values.repeatPassword);
-        if (values.oldPassword) {
-            if (values.newPassword !== values.repeatPassword) {
-                toast.error('The new password must match!');
-                return;
-            } else {
-                dispatch(updatePassword(values.newPassword, selectToken));
+            try {
+                await dispatch(updateAvatar({ photo: file }));
+                toast.success('Photo successfully updated');
+            } catch (error) {
+                toast.error('Failed to update photo');
+                console.error('Failed to update photo:', error);
             }
         }
+    };
 
+    const handleSubmit = async (values, actions) => {
+        if (values.oldPassword) {
+            if (values.newPassword !== values.repeatPassword) {
+                toast.error('New passwords do not match');
+                return;
+            }
+            try {
+                await dispatch(
+                    updatePassword({
+                        oldPassword: values.oldPassword,
+                        newPassword: values.newPassword,
+                    }),
+                ).unwrap();
+                toast.success('Password successfully updated');
+            } catch (error) {
+                toast.error('Failed to update password');
+                console.error('Failed to update password:', error);
+                actions.setErrors({ submit: error.message });
+                return;
+            }
+        }
         try {
             const result = await dispatch(
                 updateUserData({
-                    photo: values.photo,
                     gender: values.gender,
                     name: values.username,
                     email: values.email,
                 }),
             ).unwrap();
+            if (values.newPassword) {
+                toast.success('The password success update !');
+            }
+            if (values.name) {
+                toast.success('The name success update !');
+            }
+            if (values.email !== user?.email) {
+                toast.success('The email success update !');
+            }
+            if (values.gender !== user?.gender) {
+                toast.success('The gender success update !');
+            }
             if (result) {
                 actions.resetForm();
                 closeModal();
-                dispatch(refreshUser());
             }
         } catch (error) {
             toast.error('Something went wrong :( Try again later.');
@@ -150,7 +174,6 @@ export default function ModalSetting({
 
     return (
         <div className={clsx(css.backdrop, { [css['is-hidden']]: !isOpen })}>
-            <Toaster position="top-center" reverseOrder={false} />
             <div className={css.modal} ref={modalRef}>
                 <div className={css['title-block']}>
                     <div className={css['title-container']}>

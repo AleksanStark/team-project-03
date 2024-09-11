@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
@@ -11,14 +11,23 @@ import ModalSetting from '../ModalSetting/ModalSetting';
 import ModalUser from '../ModalUser/ModalUser';
 import { selectIsLoggedIn } from '../../../redux/auth/auth.selectors';
 import { selectUser } from '../../../redux/auth/auth.selectors';
-export default function AuthNav() {
-    const isLoggedIn = useSelector(selectIsLoggedIn);
 
+// import { getUserData } from '../../../redux/auth/operations';
+
+export default function AuthNav() {
+    // const dispatch = useDispatch();
+    const isLoggedIn = useSelector(selectIsLoggedIn);
+    // useEffect(() => {
+    //     if (isLoggedIn) {
+    //         dispatch(getUserData());
+    //     }
+    // }, [isLoggedIn, dispatch]);
     const userData = useSelector(selectUser);
 
     const name = userData?.name || '';
     const email = userData?.email || '';
     const photo = userData?.photo || null;
+
     //=========modalOpenSetting===================
     const [modalIsOpen, setIsOpen] = useState(false);
     function openModal() {

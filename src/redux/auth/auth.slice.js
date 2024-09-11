@@ -7,6 +7,7 @@ import {
     updateAvatar,
     updateDailyNorma,
     updateUserData,
+    getUserData,
 } from './operations';
 
 const initialState = {
@@ -29,6 +30,14 @@ const authSlice = createSlice({
     initialState,
     extraReducers: builder => {
         builder
+            .addCase(getUserData.pending, state => {
+                state.isLoading = true;
+            })
+            .addCase(getUserData.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = action.payload.data;
+            })
+            .addCase(getUserData.rejected, handleRejected)
             .addCase(register.pending, state => {
                 state.isLoading = true;
             })
@@ -69,7 +78,7 @@ const authSlice = createSlice({
             })
             .addCase(updateAvatar.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.user.avatarURL = action.payload.avatarURL;
+                state.user.photo = action.payload.photo;
             })
             .addCase(updateAvatar.rejected, handleRejected)
 
@@ -78,7 +87,7 @@ const authSlice = createSlice({
             })
             .addCase(updateUserData.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.user = action.payload;
+                state.user = action.payload.user;
             })
             .addCase(updateUserData.rejected, handleRejected)
 
