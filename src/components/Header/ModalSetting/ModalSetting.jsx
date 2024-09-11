@@ -204,6 +204,7 @@ export default function ModalSetting({
                     }}
                     onSubmit={handleSubmit}
                     validationSchema={UserSchema}
+                    key={isOpen ? 'open' : 'closed'}
                 >
                     {({ setFieldValue, values, errors, touched }) => (
                         <Form className={css.form}>
