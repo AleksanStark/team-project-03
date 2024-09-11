@@ -3,7 +3,7 @@
   padding: 40px 20px;
   width: 320px;
   height: 1436px;
-  background-image: url('../../../public/images/Background\ element\ Home\ screen_Mobile.png');
+  background-image: url("../../../public/images/Background\ element\ Home\ screen_Mobile.png");
   background-position: center 85px;
   background-size: contain;
 }
@@ -21,7 +21,7 @@
     width: 768px;
     height: 1280px;
     padding: 40px 32px;
-    background-image: url('../../../public/images/Background\ element\ Home\ Screen.png');
+    background-image: url("../../../public/images/Background\ element\ Home\ Screen.png");
     background-position: center;
   }
 
@@ -38,8 +38,8 @@
 @media screen and (min-width: 1440px) {
   .homeSection {
     width: 1440px;
-    height: 800px;
+
     padding: 40px 112px;
-    background-image: url('../../../public/images/Background\ element\ Main\ Page.png');
+    background-image: url("../../../public/images/Background\ element\ Main\ Page.png");
   }
 }

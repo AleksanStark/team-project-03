@@ -18,8 +18,10 @@ const HomePage = () => {
         <HomeBottleImg />
         <WaterRatioPanel />
       </div>
-      <TodayWaterList />
-      <MonthStatsTable />
+      <div>
+        <TodayWaterList />
+        <MonthStatsTable />
+      </div>
     </section>
   );
 };
