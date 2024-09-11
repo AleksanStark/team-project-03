@@ -18,7 +18,7 @@ const HomePage = () => {
         <HomeBottleImg />
         <WaterRatioPanel />
       </div>
-      <div>
+      <div className={css.dateDiv}>
         <TodayWaterList />
         <MonthStatsTable />
       </div>

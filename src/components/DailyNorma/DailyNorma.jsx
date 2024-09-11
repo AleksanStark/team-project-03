@@ -1,13 +1,28 @@
-import { useState } from 'react';
-import css from './DailyNorma.module.css';
-import DailyNormaModal from 'components/DailyNormaModal/DailyNormaModal';
+import { useEffect, useState } from "react";
+import css from "./DailyNorma.module.css";
+import DailyNormaModal from "components/DailyNormaModal/DailyNormaModal";
+import { useDispatch } from "react-redux";
+import { getUserData } from "../../redux/auth/operations";
 
-// import { useDispatch } from 'react-redux';
-
-let water = '1.5 L';
-//  dispatch water info
 const DailyNorma = () => {
+  const dispatch = useDispatch();
+
+  const [dailyNorma, setDailyNorma] = useState(2);
+
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(getUserData())
+      .then((response) => {
+        if (response.payload && response.payload.data) {
+          setDailyNorma(response.payload.data.dailyNorma || 2);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        setDailyNorma(2);
+      });
+  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -21,7 +36,7 @@ const DailyNorma = () => {
         <h2 className={css.headerText}>My daily norma</h2>
       </div>
       <div className={css.funcContainer}>
-        <h2 className={css.waterInfo}>{water ? water : '2 L'}</h2>
+        <h2 className={css.waterInfo}>{dailyNorma}</h2>
         <button type="button" className={css.editButton} onClick={openModal}>
           Edit
         </button>
