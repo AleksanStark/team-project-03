@@ -80,7 +80,7 @@ const TeamMembers = () => {
                     Frontend: Welcome Page
                   </li>
                   <li className={css["swiper-info-task"]}>
-                    Frontend: Sign up Page
+                    Frontend: Sign up
                   </li>
                   <li className={css["swiper-info-task"]}>
                     Frontend: Loader
@@ -125,7 +125,7 @@ const TeamMembers = () => {
                     Backend: DataBase
                   </li>
                   <li className={css["swiper-info-task"]}>
-                    Backend: Swagger API Ducumentation
+                    Backend: Swagger API Documentation
                     </li>
                     <li className={css["swiper-info-task"]}>
                            Server Deployment
@@ -239,9 +239,9 @@ const TeamMembers = () => {
                 <p className={css["swiper-info-role"]}></p>
                 <ul>
                   <li className={css["swiper-info-task"]}>
-                    Frontend:Month Stats Table</li>
+                    Frontend: Month Stats Table</li>
                   <li className={css["swiper-info-task"]}>
-                    Frontend:Daily Norma Modal
+                    Frontend: Daily Norma Modal
                   </li>
                 </ul>
               </div>
