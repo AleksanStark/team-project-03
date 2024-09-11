@@ -33,6 +33,7 @@
 
     padding: 40px 32px;
     background-image: url("../../../public/images/Background\ element\ Home\ Screen.png");
+    background-repeat: no-repeat;
     background-position: center;
   }
 
