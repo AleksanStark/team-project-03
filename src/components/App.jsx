@@ -1,5 +1,4 @@
-import { lazy, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { lazy} from "react";
 import { GlobalStyle } from "./GlobalStyle";
 import { Layout } from "./Layout";
 import { routes } from "../routes/routes";
@@ -7,8 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import PublicRegisterRoute from "./PublicRegisterRoute";
-import { refreshUser } from "../redux/auth/operations";
-import { useAuth } from "hooks/useAuth";
+
 import { Toaster } from 'react-hot-toast';
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
@@ -24,18 +22,11 @@ const NotFoundPage = lazy(() =>
 );
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
 
   return (
     <>
       <GlobalStyle /> {/* Apply global styles */}
             <Toaster position="top-center" reverseOrder={false} />
-      {!isRefreshing && (
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route
@@ -77,7 +68,6 @@ export const App = () => {
             {/* Catch-all route */}
           </Route>
         </Routes>
-      )}
     </>
   );
 };
