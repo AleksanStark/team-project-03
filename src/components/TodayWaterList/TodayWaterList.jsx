@@ -1,115 +1,73 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import css from './TodayWaterList.module.css';
-import { toast } from 'react-toastify';
-import {
-  addWaterRecord,
-  deleteWaterRecord,
-  updateWaterRecord,
-} from '../../redux/water/operations';
-import {
-  selectError,
-  selectIsLoading,
-  selectWaterEntries,
-} from '../../redux/water/slice';
-import TodayListModal from '../../components/TodayListModal/TodayListModal';
-import EditWaterModal from '../../components/EditWaterModal/EditWaterModal';
-import { DeleteConfirmationModal } from '../../components/DeleteConfirmationModal/DeleteConfirmationModal';
 
-const TodayWaterList = () => {
-  const [waterList, setWaterList] = useState([]);
+// import { selectError, selectStatus } from '../../redux/WaterList/selectors';
+// import {
+//   fetchWaterList,
+//   removeWaterRecord,
+//   saveWaterRecord,
+//   updateWaterRecord,
+// } from '../../redux/WaterList/operations';
+import TodayAddWaterModal from '../TodayAddWaterModal/TodayAddWaterModal';
+// import Loader from 'components/Loader';
+
+const TodayWaterList = ({ waterList = [] }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentRecord, setCurrentRecord] = useState(null);
+  // const dispatch = useDispatch();
 
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [recordIdToDelete, setRecordIdToDelete] = useState(null);
-
-  const [isAddMode, setIsAddMode] = useState(true);
-  const [amount, setAmount] = useState('');
-  const [time, setTime] = useState('');
-  const dispatch = useDispatch();
-  const error = useSelector(selectError);
-
-  // const isLoading = useSelector(selectIsLoading);
+  // const status = useSelector(selectStatus);
   // const error = useSelector(selectError);
 
-  useEffect(() => {
-    dispatch(addWaterRecord());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (status === 'idle') {
+  //     dispatch(fetchWaterList());
+  //   }
+  // }, [status, dispatch]);
 
-  useEffect(() => {
-    if (error) {
-      toast.error(`Error: ${error}`);
-    }
-  }, [error]);
+  // const handleAdd = useCallback(
+  //   newRecord => {
+  //     dispatch(saveWaterRecord(newRecord));
+  //   },
+  //   [dispatch]
+  // );
 
-  const handleSave = (newRecord) => {
-    setWaterList((prevList) => {
-      const isEditing = prevList.some((record) => record.id === newRecord.id);
-      if (isEditing) {
-        return prevList.map((record) =>
-          record.id === newRecord.id ? newRecord : record,
-        );
-      } else {
-        return [...prevList, newRecord];
-      }
-    });
-  };
+  // const handleEdit = useCallback(
+  //   updatedRecord => {
+  //     dispatch(updateWaterRecord(updatedRecord));
+  //   },
+  //   [dispatch]
+  // );
 
-  const handleDelete = (recordId) => {
-    dispatch(deleteWaterRecord(recordId))
-      .then(() => {
-        setWaterList((prevList) =>
-          prevList.filter((record) => record.id !== recordId),
-        );
-        toast.success('Record deleted successfully');
-      })
-      .catch((err) => {
-        toast.error(`Error: ${err.message}`);
-      });
-  };
-
-  const openDeleteConfirmationModal = (recordId) => {
-    setRecordIdToDelete(recordId);
-    setDeleteModalOpen(true);
-  };
-
-  const closeDeleteConfirmationModal = () => {
-    setDeleteModalOpen(false);
-    setRecordIdToDelete(null);
-  };
-
-  const confirmDelete = () => {
-    handleDelete(recordIdToDelete);
-    closeDeleteConfirmationModal();
-  };
-
+  // const handleDelete = useCallback(
+  //   id => {
+  //     dispatch(removeWaterRecord(id));
+  //   },
+  //   [dispatch]
+  // );
   const openModalForAdd = () => {
     setCurrentRecord(null);
-    setIsAddMode(true);
     setIsModalOpen(true);
   };
-
-  const openEditModal = (record) => {
+  const openModalForEdit = record => {
     setCurrentRecord(record);
-    setIsEditModalOpen(true);
+    setIsModalOpen(true);
   };
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
+  // if (status === 'loading') {
+  //   return <Loader />;
   // }
-
-  // if (error) {
+  // if (status === 'failed') {
   //   return <div>Error: {error}</div>;
   // }
-
   return (
     <div className={css.todayWaterList}>
       <h3 className={css.todayH3}>Today</h3>
+
       {waterList.length > 0 && (
         <ul className={css.waterList}>
-          {waterList.map((record) => (
+          {waterList.map(record => (
             <li key={record.id} className={css.waterRecord}>
               <div className={css.recordWrapper}>
                 <svg
@@ -156,13 +114,13 @@ const TodayWaterList = () => {
                     fill="#407BFF"
                   />
                 </svg>
-                <span className={css.amount}>{record.value} ml</span>
+                <span className={css.amount}>{record.amount} ml</span>
                 <span className={css.time}>{record.time}</span>
               </div>
               <div className={css.svgWrapper}>
                 <button
                   className={css.editBtn}
-                  onClick={() => openEditModal(record)}
+                  onClick={() => openModalForEdit(record)}
                 >
                   <svg
                     width="21"
@@ -174,14 +132,14 @@ const TodayWaterList = () => {
                     <path
                       d="M14.862 3.487L16.549 1.799C16.9007 1.44733 17.3777 1.24976 17.875 1.24976C18.3723 1.24976 18.8493 1.44733 19.201 1.799C19.5527 2.15068 19.7502 2.62766 19.7502 3.125C19.7502 3.62235 19.5527 4.09933 19.201 4.451L8.582 15.07C8.05332 15.5984 7.40137 15.9867 6.685 16.2L4 17L4.8 14.315C5.01328 13.5986 5.40163 12.9467 5.93 12.418L14.862 3.487ZM14.862 3.487L17.5 6.125M16 13V17.75C16 18.3467 15.7629 18.919 15.341 19.341C14.919 19.7629 14.3467 20 13.75 20H3.25C2.65326 20 2.08097 19.7629 1.65901 19.341C1.23705 18.919 1 18.3467 1 17.75V7.25C1 6.65327 1.23705 6.08097 1.65901 5.65901C2.08097 5.23706 2.65326 5 3.25 5H8"
                       stroke="#9EBBFF"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     />
                   </svg>
                 </button>
                 <button
                   className={css.deleteBtn}
-                  onClick={() => openDeleteConfirmationModal(record.id)}
+                  // onClick={() => handleDelete(record.id)}
                 >
                   <svg
                     width="18"
@@ -193,8 +151,8 @@ const TodayWaterList = () => {
                     <path
                       d="M11.74 8.00003L11.394 17M6.606 17L6.26 8.00003M16.228 4.79003C16.57 4.84203 16.91 4.89703 17.25 4.95603M16.228 4.79003L15.16 18.673C15.1164 19.2383 14.8611 19.7662 14.445 20.1513C14.029 20.5364 13.4829 20.7502 12.916 20.75H5.084C4.5171 20.7502 3.97102 20.5364 3.55498 20.1513C3.13894 19.7662 2.88359 19.2383 2.84 18.673L1.772 4.79003M16.228 4.79003C15.0739 4.61555 13.9138 4.48313 12.75 4.39303M1.772 4.79003C1.43 4.84103 1.09 4.89603 0.75 4.95503M1.772 4.79003C2.92613 4.61555 4.08623 4.48313 5.25 4.39303M12.75 4.39303V3.47703C12.75 2.29703 11.84 1.31303 10.66 1.27603C9.55362 1.24067 8.44638 1.24067 7.34 1.27603C6.16 1.31303 5.25 2.29803 5.25 3.47703V4.39303M12.75 4.39303C10.2537 4.20011 7.74628 4.20011 5.25 4.39303"
                       stroke="#ef5050"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     />
                   </svg>
                 </button>
@@ -203,31 +161,16 @@ const TodayWaterList = () => {
           ))}
         </ul>
       )}
-      <button onClick={openModalForAdd} className={css.addWaterBtn}>
-        + Add Water
+      <button className={css.addWaterBtn} onClick={openModalForAdd}>
+        + Add water
       </button>
       {isModalOpen && (
-        <TodayListModal
-          isOpen={isModalOpen}
+        <TodayAddWaterModal
+          currentRecord={currentRecord}
           onClose={() => setIsModalOpen(false)}
-          onSave={handleSave}
-          record={currentRecord}
+          // onSave={currentRecord ? handleEdit : handleAdd}
         />
       )}
-      {isEditModalOpen && (
-        <EditWaterModal
-          isOpen={isEditModalOpen}
-          onClose={() => setIsEditModalOpen(false)}
-          record={currentRecord}
-          onSave={handleSave}
-        />
-      )}
-
-      <DeleteConfirmationModal
-        isOpen={isDeleteModalOpen}
-        onClose={closeDeleteConfirmationModal}
-        onConfirm={confirmDelete}
-      />
     </div>
   );
 };
