@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState} from 'react';
+import { useSelector} from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 import { HiOutlineUserCircle } from 'react-icons/hi2';

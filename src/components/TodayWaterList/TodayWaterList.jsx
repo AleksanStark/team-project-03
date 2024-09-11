@@ -5,12 +5,9 @@ import { toast } from 'react-toastify';
 import {
   addWaterRecord,
   deleteWaterRecord,
-  updateWaterRecord,
 } from '../../redux/water/operations';
 import {
   selectError,
-  selectIsLoading,
-  selectWaterEntries,
 } from '../../redux/water/slice';
 import TodayListModal from '../../components/TodayListModal/TodayListModal';
 import EditWaterModal from '../../components/EditWaterModal/EditWaterModal';
@@ -25,9 +22,9 @@ const TodayWaterList = () => {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [recordIdToDelete, setRecordIdToDelete] = useState(null);
 
-  const [isAddMode, setIsAddMode] = useState(true);
-  const [amount, setAmount] = useState('');
-  const [time, setTime] = useState('');
+  const [setIsAddMode] = useState(true);
+  //const [amount, setAmount] = useState('');
+  //const [time, setTime] = useState('');
   const dispatch = useDispatch();
   const error = useSelector(selectError);
 
