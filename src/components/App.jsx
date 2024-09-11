@@ -9,6 +9,7 @@ import PublicRoute from "./PublicRoute";
 import PublicRegisterRoute from "./PublicRegisterRoute";
 import { refreshUser } from "../redux/auth/operations";
 import { useAuth } from "hooks/useAuth";
+import { Toaster } from 'react-hot-toast';
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const WelcomePage = lazy(() => import("../pages/WelcomePage/WelcomePage"));
@@ -78,6 +79,7 @@ export const App = () => {
       )}
     </>
   );
+            <Toaster position="top-center" reverseOrder={false} />
 };
 
 export default App;
