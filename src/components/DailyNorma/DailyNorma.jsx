@@ -22,7 +22,7 @@ const DailyNorma = () => {
         console.error("Error fetching user data:", error);
         setDailyNorma(2);
       });
-  }, []);
+  }, [dispatch]);
 
   const openModal = () => {
     setIsOpen(true);
