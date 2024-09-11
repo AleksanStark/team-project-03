@@ -34,6 +34,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle /> {/* Apply global styles */}
+    <Toaster position="top-center" reverseOrder={false} />
       {!isRefreshing && (
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -79,7 +80,6 @@ export const App = () => {
       )}
     </>
   );
-            <Toaster position="top-center" reverseOrder={false} />
 };
 
 export default App;
