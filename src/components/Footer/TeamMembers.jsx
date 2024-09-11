@@ -11,7 +11,7 @@ import { ReactComponent as LinkedInIcon } from "../images/linkedin.svg";
 import AleksanVartapetyan from "../images/aleksanvartapetyan.jpeg";
 import TetianaTymoshchenko from "../images/tetianatymoshchenko.jpg";
 import IlonaHonchar from "../images/ilonahonchar.png";
-import OlhaIarova from "../images/olgaiarova.png";
+import OlgaIarova from "../images/olgaiarova.png";
 import YuliiaProkopchuk from "../images/yuliiaprokopchuk.png";
 import OksanaPodolianyk from "../images/oksanapodolianyk.png";
 import AnastasiaNazarova from "../images/anastasianazarova.png";
@@ -155,8 +155,8 @@ const TeamMembers = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className={css["swiper-slide"]}>
-            <img src={OlhaIarova} alt="Olha Iarova" />
-            <div className={css["swiper-info-container"]}>Olha Iarova<div>
+            <img src={OlgaIarova} alt="Olga Iarova" />
+            <div className={css["swiper-info-container"]}>Olga Iarova<div>
                 <p className={css["swiper-info-name"]}>Developer</p>
                 <p className={css["swiper-info-role"]}></p>
                 <ul>
