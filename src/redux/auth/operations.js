@@ -180,13 +180,13 @@ export const sendResetEmail = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      throw thunkAPI.rejectWithValue(error.message);
+      throw thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
 export const resetPwd = createAsyncThunk(
-  "auth/reset-password",
+  "auth/resetPwd",
   async ({ password, token }, thunkAPI) => {
     try {
       const res = await axios.post("/auth/reset-password", {
@@ -195,7 +195,7 @@ export const resetPwd = createAsyncThunk(
       });
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.res.data);
     }
   }
 );

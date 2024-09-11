@@ -70,7 +70,7 @@ export const App = () => {
               }
             />
             <Route path="/request-reset-email" element={<ForgotPwdPage />} />
-            <Route path="/reset-password/:token" element={<ResetPwdPage />} />
+            <Route path="/auth/reset-password" element={<ResetPwdPage />} />
             <Route path="*" element={<NotFoundPage />} />{" "}
             {/* Catch-all route */}
           </Route>
