@@ -1,10 +1,10 @@
-import bottleDesk1x from '../../images/home/bottle-desk-1x.png';
-import bottleDesk2x from '../../images/home/bottle-desk-2x.png';
-import bottleTab1x from '../../images/home/bottle-tab-1x.png';
-import bottleTab2x from '../../images/home/bottle-tab-2x.png';
-import bottleMob1x from '../../images/home/bottle-mob-1x.png';
-import bottleMob2x from '../../images/home/bottle-mob-2x.png';
-import css from './HomeBottleImg.module.css';
+import bottleDesk1x from "../../images/home/bottle-desk-1x.png";
+import bottleDesk2x from "../../images/home/bottle-desk-2x.png";
+import bottleTab1x from "../../images/home/bottle-tab-1x.png";
+import bottleTab2x from "../../images/home/bottle-tab-2x.png";
+import bottleMob1x from "../../images/home/bottle-mob-1x.png";
+import bottleMob2x from "../../images/home/bottle-mob-2x.png";
+import css from "./HomeBottleImg.module.css";
 
 const HomeBottleImg = () => {
   return (
@@ -14,7 +14,7 @@ const HomeBottleImg = () => {
           srcSet={`${bottleDesk1x} 1x, ${bottleDesk2x} 2x`}
           media="(min-width:1440px)"
           height="548"
-          width="738"
+          width="598"
         />
         <source
           srcSet={`${bottleTab1x} 1x, ${bottleTab2x} 2x`}

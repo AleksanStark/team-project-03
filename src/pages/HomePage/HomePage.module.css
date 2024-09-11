@@ -2,7 +2,7 @@
   margin: 0 auto;
   padding: 40px 20px;
   width: 320px;
-  height: 1436px;
+
   background-image: url("../../../public/images/Background\ element\ Home\ screen_Mobile.png");
   background-position: center 85px;
   background-size: contain;
@@ -16,10 +16,21 @@
   margin: 0 auto;
 }
 
+.addWater {
+  margin-bottom: 48px;
+}
+
+.dateDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 768px) {
   .homeSection {
     width: 768px;
-    height: 1280px;
+
     padding: 40px 32px;
     background-image: url("../../../public/images/Background\ element\ Home\ Screen.png");
     background-position: center;
@@ -35,11 +46,28 @@
   }
 }
 
+.addWater {
+  margin-bottom: 43px;
+}
+
 @media screen and (min-width: 1440px) {
   .homeSection {
+    display: flex;
+    flex-direction: row;
     width: 1440px;
 
     padding: 40px 112px;
     background-image: url("../../../public/images/Background\ element\ Main\ Page.png");
+  }
+
+  .addWater {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 592px;
+  }
+
+  .dateDiv {
+    justify-content: flex-start;
   }
 }
