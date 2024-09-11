@@ -1,23 +1,28 @@
 import style from "./DaysGeneralStats.module.css";
 
 const DaysGeneralStats = ({ dayData }) => {
-  console.log(dayData);
   return (
-    <>
+    <div className={style.container}>
       <h3 className={style.date}>{dayData && dayData.date}</h3>
-      <p>
-        Daily norma:{" "}
-        <span>{dayData && dayData.dailyNormaLiters.split(".")[0]} L</span>
+      <p className={style.dailyNorma}>
+        Daily norma:
+        <span className={style.dailySpan}>
+          {dayData && dayData.dailyNormaLiters.split(".")[0]} L
+        </span>
       </p>
-      <p>
-        Fulfillment of the daily norm:{" "}
-        <span>{dayData && dayData.consumptionPercentage.split(".")[0]} %</span>
+      <p className={style.fulfillment}>
+        Fulfillment of the daily norm:
+        <span className={style.dailySpan}>
+          {dayData && dayData.consumptionPercentage.split(".")[0]} %
+        </span>
       </p>
-      <p>
-        How many servings of water:{" "}
-        <span>{dayData && dayData.recordsCount}</span>
+      <p className={style.amount}>
+        How many servings of water:
+        <span className={style.dailySpan}>
+          {dayData && dayData.recordsCount}
+        </span>
       </p>
-    </>
+    </div>
   );
 };
 
