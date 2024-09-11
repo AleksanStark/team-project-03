@@ -11,7 +11,7 @@ import { ReactComponent as LinkedInIcon } from "../images/linkedin.svg";
 import AleksanVartapetyan from "../images/aleksanvartapetyan.jpeg";
 import TetianaTymoshchenko from "../images/tetianatymoshchenko.jpg";
 import IlonaHonchar from "../images/ilonahonchar.png";
-import OlhaIarova from "../images/olgaiarova.png";
+import OlgaIarova from "../images/olgaiarova.png";
 import YuliiaProkopchuk from "../images/yuliiaprokopchuk.png";
 import OksanaPodolianyk from "../images/oksanapodolianyk.png";
 import AnastasiaNazarova from "../images/anastasianazarova.png";
