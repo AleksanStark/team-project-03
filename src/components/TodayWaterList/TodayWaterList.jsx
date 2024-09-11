@@ -1,72 +1,87 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import css from './TodayWaterList.module.css';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import css from "./TodayWaterList.module.css";
+import { toast } from "react-toastify";
 import {
   addWaterRecord,
   deleteWaterRecord,
-} from '../../redux/water/operations';
+  getDailyRecord,
+  updateWaterRecord,
+} from "../../redux/water/operations";
 import {
   selectError,
-} from '../../redux/water/slice';
-import TodayListModal from '../../components/TodayListModal/TodayListModal';
-import EditWaterModal from '../../components/EditWaterModal/EditWaterModal';
-import { DeleteConfirmationModal } from '../../components/DeleteConfirmationModal/DeleteConfirmationModal';
-
+  selectIsLoading,
+  selectWaterEntries,
+  selectCurrentRecord,
+} from "../../redux/water/slice";
+import TodayListModal from "../../components/TodayListModal/TodayListModal";
+import EditWaterModal from "../../components/EditWaterModal/EditWaterModal";
+import { DeleteConfirmationModal } from "../../components/DeleteConfirmationModal/DeleteConfirmationModal";
+import { selectDalyWaters } from "../../redux/water/selector";
 const TodayWaterList = () => {
   const [waterList, setWaterList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentRecord, setCurrentRecord] = useState(null);
-
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [recordIdToDelete, setRecordIdToDelete] = useState(null);
-
-  const [setIsAddMode] = useState(true);
-  //const [amount, setAmount] = useState('');
-  //const [time, setTime] = useState('');
+  const [isAddMode, setIsAddMode] = useState(true);
+  const [amount, setAmount] = useState("");
+  const [time, setTime] = useState("");
   const dispatch = useDispatch();
   const error = useSelector(selectError);
-
-  // const isLoading = useSelector(selectIsLoading);
+  const [dayWaters, setDayWaters] = useState([]);
+  const dayWatersRedux = useSelector(selectDalyWaters);
+  console.log(dayWaters);
+  const isLoading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
-
   useEffect(() => {
     dispatch(addWaterRecord());
   }, [dispatch]);
-
+  useEffect(() => {
+    dispatch(getDailyRecord())
+      .then((response) => {
+        if (dayWatersRedux && response.payload.data) {
+          setDayWaters(response.payload.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [dispatch, setDayWaters, dayWatersRedux]);
+  useEffect(() => {
+    dispatch(getDailyRecord());
+  }, [dispatch]);
   useEffect(() => {
     if (error) {
       toast.error(`Error: ${error}`);
     }
   }, [error]);
-
+  console.log(isLoading);
   const handleSave = (newRecord) => {
     setWaterList((prevList) => {
       const isEditing = prevList.some((record) => record.id === newRecord.id);
       if (isEditing) {
         return prevList.map((record) =>
-          record.id === newRecord.id ? newRecord : record,
+          record.id === newRecord.id ? newRecord : record
         );
       } else {
         return [...prevList, newRecord];
       }
     });
   };
-
   const handleDelete = (recordId) => {
     dispatch(deleteWaterRecord(recordId))
       .then(() => {
         setWaterList((prevList) =>
-          prevList.filter((record) => record.id !== recordId),
+          prevList.filter((record) => record.id !== recordId)
         );
-        toast.success('Record deleted successfully');
+        toast.success("Record deleted successfully");
       })
       .catch((err) => {
         toast.error(`Error: ${err.message}`);
       });
   };
-
   const openDeleteConfirmationModal = (recordId) => {
     setRecordIdToDelete(recordId);
     setDeleteModalOpen(true);
