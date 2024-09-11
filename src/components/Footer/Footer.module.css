@@ -59,7 +59,7 @@
 }
 
 .swiper-slide {
-    text-align: left;
+    text-align: center;
     padding: 20px;
 }
 
@@ -80,8 +80,8 @@
 }
 
 .swiper-info-name {
-    font-size: 22px;
-    margin-bottom: 14px;
+    font-size: 20px;
+    margin-top: 16px;
     color: var(--primary-color-blue);
 }
 
@@ -94,7 +94,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 20px;
+    margin-bottom: 24px;
     
 }
 
@@ -142,6 +143,7 @@
     .swiper-info-container {
         width: 225px;
     }
+
 }
 
 @media only screen and (min-width: 1440px) {

@@ -239,9 +239,9 @@ const TeamMembers = () => {
                 <p className={css["swiper-info-role"]}></p>
                 <ul>
                   <li className={css["swiper-info-task"]}>
-                    Frontend: Month Stats Table|</li>
+                    Frontend:Month Stats Table</li>
                   <li className={css["swiper-info-task"]}>
-                    Frontend: Daily Norma Modal
+                    Frontend:Daily Norma Modal
                   </li>
                 </ul>
               </div>
