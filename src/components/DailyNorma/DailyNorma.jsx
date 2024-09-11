@@ -36,7 +36,7 @@ const DailyNorma = () => {
         <h2 className={css.headerText}>My daily norma</h2>
       </div>
       <div className={css.funcContainer}>
-        <h2 className={css.waterInfo}>{dailyNorma}</h2>
+        <h2 className={css.waterInfo}>{dailyNorma} L</h2>
         <button type="button" className={css.editButton} onClick={openModal}>
           Edit
         </button>
