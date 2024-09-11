@@ -7,11 +7,14 @@ import { FiPlus } from "react-icons/fi";
 import { PiMinusLight } from "react-icons/pi";
 import { PiPintGlassThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
-import { updateWaterRecord, getDailyRecord } from "redux/water/operations";
-import { selectCurrentRecord } from "redux/water/slice";
-import { getWaterRecord } from "redux/water/operations";
+
+import { selectCurrentRecord } from "../../redux/water/slice";
+import {
+  getDailyRecord,
+  getWaterRecord,
+  updateWaterRecord,
+} from "../../redux/water/operations";
 import { useDispatch } from "react-redux";
-import { recordId } from "../../components/TodayWaterList.jsx";
 
 const EditWaterModal = ({ recordId, onClose }) => {
   const [volume, setVolume] = useState(0);
