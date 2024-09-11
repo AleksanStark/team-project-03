@@ -82,21 +82,21 @@ export const getDailyRecord = createAsyncThunk(
 );
 
 //===========видалити
-// export const getWaterRecord = createAsyncThunk(
-//   "water/getDaily", // Updated action type to avoid conflict
+export const getWaterRecord = createAsyncThunk(
+  "water/getDaily", // Updated action type to avoid conflict
 
-//   async (userData, thunkAPI) => {
-//     const date = new Date(userData);
-//     const year = date.getFullYear();
-//     const month = date.getMonth().toString().padStart(2, "0"); // Fixed typo
-//     const day = date.getDay();
-//     const END_POINT = `/water/daily/${year}-${month}-${day}`; // Fixed typo
+  async (userData, thunkAPI) => {
+    const date = new Date(userData);
+    const year = date.getFullYear();
+    const month = date.getMonth().toString().padStart(2, "0"); // Fixed typo
+    const day = date.getDay();
+    const END_POINT = `/water/daily/${year}-${month}-${day}`; // Fixed typo
 
-//     try {
-//       const response = await axios.get(END_POINT);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+    try {
+      const response = await axios.get(END_POINT);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
