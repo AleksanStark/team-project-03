@@ -94,7 +94,7 @@ const TodayAddWaterModal = ({ onClose }) => {
           </p>
           <input
             type="number"
-            value={inputAmount === 0 ? "" : inputAmount}
+            value={inputAmount === 0 ? "0" : inputAmount}
             onChange={(e) => {
               const value = e.target.value;
               setInputAmount(value === "" ? "" : Number(value));

@@ -74,7 +74,8 @@
 .amount_selector {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 7px;
   margin-top: 10px;
   margin-bottom: 24px;
 }
