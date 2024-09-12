@@ -49,5 +49,6 @@ const DailyNorma = () => {
     </div>
   );
 };
+д;
 
 export default DailyNorma;
