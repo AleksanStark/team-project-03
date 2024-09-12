@@ -21,6 +21,8 @@ export default function WaterRatioPanel() {
 
   const progres = useSelector(selectProgres);
 
+  const progresFix = progres / 1000;
+
   // стилі які будуть примінятися при дозягнені певногопрогресу
   const styleZero = {
     fontSize: 16,
@@ -29,7 +31,7 @@ export default function WaterRatioPanel() {
   };
   // стилі до 50%
   function styleFirst() {
-    if (progres < 50) {
+    if (progresFix < 50) {
       return styleZero;
     } else {
       return {};
@@ -37,7 +39,7 @@ export default function WaterRatioPanel() {
   }
   // стилі досягнувши 50% або більше 50%
   function styleSecond() {
-    if (progres === 50 || (progres > 50 && progres < 100)) {
+    if (progresFix === 50 || (progres > 50 && progres < 100)) {
       return styleZero;
     } else {
       return {};
@@ -45,15 +47,15 @@ export default function WaterRatioPanel() {
   }
   // стилі по досягненю 100% і більше
   function styleDone() {
-    if (progres === 100 || progres > 100) {
+    if (progresFix === 100 || progresFix > 100) {
       return styleZero;
     } else return {};
   }
   // провірка прогреса щоб прогрес бар не вилітав за межі, задіяв огранічения в 100
   function cheakRatio() {
-    if (progres < 100) {
-      return progres;
-    } else if (progres > 100 || progres === 100) {
+    if (progresFix < 100) {
+      return progresFix;
+    } else if (progresFix > 100 || progresFix === 100) {
       return 100;
     }
   }
