@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'; // Import Toastify styles
 import { Suspense } from 'react'; // Import Suspense
 import Header from '../components/Header/Header'; // Import Header
 import Footer from '../components/Footer/Footer'; // Import Footer
+import './style.css'; // Import updated CSS
 
 export const Layout = () => {
   return (
