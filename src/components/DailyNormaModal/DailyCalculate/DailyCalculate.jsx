@@ -16,19 +16,6 @@ const DailyCalculate = () => {
             return M * 0.04 + T * 0.6;
         }
     };
-    const handleWeightChange = e => {
-        const value = e.target.value;
-        if (value >= 0 || value === '') {
-            setWeight(value);
-        }
-    };
-
-    const handleActivityChange = e => {
-        const value = e.target.value;
-        if (value >= 0 || value === '') {
-            setActivity(value);
-        }
-    };
 
     const result = calculate();
     const amountOfWater = result.toFixed(1);
