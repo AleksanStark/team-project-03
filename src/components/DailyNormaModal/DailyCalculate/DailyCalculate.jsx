@@ -23,7 +23,7 @@ const DailyCalculate = () => {
         <div>
             <h4 className={style.calculateTitle}>Calculate your rate:</h4>
             <div className={style.divWithRadioButtons}>
-                <div>
+                <div  className={style.containerWithButton}>
                     <input
                         onChange={() => setGender('Woman')}
                         type="radio"
@@ -32,7 +32,7 @@ const DailyCalculate = () => {
                     />
                     <label className={style.gender}>For woman</label>
                 </div>
-                <div>
+                <div className={style.containerWithButton}>
                     <input
                         onChange={e => {
                             setGender('Man');

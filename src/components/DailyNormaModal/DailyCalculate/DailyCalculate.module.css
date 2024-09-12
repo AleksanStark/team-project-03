@@ -11,14 +11,17 @@
   gap: 24px;
   padding-bottom: 16px;
 }
+.containerWithButton {
+  display: flex;
+  gap: 8px;
+  align-content: center;
+}
 
 .gender {
   font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: black;
-  padding-bottom: 16px;
-  padding-left: 3px;
 }
 
 .selectionName {

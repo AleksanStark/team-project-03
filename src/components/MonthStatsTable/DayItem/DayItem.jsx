@@ -6,7 +6,7 @@ import style from "./DayItem.module.css";
 const DayItem = ({ data, index, onClick }) => {
   const [modalState, openModal, closeModal] = useModal();
 
-  const percent = data.consumptionPercentage;
+  const percent = (data.consumptionPercentage / 1000).toFixed(0);
 
   return (
     <div
@@ -21,7 +21,7 @@ const DayItem = ({ data, index, onClick }) => {
         <button className={style.numberOfDay}>{index + 1}</button>
       </div>
       <div>
-        <p className={style.percentOfDay}>{percent.split(".")[0]} %</p>
+        <p className={style.percentOfDay}>{percent} %</p>
       </div>
       {modalState && (
         <PopupItem closeModal={closeModal} index={index}>

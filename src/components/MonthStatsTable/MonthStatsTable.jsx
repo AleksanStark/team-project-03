@@ -11,11 +11,12 @@ import { SlArrowRight } from "react-icons/sl";
 const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.water.monthlyRecords);
+  const dailyItems = useSelector((state) => state.water.dailyRecords);
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
     dispatch(getMonthlyRecord(date));
-  }, [date, dispatch]);
+  }, [date, dispatch, dailyItems]);
 
   const handlePreviousDateClick = () => {
     const newDate = new Date(date);
