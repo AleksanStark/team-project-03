@@ -204,7 +204,7 @@ const TodayWaterList = () => {
         <EditWaterModal
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
-          record={dayWaters}
+          record={currentRecord}
           onSave={handleSave}
         />
       )}

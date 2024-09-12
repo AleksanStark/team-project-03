@@ -10,12 +10,11 @@ import { useSelector } from "react-redux";
 import {
   updateWaterRecord,
   getDailyRecord,
-  getWaterRecord,
 } from "../../redux/water/operations.js";
 import { selectCurrentRecord } from "../../redux/water/slice.js";
 import { useDispatch } from "react-redux";
 
-const EditWaterModal = ({ recordId, onClose }) => {
+const EditWaterModal = ({ onClose, record }) => {
   const [volume, setVolume] = useState(0);
   const [inputAmount, setInputAmount] = useState(0);
   const [date, setDate] = useState(() => {
@@ -27,23 +26,23 @@ const EditWaterModal = ({ recordId, onClose }) => {
   const dispatch = useDispatch();
   const currentRecord = useSelector(selectCurrentRecord);
 
-  useEffect(() => {
-    if (recordId) {
-      dispatch(getWaterRecord(recordId));
-    }
-  }, [recordId, dispatch]);
+  // useEffect(() => {
+  //   if (record._id) {
+  //     dispatch(getWaterRecord(record._id));
+  //   }
+  // }, [dispatch, record]);
 
   useEffect(() => {
-    if (currentRecord) {
-      setVolume(currentRecord.volume);
-      setInputAmount(currentRecord.volume);
+    if (record) {
+      setVolume(record.volume);
+      setInputAmount(record.volume);
 
-      if (currentRecord.date) {
-        const validDate = new Date(currentRecord.date);
+      if (record.date) {
+        const validDate = new Date(record.date);
         if (!isNaN(validDate)) {
           setDate(validDate);
         } else {
-          console.error("Invalid date:", currentRecord.date);
+          console.error("Invalid date:", record.date);
           setDate(new Date());
         }
       } else {
@@ -51,7 +50,7 @@ const EditWaterModal = ({ recordId, onClose }) => {
         setDate(new Date());
       }
     }
-  }, [currentRecord]);
+  }, [record]);
 
   const handleTimeChange = (selectedDates) => {
     if (selectedDates.length > 0) {
@@ -68,7 +67,7 @@ const EditWaterModal = ({ recordId, onClose }) => {
   const handleSave = () => {
     try {
       const updatedRecord = { volume, date: date.toISOString() };
-      dispatch(updateWaterRecord(recordId, updatedRecord));
+      dispatch(updateWaterRecord({ id: record._id, updatedRecord }));
       onClose();
       dispatch(getDailyRecord());
     } catch (error) {
@@ -87,12 +86,12 @@ const EditWaterModal = ({ recordId, onClose }) => {
         <div className={css.record_details}>
           <PiPintGlassThin className={css.glass} />
           <p className={css.record_amount}>
-            {currentRecord ? currentRecord.volume : 0} ml
+            {currentRecord ? record.volume : 0} ml
           </p>
           <p className={css.record_time}>
-            {currentRecord && currentRecord.date
-              ? !isNaN(new Date(currentRecord.date))
-                ? new Date(currentRecord.date).toLocaleTimeString([], {
+            {currentRecord && record.date
+              ? !isNaN(new Date(record.date))
+                ? new Date(record.date).toLocaleTimeString([], {
                     hour: "2-digit",
                     minute: "2-digit",
                   })

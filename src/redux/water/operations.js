@@ -35,12 +35,12 @@ export const getMonthlyRecord = createAsyncThunk(
 
 export const updateWaterRecord = createAsyncThunk(
   "water/update", // Updated action type to avoid conflict
-  async ({ recordId, volume, date }, thunkAPI) => {
+  async (updated, thunkAPI) => {
     try {
-      const response = await axios.patch(`/water/${recordId}`, {
-        volume,
-        date,
-      });
+      const response = await axios.patch(
+        `/water/${updated.id}`,
+        updated.updatedRecord
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
