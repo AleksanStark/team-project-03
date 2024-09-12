@@ -43,6 +43,7 @@ const authSlice = createSlice({
             })
             .addCase(register.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.user = action.payload.user;
                 state.token = action.payload.accessToken;
                 state.isRegistered = true;
                 state.isLoggedIn = true;
@@ -91,12 +92,12 @@ const authSlice = createSlice({
             .addCase(updateUserData.rejected, handleRejected)
 
             .addCase(refreshUser.pending, (state, action) => {
-                state.isRefreshing = true;
+                // state.isRefreshing = true;
                 state.isLoading = true;
             })
             .addCase(refreshUser.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.isRefreshing = false;
+                // state.isRefreshing = false;
                 state.user = action.payload;
                 state.isLoggedIn = true;
             })
@@ -112,6 +113,17 @@ const authSlice = createSlice({
             .addCase(updateDailyNorma.rejected, handleRejected);
     },
 });
+
+// const persistConfig = {
+//     key: 'auth',
+//     storage,
+//     whitelist: ['token'],
+// };
+
+// export const persistedContactsReducer = persistReducer(
+//     persistConfig,
+//     authSlice.reducer,
+// );
 
 // Use named export to match import statement
 export default authSlice.reducer;

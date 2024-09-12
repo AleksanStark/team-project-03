@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState} from 'react';
+import { useSelector} from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
@@ -12,16 +12,16 @@ import ModalUser from '../ModalUser/ModalUser';
 import { selectIsLoggedIn } from '../../../redux/auth/auth.selectors';
 import { selectUser } from '../../../redux/auth/auth.selectors';
 
-import { getUserData } from '../../../redux/auth/operations';
+// import { getUserData } from '../../../redux/auth/operations';
 
 export default function AuthNav() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const isLoggedIn = useSelector(selectIsLoggedIn);
-    useEffect(() => {
-        if (isLoggedIn) {
-            dispatch(getUserData());
-        }
-    }, [isLoggedIn, dispatch]);
+    // useEffect(() => {
+    //     if (isLoggedIn) {
+    //         dispatch(getUserData());
+    //     }
+    // }, [isLoggedIn, dispatch]);
     const userData = useSelector(selectUser);
 
     const name = userData?.name || '';
