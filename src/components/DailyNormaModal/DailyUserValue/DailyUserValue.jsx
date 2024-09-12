@@ -12,13 +12,9 @@ const DailyUserValue = ({ closeModal }) => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const userNorma = useSelector(dailyNormaSelector);
-  console.log(userNorma);
 
   const dispatch = useDispatch();
-  const savedDailyNorma = useSelector(dailyNormaSelector); //!!
-  const [userValue, setUserValue] = useState(
-    savedDailyNorma?.toString() || "0"
-  );
+  const [userValue, setUserValue] = useState("");
 
   const handleClick = () => {
     const normalizedValue = +userValue;
@@ -49,7 +45,7 @@ const DailyUserValue = ({ closeModal }) => {
           className={style.inputValue}
           type="text"
           name="inputValue"
-          placeholder={savedDailyNorma} //!!
+          placeholder={userNorma}
           value={userValue}
           onChange={(e) => {
             setUserValue(e.target.value);
