@@ -7,24 +7,23 @@ import { FiPlus } from "react-icons/fi";
 import { PiMinusLight } from "react-icons/pi";
 import { PiPintGlassThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
-
 import {
   updateWaterRecord,
   getDailyRecord,
+  getWaterRecord,
 } from "../../redux/water/operations.js";
 import { selectCurrentRecord } from "../../redux/water/slice.js";
-import { getWaterRecord } from "../../redux/water/operations.js";
 import { useDispatch } from "react-redux";
-// import { recordId } from "../../components/TodayWaterList.jsx";
 
 const EditWaterModal = ({ recordId, onClose }) => {
   const [volume, setVolume] = useState(0);
-  const [inputAmount, setInputAmount] = useState(volume);
+  const [inputAmount, setInputAmount] = useState(0);
   const [date, setDate] = useState(() => {
     const now = new Date();
     now.setSeconds(0, 0);
     return now;
   });
+
   const dispatch = useDispatch();
   const currentRecord = useSelector(selectCurrentRecord);
 
@@ -38,30 +37,49 @@ const EditWaterModal = ({ recordId, onClose }) => {
     if (currentRecord) {
       setVolume(currentRecord.volume);
       setInputAmount(currentRecord.volume);
-      setDate(new Date(currentRecord.date));
+
+      if (currentRecord.date) {
+        const validDate = new Date(currentRecord.date);
+        if (!isNaN(validDate)) {
+          setDate(validDate);
+        } else {
+          console.error("Invalid date:", currentRecord.date);
+          setDate(new Date());
+        }
+      } else {
+        console.error("Date is undefined or null");
+        setDate(new Date());
+      }
     }
   }, [currentRecord]);
 
   const handleTimeChange = (selectedDates) => {
-    setDate(selectedDates[0]);
+    if (selectedDates.length > 0) {
+      setDate(selectedDates[0]);
+    }
   };
 
   const handleAdd = () => setVolume(volume + 50);
   const handleMinus = () => setVolume(Math.max(volume - 50, 0));
-  const handlerBlur = () => {
-    setVolume(inputAmount);
+  const handleBlur = () => {
+    setVolume(inputAmount || 0);
   };
+
   const handleSave = () => {
-    const updatedRecord = { volume, date: date.toISOString() };
-    dispatch(updateWaterRecord(recordId, ...updatedRecord));
-    onClose();
-    dispatch(getDailyRecord());
+    try {
+      const updatedRecord = { volume, date: date.toISOString() };
+      dispatch(updateWaterRecord(recordId, updatedRecord));
+      onClose();
+      dispatch(getDailyRecord());
+    } catch (error) {
+      console.error("Error saving record:", error);
+    }
   };
 
   return (
     <div className={css.modal_backdrop}>
       <div className={css.modal_container}>
-        <button className={css.modal_close_button}>
+        <button className={css.modal_close_button} onClick={onClose}>
           <IoCloseOutline className={css.modal_close_icon} />
         </button>
         <h3 className={css.title}>Edit the entered amount of water</h3>
@@ -72,13 +90,14 @@ const EditWaterModal = ({ recordId, onClose }) => {
             {currentRecord ? currentRecord.volume : 0} ml
           </p>
           <p className={css.record_time}>
-            {currentRecord
-              ? new Date(currentRecord.date).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
-              : ""}{" "}
-            AM
+            {currentRecord && currentRecord.date
+              ? !isNaN(new Date(currentRecord.date))
+                ? new Date(currentRecord.date).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                : "Invalid date"
+              : ""}
           </p>
         </div>
         <div>
@@ -116,12 +135,16 @@ const EditWaterModal = ({ recordId, onClose }) => {
           </p>
           <input
             type="number"
-            value={inputAmount === 0 ? "" : inputAmount}
+            value={
+              inputAmount === undefined || inputAmount === null
+                ? ""
+                : inputAmount
+            }
             onChange={(e) => {
               const value = e.target.value;
-              setInputAmount(value === "" ? "" : Number(value));
+              setInputAmount(value === "" ? 0 : Number(value));
             }}
-            onBlur={handlerBlur}
+            onBlur={handleBlur}
             className={css.custom_amount_input}
           />
         </div>
