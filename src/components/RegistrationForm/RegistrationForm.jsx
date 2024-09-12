@@ -19,13 +19,11 @@ import {
 } from './RegistrationForm.styled.js';
 import sprite from '../../images/sprite.svg';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'; // Import from react-oauth/google
-
 const initialValues = {
   email: '',
   password: '',
   repeatPassword: '',
 };
-
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
@@ -35,47 +33,38 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Required'),
 });
-
 const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleSubmit = async ({ email, password }, { resetForm }) => {
-    dispatch(register({ email, password }));
+    dispatch(
+      register({
+        email,
+        password,
+      })
+    );
     resetForm();
   };
-
   const handleGoogleResponse = async (response) => {
     try {
       const { credential } = response;
-      const result = await fetch('https://watertracker-db.onrender.com/auth/confirm-oauth', {
+      const result = await fetch('http://localhost:3000/auth/confirm-oauth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ code: credential }),
       });
-
-      if (!result.ok) {
-        const error = await result.json();
-        console.error('Error during Google login:', error.message);
-        return;
-      }
-
       const data = await result.json();
       console.log('Google login successful', data);
-      // Redirect to homepage after successful Google login
-      navigate('/homepage'); // Adjust this to your actual route
     } catch (error) {
       console.error('Error during Google login:', error);
     }
   };
-
   return (
-    <GoogleOAuthProvider clientId="273678042827-tc7jst83e51r24h8rd5t9vo4duo3k8oa.apps.googleusercontent.com/">
+    <GoogleOAuthProvider clientId="273678042827-tc7jst83e51r24h8rd5t9vo4duo3k8oa.apps.googleusercontent.com">
       <SignUpContainer>
         <Formik
           initialValues={initialValues}
@@ -85,7 +74,6 @@ const RegistrationForm = () => {
           {({ isSubmitting, touched, errors }) => (
             <StyledForm>
               <FormHead>Sign Up</FormHead>
-
               <Styledlabel htmlFor="email">Enter your email</Styledlabel>
               <StyledField
                 type="email"
@@ -96,12 +84,13 @@ const RegistrationForm = () => {
                 error={touched.email && errors.email ? 'true' : 'false'}
               />
               <ErMsg name="email" component="div" />
-
               <Styledlabel htmlFor="password">
                 Enter your password
                 <StyledBtn onClick={() => setShowPassword(!showPassword)}>
                   <svg>
-                    <use href={sprite + (showPassword ? '#eye-show' : '#eye-hide')}></use>
+                    <use
+                      href={sprite + (showPassword ? '#eye-show' : '#eye-hide')}
+                    ></use>
                   </svg>
                 </StyledBtn>
               </Styledlabel>
@@ -114,12 +103,17 @@ const RegistrationForm = () => {
                 autoComplete="new-password"
               />
               <ErMsg name="password" component="div" />
-
               <Styledlabel htmlFor="repeatPassword">
                 Repeat Password
-                <StyledBtn onClick={() => setShowRepeatPassword(!showRepeatPassword)}>
+                <StyledBtn
+                  onClick={() => setShowRepeatPassword(!showRepeatPassword)}
+                >
                   <svg>
-                    <use href={sprite + (showRepeatPassword ? '#eye-show' : '#eye-hide')}></use>
+                    <use
+                      href={
+                        sprite + (showRepeatPassword ? '#eye-show' : '#eye-hide')
+                      }
+                    ></use>
                   </svg>
                 </StyledBtn>
               </Styledlabel>
@@ -128,28 +122,31 @@ const RegistrationForm = () => {
                 name="repeatPassword"
                 id="repeatPassword"
                 placeholder="Repeat your password"
-                error={touched.repeatPassword && errors.repeatPassword ? 'true' : 'false'}
+                error={
+                  touched.repeatPassword && errors.repeatPassword
+                    ? 'true'
+                    : 'false'
+                }
                 autoComplete="new-password"
               />
               <ErMsg name="repeatPassword" component="div" />
-
               <FormBtnStyled type="submit" disabled={isSubmitting}>
                 Sign Up
               </FormBtnStyled>
-
               {/* Google Sign-In Button */}
-              <GoogleBtnStyled type="button">
+              <GoogleBtnStyled
+                type="button"
+              >
                 <GoogleLogin
                   onSuccess={handleGoogleResponse}
-                  onError={handleGoogleResponse}
+                  onError={handleGoogleResponse} // Handle errors as needed
                   logoAlignment="left"
                   style={{ width: 25, height: 25, marginRight: 10 }}
                 >
                   Sign in with Google
                 </GoogleLogin>
               </GoogleBtnStyled>
-
-              <SightUp onClick={() => navigate('/homepage')}>Sign in</SightUp>
+              <SightUp onClick={() => navigate('/signin')}>Sign in</SightUp>
             </StyledForm>
           )}
         </Formik>
@@ -158,5 +155,4 @@ const RegistrationForm = () => {
     </GoogleOAuthProvider>
   );
 };
-
 export default RegistrationForm;
