@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./TodayWaterList.module.css";
 import { toast } from "react-toastify";
 import {
@@ -8,7 +8,7 @@ import {
   getDailyRecord,
   // updateWaterRecord,
 } from "../../redux/water/operations";
-
+import { selectDalyRecords } from "../../redux/water/selector";
 import TodayListModal from "../../components/TodayListModal/TodayListModal";
 import EditWaterModal from "../../components/EditWaterModal/EditWaterModal";
 import { DeleteConfirmationModal } from "../../components/DeleteConfirmationModal/DeleteConfirmationModal";
@@ -20,21 +20,21 @@ const TodayWaterList = () => {
   const [recordIdToDelete, setRecordIdToDelete] = useState(null);
   const dispatch = useDispatch();
   const [dayWaters, setDayWaters] = useState([]);
+  const dataWaters = useSelector(selectDalyRecords);
   useEffect(() => {
     dispatch(addWaterRecord());
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(getDailyRecord())
-      .then((response) => {
-        if (dayWaters && response.payload.data) {
-          setDayWaters(response.payload.data);
-        }
+      .then(() => {
+        setDayWaters(dataWaters);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [dispatch, setDayWaters, dayWaters]);
+  }, [dispatch, dataWaters]);
+
   useEffect(() => {
     dispatch(getDailyRecord());
   }, [dispatch]);
