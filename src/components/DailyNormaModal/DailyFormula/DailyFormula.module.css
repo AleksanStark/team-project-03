@@ -5,21 +5,18 @@
 }
 
 .formula {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: black;
 }
 
 .spanFormula {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 18px;
   color: #407bff;
 }
 
 .explanation {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 12px;
   color: #8f8f8f;
@@ -29,7 +26,6 @@
 }
 
 .star {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 12px;
   color: #407bff;

@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: "Roboto";
+
   font-weight: 400;
   font-size: 16px;
   color: #2f2f2f;
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  font-family: "Roboto";
+
   font-weight: 400;
   font-size: 16px;
   color: #2f2f2f;
@@ -39,7 +39,6 @@
 }
 
 .date {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: #407bff;
@@ -49,7 +48,6 @@
 }
 
 .dailySpan {
-  font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;
   color: #407bff;

@@ -1,5 +1,4 @@
 .calculateTitle {
-  font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;
   color: black;
@@ -18,14 +17,12 @@
 }
 
 .gender {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: black;
 }
 
 .selectionName {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: black;
@@ -63,14 +60,13 @@
 .amountOfWater {
   display: flex;
   gap: 6px;
-  font-family: "Roboto";
+
   font-weight: 400;
   font-size: 16px;
   color: black;
 }
 
 .spanOfAmountOfWater {
-  font-family: "Roboto";
   font-weight: 700;
   font-size: 18px;
   color: #407bff;

@@ -3,20 +3,8 @@
    License: none (public domain)
 */
 /* bring in normalize.css styles */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-:root {
-  --primary-color-white: #ffffff;
-  --primary-color-black: #2f2f2f;
-  --primary-color-blue: #407bff;
-  --secondary-color-red: #ef5050;
-  --secondary-color-orange: #ff9d43;
-  --secondary-color-blue-1: #ecf2ff;
-  --secondary-color-blue-2: #d7e3ff;
-  --secondary-color-blue-3: #9ebbff;
-
-  --backdrop-color-black: rgba(0, 0, 0, 0.8);
-  --backdrop-color-loader: rgba(255, 255, 255, 0.4);
-}
 html,
 body,
 div,
@@ -134,10 +122,24 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+:root {
+  --primary-color-white: #ffffff;
+  --primary-color-black: #2f2f2f;
+  --primary-color-blue: #407bff;
+  --secondary-color-red: #ef5050;
+  --secondary-color-orange: #ff9d43;
+  --secondary-color-blue-1: #ecf2ff;
+  --secondary-color-blue-2: #d7e3ff;
+  --secondary-color-blue-3: #9ebbff;
+
+  --backdrop-color-black: rgba(0, 0, 0, 0.8);
+  --backdrop-color-loader: rgba(255, 255, 255, 0.4);
 }
