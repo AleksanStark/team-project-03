@@ -8,12 +8,7 @@ import {
     getDailyRecord,
     // updateWaterRecord,
 } from '../../redux/water/operations';
-import {
-    selectError,
-    selectIsLoading,
-    // selectWaterEntries,
-    // selectCurrentRecord,
-} from '../../redux/water/slice';
+
 import TodayListModal from '../../components/TodayListModal/TodayListModal';
 import EditWaterModal from '../../components/EditWaterModal/EditWaterModal';
 import { DeleteConfirmationModal } from '../../components/DeleteConfirmationModal/DeleteConfirmationModal';
