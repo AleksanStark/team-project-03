@@ -52,7 +52,7 @@ export const updateWaterRecord = createAsyncThunk(
 
 export const deleteWaterRecord = createAsyncThunk(
   "water/delete",
-  async ({ recordId }, thunkAPI) => {
+  async (recordId, thunkAPI) => {
     try {
       const response = await axios.delete(`/water/${recordId}`);
       return response.data;
@@ -70,7 +70,6 @@ export const getDailyRecord = createAsyncThunk(
   async (_, thunkAPI) => {
     let today = new Date();
     let isoDate = today.toISOString().slice(0, 10);
-    console.log(isoDate);
 
     try {
       const response = await axios.get(`/water/daily/${isoDate}`);

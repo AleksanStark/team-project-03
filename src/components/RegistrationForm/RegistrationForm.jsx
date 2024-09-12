@@ -44,12 +44,7 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
-    dispatch(
-      register({
-        email,
-        password,
-      })
-    );
+    dispatch(register({ email, password }));
     resetForm();
   };
 
@@ -63,24 +58,24 @@ const RegistrationForm = () => {
         },
         body: JSON.stringify({ code: credential }),
       });
-      const data = await result.json();
-      
-      if (result.ok) {
-        console.log('Google login successful', data);
-        // Redirect to homepage after successful Google login
-        navigate('https://aleksanstark.github.io/team-project-03/homepage');
-      } else {
-        console.error('Error during Google login:', data);
-        // Handle server-side errors
+
+      if (!result.ok) {
+        const error = await result.json();
+        console.error('Error during Google login:', error.message);
+        return;
       }
+
+      const data = await result.json();
+      console.log('Google login successful', data);
+      // Redirect to homepage after successful Google login
+      navigate('/homepage'); // Adjust this to your actual route
     } catch (error) {
       console.error('Error during Google login:', error);
-      // Handle client-side errors
     }
   };
 
   return (
-    <GoogleOAuthProvider clientId="273678042827-tc7jst83e51r24h8rd5t9vo4duo3k8oa.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="273678042827-tc7jst83e51r24h8rd5t9vo4duo3k8oa.apps.googleusercontent.com/">
       <SignUpContainer>
         <Formik
           initialValues={initialValues}
@@ -106,9 +101,7 @@ const RegistrationForm = () => {
                 Enter your password
                 <StyledBtn onClick={() => setShowPassword(!showPassword)}>
                   <svg>
-                    <use
-                      href={sprite + (showPassword ? '#eye-show' : '#eye-hide')}
-                    ></use>
+                    <use href={sprite + (showPassword ? '#eye-show' : '#eye-hide')}></use>
                   </svg>
                 </StyledBtn>
               </Styledlabel>
@@ -124,15 +117,9 @@ const RegistrationForm = () => {
 
               <Styledlabel htmlFor="repeatPassword">
                 Repeat Password
-                <StyledBtn
-                  onClick={() => setShowRepeatPassword(!showRepeatPassword)}
-                >
+                <StyledBtn onClick={() => setShowRepeatPassword(!showRepeatPassword)}>
                   <svg>
-                    <use
-                      href={
-                        sprite + (showRepeatPassword ? '#eye-show' : '#eye-hide')
-                      }
-                    ></use>
+                    <use href={sprite + (showRepeatPassword ? '#eye-show' : '#eye-hide')}></use>
                   </svg>
                 </StyledBtn>
               </Styledlabel>
@@ -141,11 +128,7 @@ const RegistrationForm = () => {
                 name="repeatPassword"
                 id="repeatPassword"
                 placeholder="Repeat your password"
-                error={
-                  touched.repeatPassword && errors.repeatPassword
-                    ? 'true'
-                    : 'false'
-                }
+                error={touched.repeatPassword && errors.repeatPassword ? 'true' : 'false'}
                 autoComplete="new-password"
               />
               <ErMsg name="repeatPassword" component="div" />
@@ -158,7 +141,7 @@ const RegistrationForm = () => {
               <GoogleBtnStyled type="button">
                 <GoogleLogin
                   onSuccess={handleGoogleResponse}
-                  onError={handleGoogleResponse} // Handle errors as needed
+                  onError={handleGoogleResponse}
                   logoAlignment="left"
                   style={{ width: 25, height: 25, marginRight: 10 }}
                 >
@@ -166,7 +149,7 @@ const RegistrationForm = () => {
                 </GoogleLogin>
               </GoogleBtnStyled>
 
-              <SightUp onClick={() => navigate('/signin')}>Sign in</SightUp>
+              <SightUp onClick={() => navigate('/homepage')}>Sign in</SightUp>
             </StyledForm>
           )}
         </Formik>
