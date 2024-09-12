@@ -4,6 +4,7 @@ import HomeBottleImg from "components/HomeBottleImg/HomeBottleImg";
 import MonthStatsTable from "components/MonthStatsTable/MonthStatsTable";
 import WaterRatioPanel from "components/WaterRratioPanel/WaterRatioPanel";
 import TodayWaterList from "components/TodayWaterList/TodayWaterList";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
   return (
