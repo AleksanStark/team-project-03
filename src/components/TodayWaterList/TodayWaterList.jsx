@@ -29,11 +29,11 @@ const TodayWaterList = () => {
     // const [amount, setAmount] = useState('');
     // const [time, setTime] = useState('');
     const dispatch = useDispatch();
-    const error = useSelector(selectError);
+    //const error = useSelector(selectError);
     const [dayWaters, setDayWaters] = useState([]);
     const dayWatersRedux = useSelector(selectDalyWaters);
     console.log(dayWaters);
-    const isLoading = useSelector(selectIsLoading);
+    //const isLoading = useSelector(selectIsLoading);
     // const error = useSelector(selectError);
     useEffect(() => {
         dispatch(addWaterRecord());
