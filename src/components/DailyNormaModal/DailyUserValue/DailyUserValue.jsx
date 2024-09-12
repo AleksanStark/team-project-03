@@ -11,6 +11,8 @@ const DailyUserValue = ({ closeModal }) => {
   const [isFirstOpen, setIsFirstOpen] = useState(true);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const userNorma = useSelector(dailyNormaSelector);
+  console.log(userNorma);
 
   const dispatch = useDispatch();
   const savedDailyNorma = useSelector(dailyNormaSelector); //!!

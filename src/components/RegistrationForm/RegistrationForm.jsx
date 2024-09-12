@@ -64,9 +64,18 @@ const RegistrationForm = () => {
         body: JSON.stringify({ code: credential }),
       });
       const data = await result.json();
-      console.log('Google login successful', data);
+      
+      if (result.ok) {
+        console.log('Google login successful', data);
+        // Redirect to homepage after successful Google login
+        navigate('https://aleksanstark.github.io/team-project-03/homepage');
+      } else {
+        console.error('Error during Google login:', data);
+        // Handle server-side errors
+      }
     } catch (error) {
       console.error('Error during Google login:', error);
+      // Handle client-side errors
     }
   };
 
@@ -146,9 +155,7 @@ const RegistrationForm = () => {
               </FormBtnStyled>
 
               {/* Google Sign-In Button */}
-              <GoogleBtnStyled
-                type="button"
-              >
+              <GoogleBtnStyled type="button">
                 <GoogleLogin
                   onSuccess={handleGoogleResponse}
                   onError={handleGoogleResponse} // Handle errors as needed
