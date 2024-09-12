@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectError, selectIsLoading } from "../../../redux/water/slice.js";
 import { updateDailyNorma } from "../../../redux/auth/operations.js";
 import { toast } from "react-toastify";
+import { dailyNormaSelector } from "../../../redux/auth/auth.selectors";
 
 const DailyUserValue = ({ closeModal }) => {
   const [isFirstOpen, setIsFirstOpen] = useState(true);
@@ -12,7 +13,10 @@ const DailyUserValue = ({ closeModal }) => {
   const error = useSelector(selectError);
 
   const dispatch = useDispatch();
-  const [userValue, setUserValue] = useState("");
+  const savedDailyNorma = useSelector(dailyNormaSelector); //!!
+  const [userValue, setUserValue] = useState(
+    savedDailyNorma?.toString() || "0"
+  );
 
   const handleClick = () => {
     const normalizedValue = +userValue;
@@ -43,7 +47,7 @@ const DailyUserValue = ({ closeModal }) => {
           className={style.inputValue}
           type="text"
           name="inputValue"
-          placeholder="0"
+          placeholder={savedDailyNorma} //!!
           value={userValue}
           onChange={(e) => {
             setUserValue(e.target.value);

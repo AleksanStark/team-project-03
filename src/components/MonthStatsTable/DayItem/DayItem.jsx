@@ -4,6 +4,7 @@ import PopupItem from "../PopupItem/PopupItem.jsx";
 import style from "./DayItem.module.css";
 
 const DayItem = ({ data, index, onClick }) => {
+  console.log(data);
   const [modalState, openModal, closeModal] = useModal();
 
   const percent = data.consumptionPercentage;
