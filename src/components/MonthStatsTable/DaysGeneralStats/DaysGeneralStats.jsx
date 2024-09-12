@@ -5,7 +5,7 @@ import { dailyNormaSelector } from "../../../redux/auth/auth.selectors.js";
 const DaysGeneralStats = ({ dayData }) => {
   const norma = useSelector(dailyNormaSelector);
   const percent = (dayData.consumptionPercentage / 1000).toFixed(0);
-  console.log(norma);
+  // console.log(norma);
   return (
     <div className={style.container}>
       <h3 className={style.date}>{dayData && dayData.date}</h3>
