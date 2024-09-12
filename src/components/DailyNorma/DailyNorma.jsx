@@ -15,7 +15,11 @@ const DailyNorma = () => {
     dispatch(getUserData())
       .then((response) => {
         if (response.payload && response.payload.data) {
-          setDailyNorma(response.payload.data.dailyNorma || 2);
+          setDailyNorma(
+            response.payload.data.dailyNorma < 100
+              ? response.payload.data.dailyNorma
+              : 2
+          );
         }
       })
       .catch((error) => {
