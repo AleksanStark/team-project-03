@@ -2,7 +2,7 @@
   "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aleksanstark.github.io/team-project-03/",
+  "homepage": "https://team-project-03-orpin.vercel.app/",
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.7",
