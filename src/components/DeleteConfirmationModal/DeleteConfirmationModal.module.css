@@ -27,14 +27,11 @@
   position: relative;
   /* For positioning the close button */
 }
-.sureWrapper {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #2f2f2f;
 
 .modal_title {
-  font-size: 26px;
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  /* Adjusted font size */
   font-weight: 500;
   line-height: 32px;
   color: #2f2f2f;
@@ -131,5 +128,4 @@
     /* Further adjusted width for extra large screens */
     padding: 32px;
   }
-}
 }
