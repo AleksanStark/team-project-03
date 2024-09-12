@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import css from "./DailyNorma.module.css";
 import DailyNormaModal from "components/DailyNormaModal/DailyNormaModal";
-import { useDispatch } from "react-redux";
-import { getUserData } from "../../redux/auth/operations";
+import { useSelector } from "react-redux";
+
+import { dailyNormaSelector } from "../../redux/auth/auth.selectors";
 const DailyNorma = () => {
-  const dispatch = useDispatch();
-  const [dailyNorma, setDailyNorma] = useState(2);
+  const dailyNorma = useSelector(dailyNormaSelector);
+
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    dispatch(getUserData())
-      .then((response) => {
-        if (response.payload && response.payload.data) {
-          setDailyNorma(
-            response.payload.data.dailyNorma < 100
-              ? response.payload.data.dailyNorma
-              : 2
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-        setDailyNorma(2);
-      });
-  }, [dispatch]);
+
   const openModal = () => {
     setIsOpen(true);
   };
