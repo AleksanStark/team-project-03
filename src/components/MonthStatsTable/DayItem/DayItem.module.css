@@ -28,7 +28,6 @@
 }
 
 .numberOfDay {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   color: #2f2f2f;
@@ -36,7 +35,6 @@
 }
 
 .percentOfDay {
-  font-family: "Roboto";
   font-weight: 400;
   font-size: 12px;
   color: #9ebbff;

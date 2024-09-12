@@ -28,7 +28,6 @@
   position: relative;
 }
 .sureWrapper {
-  font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
@@ -37,7 +36,6 @@
   text-align: left;
 }
 .modal_title {
-  font-family: Roboto;
   font-size: 26px;
   font-weight: 500;
   line-height: 32px;

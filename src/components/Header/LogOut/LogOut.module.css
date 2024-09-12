@@ -42,7 +42,7 @@
 }
 .log-title {
   color: #2f2f2f;
-  font-family: Roboto;
+
   font-size: 26px;
   font-weight: 500;
   line-height: 32px;
@@ -58,7 +58,7 @@
 }
 .title {
   color: #2f2f2f;
-  font-family: Roboto;
+
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
@@ -84,7 +84,7 @@
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   padding: 8px 30px;
   color: #ffffff;
-  font-family: Roboto;
+
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
@@ -103,7 +103,7 @@
   border-color: transparent;
   padding: 8px 30px;
   color: #407bff;
-  font-family: Roboto;
+
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
