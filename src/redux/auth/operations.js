@@ -90,7 +90,8 @@ export const updateAvatar = createAsyncThunk(
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return data.data.user;
+
+            return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }
@@ -121,7 +122,8 @@ export const updateUserData = createAsyncThunk(
     async (body, thunkAPI) => {
         try {
             const { data } = await axios.patch('/user/info/update', body);
-            return data.data;
+
+            return data;
         } catch (error) {
             toast.error('Request error');
             return thunkAPI.rejectWithValue(error.message);
@@ -181,8 +183,6 @@ export const resetPwd = createAsyncThunk(
 export const updatePassword = createAsyncThunk(
     'user/update-password',
     async ({ oldPassword, newPassword }, thunkAPI) => {
-        console.log({ oldPassword, newPassword });
-
         const persistedToken = thunkAPI.getState().auth.token;
 
         if (persistedToken === null) {
