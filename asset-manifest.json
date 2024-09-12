@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/team-project-03/static/css/main.aadf9cc6.css",
-    "main.js": "/team-project-03/static/js/main.c70c1802.js",
+    "main.js": "/team-project-03/static/js/main.ca6b09d3.js",
     "static/css/192.fffd27b3.chunk.css": "/team-project-03/static/css/192.fffd27b3.chunk.css",
     "static/js/192.ddd48220.chunk.js": "/team-project-03/static/js/192.ddd48220.chunk.js",
     "static/js/25.c1893041.chunk.js": "/team-project-03/static/js/25.c1893041.chunk.js",
@@ -16,6 +16,7 @@
     "static/js/262.58cb4503.chunk.js": "/team-project-03/static/js/262.58cb4503.chunk.js",
     "static/js/62.c8d1eb0b.chunk.js": "/team-project-03/static/js/62.c8d1eb0b.chunk.js",
     "static/js/467.3c9c0b61.chunk.js": "/team-project-03/static/js/467.3c9c0b61.chunk.js",
+    "static/media/andriybilous.png": "/team-project-03/static/media/andriybilous.fecabad66abd0cd8eda4.png",
     "static/media/ilyapylypchuk.png": "/team-project-03/static/media/ilyapylypchuk.0f3ad1eab2ee8d206246.png",
     "static/media/olgaiarova.png": "/team-project-03/static/media/olgaiarova.78337e017a6c503b7223.png",
     "static/media/yuliiaprokopchuk.png": "/team-project-03/static/media/yuliiaprokopchuk.c9ecd952f282cbd2cccf.png",
@@ -24,7 +25,6 @@
     "static/media/ilonahonchar.png": "/team-project-03/static/media/ilonahonchar.d97f6a3155887a7133ac.png",
     "static/media/anastasianazarova.png": "/team-project-03/static/media/anastasianazarova.89fc4bde5476fbc70231.png",
     "static/media/maksymrebryk.png": "/team-project-03/static/media/maksymrebryk.2abb082851d84ceae600.png",
-    "static/media/andriybilous.png": "/team-project-03/static/media/andriybilous.a42a078d3d092dd9e785.png",
     "static/media/aleksanvartapetyan.jpeg": "/team-project-03/static/media/aleksanvartapetyan.afe49cdc8da94e089197.jpeg",
     "static/media/bottle-desk-2x.png": "/team-project-03/static/media/bottle-desk-2x.1775bd96fc412d403b4f.png",
     "static/media/dmytrodiumin.jpg": "/team-project-03/static/media/dmytrodiumin.3f887c458a7a346c15cb.jpg",
@@ -54,7 +54,7 @@
     "static/media/linkedin.svg": "/team-project-03/static/media/linkedin.b5db985d0d658e7fd21c0847f27d5172.svg",
     "static/media/x-mark.svg": "/team-project-03/static/media/x-mark.522b2c595a77d1df50c4eaf35b522689.svg",
     "main.aadf9cc6.css.map": "/team-project-03/static/css/main.aadf9cc6.css.map",
-    "main.c70c1802.js.map": "/team-project-03/static/js/main.c70c1802.js.map",
+    "main.ca6b09d3.js.map": "/team-project-03/static/js/main.ca6b09d3.js.map",
     "192.fffd27b3.chunk.css.map": "/team-project-03/static/css/192.fffd27b3.chunk.css.map",
     "192.ddd48220.chunk.js.map": "/team-project-03/static/js/192.ddd48220.chunk.js.map",
     "25.c1893041.chunk.js.map": "/team-project-03/static/js/25.c1893041.chunk.js.map",
@@ -72,6 +72,6 @@
   },
   "entrypoints": [
     "static/css/main.aadf9cc6.css",
-    "static/js/main.c70c1802.js"
+    "static/js/main.ca6b09d3.js"
   ]
 }
