@@ -138,7 +138,7 @@ const RegistrationForm = () => {
                 Sign Up
               </FormBtnStyled>
               {/* Google Sign-In Button */}
-              <GoogleBtnStyled type="button">
+              {/* <GoogleBtnStyled type="button">
                 <GoogleLogin
                   onSuccess={handleGoogleResponse}
                   onError={handleGoogleResponse} // Handle errors as needed
@@ -147,7 +147,7 @@ const RegistrationForm = () => {
                 >
                   Sign in with Google
                 </GoogleLogin>
-              </GoogleBtnStyled>
+              </GoogleBtnStyled> */}
               <SightUp onClick={() => navigate("/signin")}>Sign in</SightUp>
             </StyledForm>
           )}
