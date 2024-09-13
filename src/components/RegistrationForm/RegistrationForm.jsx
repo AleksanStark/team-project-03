@@ -9,7 +9,6 @@ import {
   SightUp,
   ErMsg,
   FormBtnStyled,
-  GoogleBtnStyled,
   BottleImg,
   StyledBtn,
   StyledField,
@@ -18,7 +17,7 @@ import {
   FormHead,
 } from "./RegistrationForm.styled.js";
 import sprite from "../../images/sprite.svg";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"; // Import from react-oauth/google
+import { GoogleOAuthProvider } from "@react-oauth/google"; // Import from react-oauth/google
 const initialValues = {
   email: "",
   password: "",
@@ -47,25 +46,7 @@ const RegistrationForm = () => {
     );
     resetForm();
   };
-  const handleGoogleResponse = async (response) => {
-    try {
-      const { credential } = response;
-      const result = await fetch(
-        "https://team-project-03.onrender.com/api-docs/auth/confirm-oauth",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ code: credential }),
-        }
-      );
-      const data = await result.json();
-      console.log("Google login successful", data);
-    } catch (error) {
-      console.error("Error during Google login:", error);
-    }
-  };
+
   return (
     <GoogleOAuthProvider clientId="273678042827-tc7jst83e51r24h8rd5t9vo4duo3k8oa.apps.googleusercontent.com">
       <SignUpContainer>
