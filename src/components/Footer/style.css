@@ -1,8 +1,13 @@
 .swiper-button-next:after,
 .swiper-button-prev:after {
-    font-size: 25px;
-    font-weight: 900;
-
+    font-size: 18px;
+    font-weight: 1000;
 }
-
-
+.swiper-button-next:after {
+    position: relative;
+    left: 18px;
+}
+.swiper-button-prev:after {
+    position: relative;
+    right: 18px;
+}
