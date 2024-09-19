@@ -205,3 +205,18 @@ export const updatePassword = createAsyncThunk(
         }
     },
 );
+
+export const oAuthLogin = createAsyncThunk(
+  'auth/OauthLogin',
+  async ({ code }, thunkAPI) => {
+    try {
+      const response = await axios.post("/auth/confirm-oauth", {
+        code,
+      });
+      setAuthHeader(response.data.accessToken);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data); // Log the full error response
+    }
+  }
+);

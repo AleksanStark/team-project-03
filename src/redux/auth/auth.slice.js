@@ -3,6 +3,7 @@ import {
     register,
     logIn,
     logOut,
+    oAuthLogin,
     refreshUser,
     updateAvatar,
     updateDailyNorma,
@@ -18,6 +19,7 @@ const initialState = {
     isRegistered: false,
     isRefreshing: false,
     waterRate: null,
+    
 };
 
 const handleRejected = (state, action) => {
@@ -114,7 +116,21 @@ const authSlice = createSlice({
                 // state.user.dailyNorma = action.payload;
                 // console.log(action.payload);
             })
-            .addCase(updateDailyNorma.rejected, handleRejected);
+        
+            .addCase(updateDailyNorma.rejected, handleRejected)
+        
+            .addCase(oAuthLogin.pending, (state) => {
+        state.isRefreshing = true;
+    })
+        .addCase(oAuthLogin.fulfilled, (state, action) => {
+        // state.user = action.payload.user;
+        state.accessToken = action.payload.data.accessToken;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+    })
+        .addCase(oAuthLogin.rejected, (state) => {
+        state.isRefreshing = false;
+    })
     },
 });
 

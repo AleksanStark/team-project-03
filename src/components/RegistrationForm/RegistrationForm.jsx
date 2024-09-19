@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
+import GoogleLoginButton from "../GoogleBtn/GoogleLoginButton";
 import {
   SignUpContainer,
   SightUp,
@@ -116,7 +117,9 @@ const RegistrationForm = () => {
               Sign Up
             </FormBtnStyled>
             <SightUp onClick={() => navigate("/signin")}>Sign in</SightUp>
+            <GoogleLoginButton />
           </StyledForm>
+          
         )}
       </Formik>
       <BottleImg />
