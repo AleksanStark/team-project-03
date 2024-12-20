@@ -10,34 +10,39 @@ const GoogleLoginButton = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleOAuthCode = useCallback(async (code) => {
-  try {
-    const response = await fetch('https://watertracker-db.onrender.com/auth/confirm-oauth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ code }), // Send the code in the request body
-    });
+  const handleOAuthCode = useCallback(
+    async (code) => {
+      try {
+        const response = await fetch(
+          "https://watertracker-db.onrender.com/auth/confirm-oauth",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ code }), // Send the code in the request body
+          }
+        );
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Error: ${errorData.message}`); // Capture specific error message
-    }
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`Error: ${errorData.message}`); // Capture specific error message
+        }
 
-    const data = await response.json();
-    dispatch(oAuthLogin({ code }))
-      .unwrap()
-      .then(() => {
-        navigate("/homepage");
-      })
-      .catch((err) => {
-        console.error('Dispatch error:', err);
-      });
-  } catch (error) {
-    console.error('Error during OAuth code confirmation:', error.message);
-  }
-}, [dispatch, navigate]);
+        dispatch(oAuthLogin({ code }))
+          .unwrap()
+          .then(() => {
+            navigate("/homepage");
+          })
+          .catch((err) => {
+            console.error("Dispatch error:", err);
+          });
+      } catch (error) {
+        console.error("Error during OAuth code confirmation:", error.message);
+      }
+    },
+    [dispatch, navigate]
+  );
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -52,7 +57,9 @@ const GoogleLoginButton = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://watertracker-db.onrender.com/auth/get-oauth-url`);
+      const response = await fetch(
+        `https://watertracker-db.onrender.com/auth/get-oauth-url`
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -73,7 +80,8 @@ const GoogleLoginButton = () => {
   };
 
   return (
-    <button className={styles.googleLoginButton}
+    <button
+      className={styles.googleLoginButton}
       onClick={handleGoogleLogin}
       disabled={loading}
     >
